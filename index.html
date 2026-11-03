@@ -84,7 +84,6 @@ main{padding-top:calc(96px + env(safe-area-inset-top,0px))}
 .ph canvas{display:block; width:100%; height:100%; transition:transform .7s cubic-bezier(.2,.7,.2,1)}
 .card:hover .ph canvas{transform:scale(1.035)}
 .ph img{display:block; width:100%; height:100%; object-fit:contain}
-.detail .ph.wide.banner{aspect-ratio:3/1}
 .cta{position:absolute; top:14px; right:14px; background:var(--bg); color:var(--ink); border-radius:999px; padding:9px 14px}
 .cap{display:flex; justify-content:space-between; gap:16px; margin-top:12px}
 .cap .idx{color:var(--mute)}
@@ -909,7 +908,7 @@ var P = [
     var meta = '<dl class="meta"><div><dt class="mono">' + L(T.type) + '</dt><dd>' + L(p.type) + '</dd></div><div><dt class="mono">' + L(T.stack) + '</dt><dd>' + p.stack + '</dd></div><div><dt class="mono">' + L(T.methods) + '</dt><dd>' + p.methods + '</dd></div><div><dt class="mono">' + L(T.repo) + '</dt><dd>' + (p.repo ? '<a href="' + GH + p.repo + '" target="_blank" rel="noopener" style="border-bottom:1px solid currentColor">github/' + (p.repoLabel || p.repo) + '</a>' : L(T.noRepo)) + '</dd></div></dl>';
     var figs = p.figs.length ? '<div class="figs">' + p.figs.map(function (f) { return '<div><b>' + f.v + '</b><span>' + L(f.d) + '</span></div>'; }).join('') + '</div>' : '';
     var secs = p.secs.map(function (s) { return '<section class="cs"><h2 class="cs-l">' + L(s.h) + '</h2><div class="cs-r">' + s.b.map(blk).join('') + '</div></section>'; }).join('');
-    return '<div class="wrap detail"><div class="ph wide' + (p.img ? ' banner' : '') + '"' + coverStyle(p) + '>' + cover(p) + '</div>' + (p.img ? '' : '<p class="mono cap-note">' + L(T.artNote) + '</p>') +
+    return '<div class="wrap detail"><div class="ph wide' + '"' + coverStyle(p) + '>' + cover(p) + '</div>' + (p.img ? '' : '<p class="mono cap-note">' + L(T.artNote) + '</p>') +
       '<h1 class="dt-title">' + p.name + '</h1><p class="lead">' + L(p.lead) + '</p>' + meta + figs +
       '<div class="cs-wrap">' + secs + '</div>' +
       (p.repo ? '<a class="pill-link" href="' + GH + p.repo + '" target="_blank" rel="noopener"><span class="pill">' + L(T.repoBtn) + ' ↗</span></a>' : '') + (p.live ? ' <a class="pill-link" href="' + p.live + '" target="_blank" rel="noopener"><span class="pill">' + L(T.liveBtn) + ' ↗</span></a>' : '') +
