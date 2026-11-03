@@ -322,8 +322,8 @@ var P = [
     short: { en: 'European, Asian and barrier options under Black-Scholes and Heston, in Python and C.', es: 'Opciones europeas, asiáticas y con barrera bajo Black-Scholes y Heston, en Python y C.' },
     lead: { en: 'A pricing engine for European, Asian and barrier options under two models: Black-Scholes, with constant volatility, and Heston, where volatility itself is random. It estimates the Greeks three ways and compares them on variance. Written twice, in Python and in C.', es: 'Un motor de valoración de opciones europeas, asiáticas y con barrera bajo dos modelos: Black-Scholes, con volatilidad constante, y Heston, donde la volatilidad es aleatoria. Estima las griegas de tres formas y las compara por varianza. Escrito dos veces, en Python y en C.' },
     type: { en: 'Personal project', es: 'Proyecto personal' }, stack: 'Python · C · pytest', methods: 'Monte Carlo · Black-Scholes · Heston',
-    figs: [ { v: '0.006%', d: { en: 'relative error at 500K paths against the closed form', es: 'error relativo con 500K trayectorias frente a la fórmula cerrada' } },
-            { v: '77', d: { en: 'unit tests in Python', es: 'tests unitarios en Python' } },
+    figs: [ { v: '±0.3%', d: { en: '95% confidence half-width at 500K paths; it contains the closed-form price', es: 'semiancho del intervalo al 95% con 500K trayectorias; contiene el precio exacto' } },
+            { v: '182', d: { en: 'unit tests in Python', es: 'tests unitarios en Python' } },
             { v: '~6×', d: { en: 'lower variance, pathwise vs likelihood-ratio Greeks', es: 'menos varianza, griegas pathwise frente a likelihood-ratio' } },
             { v: '2×', d: { en: 'faster in C than in Python for 500K paths', es: 'más rápido en C que en Python con 500K trayectorias' } } ],
     secs: [
@@ -337,7 +337,7 @@ var P = [
       { h: { en: 'Three options', es: 'Tres opciones' }, b: [
         { tbl: { head: [ { en: 'Option', es: 'Opción' }, { en: 'Payoff', es: 'Pago' }, { en: 'Price', es: 'Precio' }, { en: 'Note', es: 'Nota' } ], rows: [
           [ { en: 'European call, closed form', es: 'Call europea, forma cerrada' }, 'max(S_T − K, 0)', '10.4506', { en: 'ground truth', es: 'verdad de referencia' } ],
-          [ { en: 'European call, Monte Carlo (500K paths)', es: 'Call europea, Monte Carlo (500K)' }, 'max(S_T − K, 0)', '10.4512', { en: '0.006% error', es: 'error del 0,006%' } ],
+          [ { en: 'European call, Monte Carlo (500K paths)', es: 'Call europea, Monte Carlo (500K)' }, 'max(S_T − K, 0)', '10.4512', { en: '95% CI ±0.031, contains the exact price', es: 'IC 95% ±0,031, contiene el precio exacto' } ],
           [ { en: 'Asian call, arithmetic average', es: 'Call asiática, media aritmética' }, 'max(avg S − K, 0)', '5.8234', { en: '44.3% cheaper than European', es: '44,3% más barata que la europea' } ],
           [ { en: 'Up-and-out barrier call, B = 120', es: 'Call con barrera up-and-out, B = 120' }, 'max(S_T − K, 0) if max S < B', '6.1245', { en: '41.4% cheaper; 23.45% chance of knock-out', es: '41,4% más barata; 23,45% de probabilidad de knock-out' } ] ] } },
         { p: { en: 'Averaging lowers the effective volatility, which is why the Asian option costs less. The barrier option costs less because it can be knocked out. Under Heston, at-the-money prices sit within ±2% of Black-Scholes; the differences grow in the tails.', es: 'Promediar reduce la volatilidad efectiva, por eso la opción asiática cuesta menos. La opción con barrera cuesta menos porque puede anularse. Bajo Heston, los precios at-the-money quedan dentro de un ±2% de Black-Scholes; las diferencias crecen en las colas.' } } ] },
@@ -546,13 +546,46 @@ var P = [
   ];
   var GH = 'https://github.com/claudialbombin/';
   var RECENT = [
-    { n: 'pitwall', r: 'pitwall', d: '2026-11', t: { en: 'Results corrected across site, notebooks and paper', es: 'Resultados corregidos en la web, los notebooks y el paper' }, s: 'pitwall' },
-    { n: '42', r: '42', d: '2026-10', t: { en: 'A-Maze-ing, in Python, and Born2beRoot', es: 'A-Maze-ing, en Python, y Born2beRoot' }, s: 'a-maze-ing' },
+    { n: 'pitwall', r: 'pitwall', d: '2026-11', t: { en: 'F1 pit-stop strategy as a Markov Decision Process', es: 'Estrategia de paradas en F1 como proceso de decisión de Markov' }, s: 'pitwall' },
+    { n: '42', r: '42', d: '2026-10', t: { en: '42 Madrid Piscine and cursus, mostly in C', es: 'Piscina y cursus de 42 Madrid, sobre todo en C' } },
     { n: 'salchi-helper', r: 'salchi-helper', d: '2026-10', t: { en: 'A floating dachshund for your to-do list', es: 'Un salchicha flotante para tu lista de tareas' }, s: 'salchi-helper' },
-    { n: 'beat-the-dealer', r: 'beat-the-dealer', d: '2026-09', t: { en: 'Rebuilt: exact solver, a billion rounds, a live site', es: 'Rehecho: solver exacto, mil millones de rondas, web interactiva' }, s: 'beat-the-dealer' },
+    { n: 'beat-the-dealer', r: 'beat-the-dealer', d: '2026-09', t: { en: 'Blackjack by Monte Carlo, checked against an exact solver', es: 'Blackjack por Monte Carlo, comprobado contra un solver exacto' }, s: 'beat-the-dealer' },
     { n: '3imat', r: '3imat', d: '2026-09', t: { en: 'Third-year iMAT coursework', es: 'Trabajos de tercero de iMAT' } },
     { n: 'cececat', r: 'cececat', d: '2026-09', t: { en: 'A debate tournament manager', es: 'Un gestor de torneos de debate' }, s: 'cececat' }
   ];
+
+
+  /* ---------------- live "Recently on GitHub" ----------------
+     Fetches my most recently pushed public repos (one unauthenticated call,
+     cached for an hour). Hand-written blurbs in RECENT win over repo
+     descriptions; if the API is unreachable the static RECENT list stays. */
+  function esc(x) { return String(x).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function paintRecent(repos) {
+    var ul = document.getElementById('recent'), upd = document.getElementById('recent-upd');
+    if (!ul || !repos || !repos.length) return;
+    var hand = {}; RECENT.forEach(function (r) { hand[r.r] = r; });
+    var slug = {}; P.forEach(function (p) { if (p.repo) slug[p.repo] = p.slug; });
+    ul.innerHTML = repos.slice(0, 6).map(function (g) {
+      var h = hand[g.name], s = slug[g.name], blurb = h ? L(h.t) : (g.description || '');
+      return '<li><a class="nm" href="' + (s ? '#/works/' + s : GH + g.name) + '"' + (s ? '' : ' target="_blank" rel="noopener"') + '>' + esc(g.name) + '</a><span class="mono dt">' + fmtDate(g.pushed_at) + '</span><span class="mono rl">' + esc(blurb) + '</span></li>';
+    }).join('');
+    if (upd) upd.textContent = L(T.live) + ' · ' + fmtDate(repos[0].pushed_at);
+  }
+  function loadRecent() {
+    var KEY = 'cl-recent', cached = null;
+    try { cached = JSON.parse(sessionStorage.getItem(KEY) || 'null'); } catch (e) {}
+    if (cached && Date.now() - cached.t < 36e5) { paintRecent(cached.r); return; }
+    if (!window.fetch) return;
+    fetch('https://api.github.com/users/claudialbombin/repos?sort=pushed&per_page=20')
+      .then(function (res) { if (!res.ok) throw new Error(res.status); return res.json(); })
+      .then(function (list) {
+        var r = list.filter(function (g) { return !g.fork && !g.private && g.name !== 'claudialbombin' && g.name !== 'claudialbombin.github.io'; })
+          .map(function (g) { return { name: g.name, description: g.description, pushed_at: g.pushed_at }; });
+        try { sessionStorage.setItem(KEY, JSON.stringify({ t: Date.now(), r: r })); } catch (e) {}
+        paintRecent(r);
+      })
+      .catch(function () { /* keep the static list */ });
+  }
 
   /* ---------------- procedural cover art ---------------- */
   function hash(s) { var h = 2166136261; for (var i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return h >>> 0; }
@@ -747,7 +780,7 @@ var P = [
   function img(src, alt, cls) { return '<img ' + (cls ? 'class="' + cls + '" ' : '') + 'src="' + src + '" alt="' + alt + '" decoding="async" onerror="var t=this.closest(\'[data-photo]\');if(t)t.remove()">'; }
 
   var T = {
-    intro: { en: 'Claudia Lopez is a Spanish engineer and speaker based in Madrid, studying Mathematical Engineering and AI and building stochastic models for finance.', es: 'Claudia Lopez es una ingeniera y oradora española afincada en Madrid, estudia Ingeniería Matemática e IA y construye modelos estocásticos para finanzas.' },
+    intro: { en: 'Claudia Lopez is a Spanish engineering student and debater based in Madrid, studying Mathematical Engineering and AI and building stochastic models for finance.', es: 'Claudia Lopez es una estudiante de ingeniería y debatiente española afincada en Madrid: estudia Ingeniería Matemática e IA y construye modelos estocásticos para finanzas.' },
     tag: { en: 'Madrid based<br>curiously driven', es: 'Desde Madrid<br>movida por la curiosidad' },
     works: { en: 'My works', es: 'Mis trabajos' }, all: { en: 'All works', es: 'Todos los trabajos' },
     doTitle: { en: 'What I do', es: 'Qué hago' },
@@ -759,7 +792,7 @@ var P = [
     numbers: { en: 'In numbers', es: 'En cifras' },
     nums: [
       { v: '380/380', d: { en: 'blackjack chart decisions where my Monte Carlo solver agrees with an exact solver', es: 'decisiones de la tabla de blackjack en las que mi solver Monte Carlo coincide con un solver exacto' } },
-      { v: '0.006%', d: { en: 'error of my Monte Carlo option pricer against the closed form', es: 'de error de mi pricer Monte Carlo frente a la fórmula cerrada' } },
+      { v: '±0.3%', d: { en: '95% confidence band of my Monte Carlo option pricer at 500K paths; the exact price sits inside it', es: 'banda de confianza al 95% de mi pricer Monte Carlo con 500K trayectorias; el precio exacto cae dentro' } },
       { v: '10⁹', d: { en: 'simulated rounds in my Hi-Lo card-counting study', es: 'rondas simuladas en mi estudio de conteo Hi-Lo' } },
       { v: '3rd', d: { en: 'among all Spanish-speaking teams at the World Universities Debating Championship, Panama 2025', es: 'entre todos los equipos hispanohablantes en el Campeonato Mundial Universitario de Debate, Panamá 2025' } }
     ],
@@ -776,9 +809,9 @@ var P = [
       { n: { en: 'Preparing for the CFA', es: 'Preparando el CFA' }, r: { en: 'Alongside the degree', es: 'A la vez que el grado' } },
       { n: { en: 'Looking for summer 2027 internships', es: 'Buscando prácticas para el verano de 2027' }, r: { en: 'Quant, data and software · London or Madrid', es: 'Quant, datos y software · Londres o Madrid' } }
     ],
-    recentH: { en: 'Recently on GitHub', es: 'Últimas novedades en GitHub' }, updated: { en: 'last updated', es: 'última actualización' },
-    tease: { en: 'Over 5 years exploring the intersection of technology, data, and meaningful experiences.', es: 'Más de 5 años explorando la intersección entre tecnología, datos y experiencias con sentido.' },
-    tease2: { en: 'After engaging in diverse engineering, mentoring, and debate experiences, I chose to follow my passion: exploring new ways to merge technology, creativity, and human impact. Now, I’m shaping my own vision of purposeful projects.', es: 'Tras vivir experiencias muy distintas de ingeniería, mentoría y debate, decidí seguir mi pasión: explorar nuevas formas de unir tecnología, creatividad e impacto humano. Ahora estoy dando forma a mi propia visión de proyectos con propósito.' },
+    recentH: { en: 'Recently on GitHub', es: 'Últimas novedades en GitHub' }, updated: { en: 'last updated', es: 'última actualización' }, live: { en: 'live from GitHub', es: 'en directo desde GitHub' },
+    tease: { en: 'Models, code and debate, held to one rule: give the number, and how far to trust it.', es: 'Modelos, código y debate con una misma regla: dar la cifra y cuánto fiarse de ella.' },
+    tease2: { en: 'I study Mathematical Engineering and AI at ICAI and C systems programming at 42 Madrid. Outside class I build the tools I end up using: a pit-stop optimiser, a manager for the debate tournaments I run, a dachshund that keeps my to-do list in sight. Debate and mentoring taught me to explain the work as carefully as I build it.', es: 'Estudio Ingeniería Matemática e IA en ICAI y programación de sistemas en C en 42 Madrid. Fuera de clase construyo las herramientas que acabo usando: un optimizador de paradas en boxes, un gestor para los torneos de debate que organizo y un salchicha que mantiene a la vista mi lista de tareas. El debate y la mentoría me enseñaron a explicar el trabajo con el mismo cuidado con el que lo construyo.' },
     prog: { en: 'Programs & initiatives', es: 'Programas e iniciativas' },
     progv: { en: 'Technovation Girls, U.S. Embassy mentoring, ISC Racing Team, WUDC.', es: 'Technovation Girls, mentoría de la Embajada de EE. UU., ISC Racing Team, WUDC.' },
     more: { en: 'More about me', es: 'Más sobre mí' },
@@ -786,9 +819,9 @@ var P = [
     worksIntro: { en: 'Simulation, stochastic modelling and software, from coursework to things I built because I wanted them to exist. Every project has its own page with the question, the method and the numbers.', es: 'Simulación, modelado estocástico y software, desde trabajos de clase hasta cosas que hice porque quería que existieran. Cada proyecto tiene su propia página con la pregunta, el método y las cifras.' },
     f_all: { en: 'All', es: 'Todos' }, f_quant: { en: 'Quant & simulation', es: 'Cuantitativo y simulación' }, f_software: { en: 'Software', es: 'Software' }, f_study: { en: 'Coursework', es: 'Estudios' },
     also: { en: 'Also on GitHub', es: 'También en GitHub' },
-    bio1: { en: 'I’m Claudia Lopez, Spanish born engineer, specialised in Mathematics and Artificial Intelligence.', es: 'Soy Claudia Lopez, ingeniera nacida en España, especializada en Matemáticas e Inteligencia Artificial.' },
-    bio2: { en: 'After contributing to numerous engineering projects, mentoring programs, and debate competitions, I decided to focus on what drives me the most: creating meaningful, integrative experiences.', es: 'Tras participar en numerosos proyectos de ingeniería, programas de mentoría y competiciones de debate, decidí centrarme en lo que más me mueve: crear experiencias con sentido e integradoras.' },
-    bio3: { en: 'Lately that means stochastic models for finance: Monte Carlo, Markov processes, filtering. Now I’m crafting my own approach to multidisciplinary challenges.', es: 'Últimamente eso significa modelos estocásticos para finanzas: Monte Carlo, procesos de Markov, filtrado. Ahora estoy construyendo mi propio enfoque para retos multidisciplinares.' },
+    bio1: { en: 'I’m Claudia Lopez, a Spanish student of Mathematical Engineering and Artificial Intelligence at ICAI and of the 42 Madrid cursus.', es: 'Soy Claudia Lopez, estudiante española de Ingeniería Matemática e Inteligencia Artificial en ICAI y del cursus de 42 Madrid.' },
+    bio2: { en: 'Before the code there was debate: academic and British Parliamentary rounds, mentoring with Technovation Girls and a U.S. Embassy program, and the cost report for a Formula Student team. It is all the same exercise: build the case, then find where it breaks.', es: 'Antes del código estuvo el debate: rondas académicas y de British Parliamentary, mentoría con Technovation Girls y con un programa de la Embajada de EE. UU., y el cost report de un equipo de Formula Student. Todo es el mismo ejercicio: construir el caso y buscar dónde se rompe.' },
+    bio3: { en: 'Lately that means stochastic models for finance (Monte Carlo, Markov decision processes, filtering) and the small tools I build because I want them to exist.', es: 'Últimamente eso significa modelos estocásticos para finanzas (Monte Carlo, procesos de decisión de Markov, filtrado) y las pequeñas herramientas que construyo porque quiero que existan.' },
     howH: { en: 'How I work', es: 'Cómo trabajo' },
     how: [
       { h: { en: 'Check it against something known', es: 'Comprobarlo contra algo conocido' }, p: { en: 'My Monte Carlo pricer is validated against the Black-Scholes closed form. My blackjack chart is checked cell by cell against an exact solver. If a model cannot be checked against something, I do not trust it yet.', es: 'Mi pricer Monte Carlo se valida contra la fórmula cerrada de Black-Scholes. Mi tabla de blackjack se comprueba casilla a casilla con un solver exacto. Si un modelo no se puede comprobar contra algo, aún no me fío de él.' } },
@@ -799,7 +832,7 @@ var P = [
     ongoing: { en: 'ongoing', es: 'actualidad' },
     outside: { en: 'Outside the screen', es: 'Fuera de la pantalla' },
     outsideP: { en: 'I like board games and card games, and it shows: two of my projects are about them. I also care about the small design details that make software feel cared for.', es: 'Me gustan los juegos de mesa y de cartas, y se nota: dos de mis proyectos van de eso. También me importan los pequeños detalles de diseño que hacen que el software se sienta cuidado.' },
-    words: ['Technology', 'Public Speaking', 'Innovation'], wordsEs: ['Tecnología', 'Oratoria', 'Innovación'],
+    words: ['Models', 'Code', 'Debate'], wordsEs: ['Modelos', 'Código', 'Debate'],
     next: { en: 'Next', es: 'Siguiente' },
     type: { en: 'Type', es: 'Tipo' }, stack: { en: 'Stack', es: 'Stack' }, methods: { en: 'Methods', es: 'Métodos' }, repo: { en: 'Repo', es: 'Repo' },
     repoBtn: { en: 'See on GitHub', es: 'Ver en GitHub' }, liveBtn: { en: 'Open the live site', es: 'Abrir la web' }, noRepo: { en: 'In progress', es: 'En curso' },
@@ -853,7 +886,7 @@ var P = [
       slashes() +
       '<section class="two"><div class="photo" data-photo>' + img('assets/speaking.jpg', 'Claudia Lopez speaking at a lectern') + '<span class="mono photo-cap">' + L(T.speakCap) + '</span></div><div><h3 class="h3">' + L(T.speakH) + '</h3><p class="big-p">' + L(T.speakP) + '</p></div></section>' +
       slashes() +
-      '<section class="cols"><div><h3 class="h3" style="margin-bottom:26px">' + L(T.nowH) + '</h3><ul class="rows">' + now + '</ul></div><div><h3 class="h3" style="margin-bottom:26px">' + L(T.recentH) + '</h3><ul class="rows">' + recent + '</ul><p class="mono muted" style="margin:12px 0 0">' + L(T.updated) + '</p></div></section>' +
+      '<section class="cols"><div><h3 class="h3" style="margin-bottom:26px">' + L(T.nowH) + '</h3><ul class="rows">' + now + '</ul></div><div><h3 class="h3" style="margin-bottom:26px">' + L(T.recentH) + '</h3><ul class="rows" id="recent">' + recent + '</ul><p class="mono muted" id="recent-upd" style="margin:12px 0 0">' + L(T.updated) + ' · ' + fmtDate(RECENT[0].d) + '</p></div></section>' +
       slashes() +
       '<section class="tease"><h3 class="big">' + L(T.tease) + '</h3><div class="body"><p>' + L(T.tease2) + '</p><div class="programs"><div class="mono muted">' + L(T.prog) + '</div><p class="mono" style="margin:6px 0 0">' + L(T.progv) + '</p></div><a class="pill-link" href="#/about"><span class="pill">' + L(T.more) + ' →</span></a></div></section>' +
       '</div>';
@@ -988,7 +1021,7 @@ var P = [
   function route() {
     var h = location.hash.replace(/^#\/?/, '').split('/'), html;
     if (h[0] === 'works' && h[1]) html = detailView(h[1]); else if (h[0] === 'works') html = worksView(); else if (h[0] === 'about') html = aboutView(); else html = homeView();
-    app.innerHTML = html; applyUI(); drawAll(); initSim(); tick();
+    app.innerHTML = html; applyUI(); drawAll(); initSim(); tick(); if (document.getElementById('recent')) loadRecent();
     document.querySelectorAll('.chip').forEach(function (b) { b.addEventListener('click', function () { filter = b.getAttribute('data-f'); var y = window.scrollY; route(); window.scrollTo(0, y); }); });
   }
   var lastHash = null;
