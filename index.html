@@ -1,0 +1,987 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Claudia Lopez: Mathematical Engineering and AI student in Madrid, building stochastic models for finance and software people use.">
+<meta property="og:title" content="Claudia Lopez">
+<meta property="og:description" content="Mathematical Engineering and AI student in Madrid. Projects in quantitative modelling, simulation and software.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://claudialbombin.github.io/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23101010'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='17' fill='%23F7F2ED' text-anchor='middle'%3ECL%3C/text%3E%3C/svg%3E">
+<style>img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Claudia Lopez</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500&family=Roboto+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#F7F2ED; --ink:#101010; --mute:#6F6963; --line:rgba(16,16,16,.14); --paper:#EFE8DF; --dark:#151515; --accent:#E2593A;
+  --gut:clamp(20px,3.2vw,44px);
+  --serif:"Instrument Serif","Times New Roman",Georgia,serif;
+  --sans:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"Roboto Mono",ui-monospace,Menlo,Consolas,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0; background:var(--bg); color:var(--ink); font:400 16px/1.55 var(--sans); -webkit-font-smoothing:antialiased; overflow-x:hidden}
+a{color:inherit; text-decoration:none}
+button{font:inherit; color:inherit; background:none; border:0; padding:0; cursor:pointer}
+:focus-visible{outline:2px solid var(--ink); outline-offset:3px; border-radius:4px}
+.mono{font:400 12px/1.5 var(--mono); text-transform:uppercase; letter-spacing:.02em}
+.wrap{max-width:1440px; margin-inline:auto; padding-inline:var(--gut)}
+
+/* header */
+.hd{position:fixed; inset:0 0 auto 0; z-index:60; color:#fff; mix-blend-mode:difference; pointer-events:none; padding-top:env(safe-area-inset-top,0px)}
+.hd-in{max-width:1440px; margin-inline:auto; padding:18px var(--gut); display:grid; grid-template-columns:1fr 1fr 1fr auto; align-items:center; gap:12px}
+.hd a,.hd button{pointer-events:auto}
+.hd .role{text-align:left}
+.hd-r{display:flex; align-items:center; gap:14px; justify-self:end}
+.lang{display:flex; gap:6px}
+.lang button{opacity:.55} .lang button[aria-pressed="true"]{opacity:1; text-decoration:underline; text-underline-offset:3px}
+.pill{display:inline-flex; align-items:center; justify-content:center; border:1px solid currentColor; border-radius:999px; padding:12px 22px; font:400 12px/1 var(--mono); text-transform:uppercase; letter-spacing:.03em}
+@media (max-width:640px){.hd-in{grid-template-columns:auto 1fr auto} .hd .role{display:none} .hd .brand{justify-self:start}}
+
+/* menu */
+.menu{position:fixed; inset:0; z-index:55; background:var(--bg); padding:calc(110px + env(safe-area-inset-top,0px)) var(--gut) calc(32px + env(safe-area-inset-bottom,0px)); display:flex; flex-direction:column; justify-content:space-between}
+.menu[hidden]{display:none}
+.menu nav{display:flex; flex-direction:column; gap:4px}
+.menu nav a{font:400 clamp(3.2rem,12vw,7rem)/1 var(--serif); letter-spacing:-.01em; padding-block:4px; width:fit-content}
+.menu nav a:hover{font-style:italic}
+.menu .foot{display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px}
+
+/* type */
+.h-name{font:400 clamp(4.6rem,17vw,15rem)/.84 var(--serif); letter-spacing:-.035em; margin:0}
+.h-tag{font:400 clamp(3rem,9vw,8rem)/.92 var(--serif); letter-spacing:-.03em; margin:0; text-align:right}
+.h3{font:400 clamp(2.4rem,5vw,4.2rem)/1 var(--serif); letter-spacing:-.02em; margin:0}
+.big{font:400 clamp(2.1rem,5.4vw,4.6rem)/1.04 var(--serif); letter-spacing:-.02em; margin:0}
+.muted{color:var(--mute)}
+
+/* hero */
+main{padding-top:calc(96px + env(safe-area-inset-top,0px))}
+.hero{display:grid; gap:28px; padding-bottom:56px}
+.intro{max-width:46ch; margin:0 0 0 auto; text-align:right}
+.hero-photo{display:grid; grid-template-columns:minmax(0,720px) 1fr; gap:24px; align-items:end; margin-top:12px}
+.arch{position:relative; border:1px solid var(--ink); border-radius:999px 999px 18px 18px; overflow:hidden; aspect-ratio:4/5; background:var(--paper)}
+.arch img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 20%; display:block}
+.arch .ph-fallback{position:absolute; inset:0; display:grid; place-items:center; font:400 clamp(6rem,22vw,13rem)/1 var(--serif); color:var(--ink); background:linear-gradient(160deg,#E9DCCB,#D8C6E8)}
+.side{display:grid; gap:6px; justify-items:end; text-align:right; padding-bottom:6px}
+@media (max-width:900px){.hero-photo{grid-template-columns:1fr} .side{justify-items:start; text-align:left}}
+
+.slashes{display:flex; align-items:center; gap:18px; padding-block:clamp(36px,6vw,72px)}
+.slashes svg{flex:1; height:16px; min-width:0}
+.slashes .mono{white-space:nowrap}
+
+/* cards */
+.sec{padding-block:clamp(36px,7vw,90px) 0}
+.sec-h{display:flex; justify-content:space-between; align-items:baseline; gap:16px; flex-wrap:wrap; margin-bottom:34px}
+.grid{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:clamp(36px,5vw,64px) clamp(20px,3vw,44px)}
+.grid>*:nth-child(even){margin-top:clamp(0px,7vw,110px)}
+@media (max-width:760px){.grid{grid-template-columns:1fr} .grid>*:nth-child(even){margin-top:0}}
+.card{display:block}
+.ph{position:relative; overflow:hidden; border-radius:14px; background:var(--paper); aspect-ratio:4/3}
+.ph canvas{display:block; width:100%; height:100%; transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.card:hover .ph canvas{transform:scale(1.035)}
+.ph img{display:block; width:100%; height:100%; object-fit:contain}
+.detail .ph.wide.banner{aspect-ratio:3/1}
+.cta{position:absolute; top:14px; right:14px; background:var(--bg); color:var(--ink); border-radius:999px; padding:9px 14px}
+.cap{display:flex; justify-content:space-between; gap:16px; margin-top:12px}
+.cap .idx{color:var(--mute)}
+.sub{margin:8px 0 0; color:var(--mute); max-width:46ch; font-size:.95rem}
+.more{margin-top:clamp(40px,6vw,72px)}
+.more a{display:flex; justify-content:space-between; gap:16px; padding-block:18px; border-top:1px solid var(--line)}
+.more a:last-child{border-bottom:1px solid var(--line)}
+.more a:hover .ttl{font-style:italic}
+.more .ttl{font:400 clamp(1.6rem,3vw,2.4rem)/1.1 var(--serif)}
+.pill-link{display:inline-flex; margin-top:36px}
+.pill-link .pill:hover,.pill:hover{background:var(--ink); color:var(--bg)}
+
+/* works title pill */
+.pill-title{display:flex; align-items:center; justify-content:center; border:1px solid var(--ink); border-radius:999px; padding:clamp(28px,6vw,72px) 20px; font:400 clamp(4rem,15vw,13rem)/.95 var(--serif); letter-spacing:-.03em}
+
+/* lab / sim */
+.sim{margin-top:28px; border:1px solid var(--ink); border-radius:18px; background:var(--paper); overflow:hidden}
+.sim-h{display:flex; flex-wrap:wrap; justify-content:space-between; gap:6px 24px; padding:16px 18px; border-bottom:1px solid var(--line)}
+.sim canvas{display:block; width:100%; aspect-ratio:16/7; min-height:280px}
+.ctl-row{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)) auto; gap:16px 32px; align-items:end; padding:18px; border-top:1px solid var(--line)}
+.ctl label{display:flex; justify-content:space-between; margin-bottom:10px}
+.ctl input[type=range]{width:100%; margin:0; accent-color:var(--ink)}
+.btn{border:1px solid var(--ink); border-radius:999px; padding:12px 20px; font:400 12px/1 var(--mono); text-transform:uppercase; letter-spacing:.03em}
+.btn:hover{background:var(--ink); color:var(--bg)}
+.readout{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); margin:0; border-top:1px solid var(--line)}
+.readout div{padding:16px 18px; border-right:1px solid var(--line)}
+.readout div:last-child{border-right:0}
+.readout dt{margin-bottom:8px; color:var(--mute)}
+.readout dd{margin:0; font:400 clamp(1.8rem,3.4vw,2.6rem)/1.05 var(--serif); font-variant-numeric:tabular-nums}
+.readout small{display:block; margin-top:6px; font:400 12px/1.4 var(--mono); color:var(--mute)}
+.note{margin:16px 0 0; max-width:70ch; color:var(--mute); font-size:.95rem}
+@media (max-width:720px){.ctl-row{grid-template-columns:1fr} .readout{grid-template-columns:1fr} .readout div{border-right:0; border-bottom:1px solid var(--line)} .readout div:last-child{border-bottom:0}}
+
+/* about teaser + about page */
+.tease{display:grid; grid-template-columns:minmax(0,1fr); gap:32px}
+.tease .body{max-width:60ch; margin-left:auto}
+.programs{margin-top:28px}
+.collage{position:relative; min-height:clamp(520px,88vh,860px); display:grid; place-items:center; text-align:center}
+.collage .words{font:400 clamp(3rem,9vw,8rem)/.95 var(--serif); letter-spacing:-.03em; margin:0; position:relative; z-index:2}
+.tile{position:absolute; width:clamp(120px,17vw,250px); border-radius:12px; overflow:hidden; z-index:1; border:1px solid var(--ink)}
+.tile canvas{display:block; width:100%; aspect-ratio:4/3}
+.t1{left:4%; top:6%} .t2{right:3%; top:12%} .t3{left:0%; bottom:6%} .t4{left:34%; bottom:0%} .t5{right:6%; bottom:14%} .t6{left:20%; top:0%}
+.t6,.t4{display:none}
+@media (min-width:900px){.t6,.t4{display:block}}
+.bio p{margin:0 0 .7em}
+.rows{margin:0; padding:0; list-style:none; border-top:1px solid var(--ink)}
+.rows li{display:grid; grid-template-columns:minmax(0,1fr) auto; gap:8px 24px; align-items:baseline; padding-block:20px; border-bottom:1px solid var(--line)}
+.rows .nm{font:400 clamp(1.8rem,3.4vw,2.8rem)/1.05 var(--serif); letter-spacing:-.015em}
+.rows .rl{grid-column:1; color:var(--mute)}
+.rows .dt{grid-column:2; grid-row:1; text-align:right; white-space:nowrap}
+.cols{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:clamp(36px,6vw,80px)}
+@media (max-width:820px){.cols{grid-template-columns:1fr}}
+.tags{margin:0; display:flex; flex-wrap:wrap; gap:8px}
+.tags span{border:1px solid var(--line); border-radius:999px; padding:8px 14px}
+
+/* detail */
+.detail .ph.wide{aspect-ratio:16/10; border:1px solid transparent}
+.dt-title{font:400 clamp(4rem,14vw,12rem)/.9 var(--serif); letter-spacing:-.035em; margin:clamp(28px,5vw,60px) 0 0}
+.lead{font:400 clamp(.95rem,1.4vw,1.1rem)/1.6 var(--mono); max-width:64ch; margin:28px 0 0; text-transform:none; letter-spacing:0}
+.meta{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:24px; margin:44px 0 0}
+.meta dt{color:var(--mute); margin-bottom:4px}
+.meta dd{margin:0; font:400 13px/1.5 var(--mono); text-transform:uppercase}
+@media (max-width:760px){.meta{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.figs{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:0; margin-top:clamp(40px,6vw,80px); border-top:1px solid var(--ink)}
+.figs div{padding:22px 20px 26px 0; border-bottom:1px solid var(--line)}
+.figs b{display:block; font:400 clamp(3rem,6vw,5.4rem)/.95 var(--serif); letter-spacing:-.03em; font-weight:400}
+.figs span{display:block; margin-top:10px; color:var(--mute); font-size:.95rem; max-width:28ch}
+.gal{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:clamp(16px,3vw,40px); margin-top:clamp(40px,6vw,80px)}
+@media (max-width:640px){.gal{grid-template-columns:1fr}}
+.next{display:flex; flex-direction:column; align-items:center; gap:14px; margin-top:clamp(56px,9vw,120px)}
+.next .pill-title{width:min(100%,780px)}
+
+/* footer */
+.foot-card{margin:clamp(56px,9vw,120px) var(--gut) var(--gut); background:var(--dark); color:var(--bg); border-radius:24px; padding:clamp(28px,5vw,64px); min-height:min(80vh,640px); display:flex; flex-direction:column; justify-content:space-between; gap:60px; max-width:1440px}
+@media (min-width:1500px){.foot-card{margin-inline:auto}}
+.foot-card h2{font:400 clamp(2.4rem,6vw,5.4rem)/1 var(--serif); letter-spacing:-.025em; margin:0; text-align:right}
+.contacts{display:grid; gap:14px; justify-items:end}
+.contacts a{display:flex; align-items:baseline; gap:18px}
+.contacts .lb{color:rgba(247,242,237,.5)}
+.contacts .v{font:400 clamp(1.7rem,4.6vw,4.4rem)/1.05 var(--serif); letter-spacing:-.02em; overflow-wrap:anywhere; text-align:right}
+.contacts a:hover .v{font-style:italic}
+@media (max-width:640px){.contacts a{flex-direction:column; align-items:flex-end; gap:2px} .contacts .v{font-size:clamp(1.5rem,7vw,2.2rem)}}
+.foot-b{display:flex; justify-content:space-between; gap:12px; color:rgba(247,242,237,.6)}
+
+/* v3 additions */
+.hero-photo .arch[data-photo]{max-width:720px}
+.pillars{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(24px,4vw,56px); border-top:1px solid var(--ink); padding-top:28px}
+.pillars p,.how p{margin:0; color:var(--mute); max-width:44ch}
+.pl-h{font:400 clamp(2rem,3.6vw,3rem)/1 var(--serif); letter-spacing:-.02em; margin:0 0 12px}
+@media (max-width:820px){.pillars{grid-template-columns:1fr}}
+.two{display:grid; grid-template-columns:minmax(0,5fr) minmax(0,6fr); gap:clamp(28px,5vw,72px); align-items:center}
+.two.rev{grid-template-columns:minmax(0,6fr) minmax(0,5fr)}
+.two.rev .photo{order:2}
+.two .big-p{font:400 clamp(1.3rem,2.2vw,1.9rem)/1.3 var(--serif); margin:22px 0 0; max-width:36em}
+@media (max-width:820px){.two,.two.rev{grid-template-columns:1fr} .two.rev .photo{order:0}}
+.photo{position:relative; aspect-ratio:3/4; border-radius:14px; overflow:hidden; background:var(--paper); max-width:560px; width:100%}
+.photo img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block}
+.photo-cap{position:absolute; left:12px; bottom:12px; right:12px; background:var(--bg); border-radius:999px; padding:8px 14px; width:fit-content; max-width:calc(100% - 24px)}
+.how{margin-bottom:26px}
+.rows .rl{display:block}
+.tile-img{display:block; width:100%; aspect-ratio:4/5; object-fit:cover}
+.tile[data-photo]{background:var(--paper)}
+.t1{width:clamp(120px,15vw,220px)} .t3{width:clamp(120px,15vw,220px)}
+.chips{display:flex; flex-wrap:wrap; gap:8px; margin:0 0 clamp(28px,4vw,48px)}
+.chip{border:1px solid var(--ink); border-radius:999px; padding:10px 16px}
+.chip:hover,.chip[aria-pressed="true"]{background:var(--ink); color:var(--bg)}
+.works-intro{font-size:clamp(1.5rem,3vw,2.6rem); line-height:1.15; max-width:26em; margin:0 0 clamp(24px,4vw,44px)}
+.cap-note{margin:12px 0 0; color:var(--mute); text-transform:none; max-width:70ch}
+.cs-wrap{margin-top:clamp(48px,7vw,96px)}
+.cs{display:grid; grid-template-columns:minmax(120px,1fr) minmax(0,3fr); gap:16px clamp(20px,4vw,60px); padding-block:clamp(28px,4vw,48px); border-top:1px solid var(--line)}
+.cs-l{margin:0; color:var(--mute); font:400 12px/1.5 var(--mono); text-transform:uppercase; letter-spacing:.02em}
+.cs-r{min-width:0}
+.cs-r p{margin:0 0 1.1em; max-width:64ch; font-size:1.08rem; line-height:1.65}
+.cs-r ul{margin:0 0 1.2em; padding-left:1.2em; max-width:64ch; line-height:1.6}
+.cs-r li{margin-bottom:.4em}
+.cs-r>*:last-child{margin-bottom:0}
+@media (max-width:760px){.cs{grid-template-columns:1fr}}
+.tw{overflow-x:auto; margin:0 0 1.2em; -webkit-overflow-scrolling:touch}
+table.t{border-collapse:collapse; width:100%; min-width:420px; font:400 13px/1.5 var(--mono)}
+table.t th{text-align:left; font-weight:500; text-transform:uppercase; color:var(--mute); padding:8px 14px 8px 0; border-bottom:1px solid var(--ink)}
+table.t td{padding:9px 14px 9px 0; border-bottom:1px solid var(--line); vertical-align:top}
+pre.code{background:var(--dark); color:var(--bg); border-radius:12px; padding:16px 18px; overflow-x:auto; font:400 13px/1.6 var(--mono); margin:0 0 1.2em; max-width:100%}
+.chart{display:block; width:100%; aspect-ratio:2/1; background:var(--paper); border-radius:14px}
+.tease .body p{margin:0}
+.pill-link{margin-top:36px}
+
+.cs-r p.cap-note,p.cap-note{font:400 12px/1.5 var(--mono); color:var(--mute); margin:12px 0 0}
+
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto} .ph canvas{transition:none}}
+</style>
+</head>
+<body>
+
+<header class="hd"><div class="hd-in">
+  <span class="mono">®2026</span>
+  <a class="mono brand" href="#/about">Claudia Lopez</a>
+  <a class="mono role" href="#/" data-i18n="role">Math engineer &amp; AI</a>
+  <div class="hd-r">
+    <div class="lang mono" role="group" aria-label="Language / Idioma"><button type="button" data-set="es" aria-pressed="false">ES</button><button type="button" data-set="en" aria-pressed="true">EN</button></div>
+    <button type="button" class="pill" id="menuBtn" aria-expanded="false" aria-controls="menu"><span data-i18n="menu">Menu</span></button>
+  </div>
+</div></header>
+
+<div class="menu" id="menu" hidden>
+  <nav aria-label="Main">
+    <a href="#/" data-i18n="nav_home">Home</a>
+    <a href="#/works" data-i18n="nav_works">Works</a>
+    <a href="#/about" data-i18n="nav_about">About</a>
+    <a href="#contact" data-goto="contact" data-i18n="nav_contact">Contact</a>
+  </nav>
+  <div class="foot mono"><span data-i18n="open">Open to summer 2027 internships</span><span>®2026</span></div>
+</div>
+
+<main id="app"></main>
+
+<footer class="foot-card" id="contact">
+  <h2 data-i18n="cta_title">Can't wait to work together</h2>
+  <div class="contacts">
+    <a href="mailto:claudialbombin@gmail.com"><span class="mono lb" data-i18n="mail">Mail</span><span class="v">claudialbombin@gmail.com</span></a>
+    <a href="https://github.com/claudialbombin" target="_blank" rel="noopener"><span class="mono lb" data-i18n="peek">Peek</span><span class="v">Github</span></a>
+    <a href="https://www.linkedin.com/in/claudia-lopez-bombin" target="_blank" rel="noopener"><span class="mono lb" data-i18n="link">Link</span><span class="v">LinkedIn</span></a>
+  </div>
+  <div class="foot-b mono"><span data-i18n="open">Open to summer 2027 internships</span><span>®2026</span></div>
+</footer>
+
+
+<script>
+/* ---------- project data (bilingual) ---------- */
+var P = [
+  { slug: 'pitwall', name: 'Pitwall', art: 'pitwall', repo: 'pitwall', live: 'https://claudialbombin.github.io/pitwall/', cat: 'quant',
+    short: { en: 'When to pit in Formula 1, solved like an American option, and honest about the result.', es: 'Cuándo parar en boxes en Fórmula 1, resuelto como una opción americana y sin maquillar el resultado.' },
+    lead: { en: 'A stochastic pit-stop strategy optimizer for Formula 1. It frames the decision of when to pit as a finite-horizon Markov Decision Process solved by backward induction, with tyre wear modelled by Gaussian Process regression and safety-car risk by a Bayesian Poisson process. It also follows live sessions and publishes its advice for €0.', es: 'Un optimizador estocástico de estrategia de paradas en boxes para Fórmula 1. Plantea cuándo parar como un proceso de decisión de Markov de horizonte finito resuelto por inducción hacia atrás, con el desgaste de neumáticos modelado con regresión de procesos gaussianos y el riesgo de safety car con un proceso de Poisson bayesiano. Además sigue las sesiones en directo y publica sus recomendaciones por 0 €.' },
+    type: { en: 'Personal project', es: 'Proyecto personal' }, stack: 'Python · FastF1 · Web', methods: 'MDP · GPR · Monte Carlo',
+    figs: [ { v: '53%', d: { en: 'of 57 comparisons with real 2023 strategies where the policy was faster (modelled time)', es: 'de 57 comparaciones con estrategias reales de 2023 en las que la política fue más rápida (tiempo modelado)' } },
+            { v: '+0.20 s', d: { en: 'mean modelled delta in those comparisons', es: 'de delta medio modelado en esas comparaciones' } },
+            { v: '48 s', d: { en: 'slower than a baseline heuristic in the saved Silverstone Monte Carlo run', es: 'más lenta que una heurística de referencia en la simulación Monte Carlo guardada de Silverstone' } },
+            { v: '€0', d: { en: 'monthly cost of the live-timing feature', es: 'de coste mensual de la función en directo' } } ],
+    secs: [
+      { h: { en: 'The question', es: 'La pregunta' }, b: [
+        { p: { en: 'Every lap a race engineer faces the same call: pit now, or stay out on tyres that are wearing? A stop costs a guaranteed 19 to 24 seconds in the pit lane, depending on the circuit. Staying out costs an uncertain lap-time loss that grows as the tyres degrade. And a safety car can appear at any moment and make an otherwise poor stop almost free.', es: 'Cada vuelta, un ingeniero de carrera se enfrenta a la misma decisión: ¿parar ahora o seguir con unos neumáticos que se desgastan? Una parada cuesta entre 19 y 24 segundos seguros en el pit lane, según el circuito. Seguir fuera cuesta una pérdida de tiempo incierta que crece con la degradación. Y un safety car puede aparecer en cualquier momento y dejar una parada mala casi gratis.' } },
+        { p: { en: 'Rules of thumb such as “pit around lap 25” ignore all of that. Pitwall treats the race as what it is: a sequential decision under uncertainty.', es: 'Las reglas de andar por casa, como “parar sobre la vuelta 25”, ignoran todo eso. Pitwall trata la carrera como lo que es: una decisión secuencial bajo incertidumbre.' } } ] },
+      { h: { en: 'The model', es: 'El modelo' }, b: [
+        { p: { en: 'The race is a Markov Decision Process. At every lap the state tracks:', es: 'La carrera es un proceso de decisión de Markov. En cada vuelta, el estado recoge:' } },
+        { ul: [ { en: 'the lap number', es: 'el número de vuelta' }, { en: 'the tyre compound (soft, medium, hard, intermediate, wet)', es: 'el compuesto del neumático (blando, medio, duro, intermedio, lluvia)' }, { en: 'the age of the tyres, in laps', es: 'la edad de los neumáticos, en vueltas' }, { en: 'the position, from 1 to 20', es: 'la posición, de 1 a 20' }, { en: 'the discretised gaps to nearby cars', es: 'los huecos discretizados a los coches cercanos' }, { en: 'the number of stops already made', es: 'el número de paradas ya realizadas' }, { en: 'whether a safety car or virtual safety car is active', es: 'si hay safety car o virtual safety car activo' } ] },
+        { p: { en: 'The action each lap is to stay out or to pit, choosing a compound. The objective is not greedy: it minimises the expected total race time over the laps that remain. The value function comes from a Bellman equation solved by backward recursion, which asks one question: is the immediate cost of pitting better than the expected value of waiting one more lap?', es: 'La acción en cada vuelta es seguir fuera o parar, eligiendo compuesto. El objetivo no es voraz: minimiza el tiempo total esperado de carrera en las vueltas que quedan. La función de valor sale de una ecuación de Bellman resuelta por recursión hacia atrás, que pregunta una sola cosa: ¿compensa más el coste inmediato de parar que el valor esperado de esperar una vuelta más?' } } ] },
+      { h: { en: 'Tyres and safety cars', es: 'Neumáticos y safety car' }, b: [
+        { p: { en: 'A Weibull hazard is fitted per compound to look for a degradation cliff. The saved fits are weak, with negative R², and find no clear cliff. On top sits a Gaussian Process with a Matérn 5/2 kernel, for the variation between circuits and temperatures. The model returns both a lap-time delta and its uncertainty.', es: 'Se ajusta un hazard de Weibull por compuesto para buscar un precipicio de degradación. Los ajustes guardados son débiles, con R² negativo, y no encuentran un precipicio claro. Encima va un proceso gaussiano con kernel Matérn 5/2, para la variación entre circuitos y temperaturas. El modelo devuelve el delta de tiempo por vuelta y su incertidumbre.' } },
+        { code: 'delta, uncertainty = model.predict(Compound.MEDIUM, tyre_age=22, return_std=True)' },
+        { p: { en: 'Safety cars are a non-homogeneous Poisson process for timing and a geometric distribution for duration, with a Bayesian layer that updates the deployment rate of each circuit from historical data.', es: 'Los safety cars son un proceso de Poisson no homogéneo para el momento y una distribución geométrica para la duración, con una capa bayesiana que actualiza la tasa de cada circuito a partir de datos históricos.' } } ] },
+      { h: { en: 'Results', es: 'Resultados' }, b: [
+        { p: { en: 'I corrected these numbers in November 2026 so that the site, notebooks and paper match the saved results. Against 57 real driver strategies from 2023, at 3 circuits, the policy is faster in 53% of comparisons, by a mean of 0.20 seconds. This is not yet a proven strategy edge.', es: 'Corregí estas cifras en noviembre de 2026 para que la web, los notebooks y el paper coincidan con los resultados guardados. Frente a 57 estrategias reales de pilotos de 2023, en 3 circuitos, la política es más rápida en el 53% de las comparaciones, con una media de 0,20 segundos. Todavía no es una ventaja de estrategia demostrada.' } },
+        { tbl: { head: [ { en: 'Circuit', es: 'Circuito' }, { en: 'Policy faster', es: 'Política más rápida' }, { en: 'Mean delta', es: 'Delta medio' } ], rows: [ [ { en: 'Monaco', es: 'Mónaco' }, '85%', '+1.01 s' ], [ 'Silverstone', '72%', '+0.08 s' ], [ 'Monza', '0%', '−0.54 s' ] ] } },
+        { p: { en: 'At Silverstone the MDP recommended lap 26. That beat Verstappen’s real lap 34 by 0.41 s and Gasly’s lap 32 by 0.33 s, but lost to Leclerc’s lap 19 by 0.52 s.', es: 'En Silverstone el MDP recomendó la vuelta 26. Eso mejoró la vuelta 34 real de Verstappen en 0,41 s y la 32 de Gasly en 0,33 s, pero perdió 0,52 s frente a la vuelta 19 de Leclerc.' } },
+        { ul: [ { en: 'In the saved Monte Carlo run at Silverstone (N = 2,000), the MDP averages 81.73 minutes against 80.93 for the baseline: 48 s slower.', es: 'En la simulación Monte Carlo guardada de Silverstone (N = 2.000), el MDP promedia 81,73 minutos frente a 80,93 de la referencia: 48 s más lento.' }, { en: 'The deltas are modelled, not observed, and each circuit gets one recommended lap.', es: 'Los deltas son modelados, no observados, y cada circuito recibe una sola vuelta recomendada.' }, { en: 'The safety-car 90% intervals cover only 8% of laps.', es: 'Los intervalos del 90% del safety car cubren solo el 8% de las vueltas.' } ] } ] },
+      { h: { en: 'Live, for €0', es: 'En directo, por 0 €' }, b: [
+        { p: { en: 'A GitHub Actions job checks the calendar every 5 minutes. When a session is live, another job connects to the same Formula 1 SignalR feed FastF1 is built on, and every few seconds asks the same solver used offline what it would do given the real gaps, tyres and safety-car status. The snapshot goes to a git branch, and a static page polls it. No server, no database and no paid feed.', es: 'Un job de GitHub Actions revisa el calendario cada 5 minutos. Cuando hay una sesión en directo, otro job se conecta al mismo feed SignalR de Fórmula 1 en el que se apoya FastF1 y, cada pocos segundos, pregunta al mismo solver que se usa offline qué haría con los huecos, neumáticos y safety car reales. La instantánea va a una rama de git y una página estática la consulta. Sin servidor, sin base de datos y sin feed de pago.' } } ] },
+      { h: { en: 'The finance connection', es: 'La conexión con finanzas' }, b: [
+        { p: { en: 'The most interesting result is an isomorphism. Deciding whether to pit now or wait is the same problem as deciding whether to exercise an American option early: compare the immediate payoff with the expected value of continuing, and solve it by backward recursion. The same Snell-envelope machinery from quantitative finance applies to race strategy.', es: 'El resultado más interesante es un isomorfismo. Decidir si parar ahora o esperar es el mismo problema que decidir si ejercer una opción americana antes de tiempo: comparar el pago inmediato con el valor esperado de continuar y resolverlo por recursión hacia atrás. La misma maquinaria de la envolvente de Snell de las finanzas cuantitativas se aplica a la estrategia de carrera.' } } ] },
+      { h: { en: 'Inside the repo', es: 'Dentro del repo' }, b: [
+        { ul: [ { en: 'core/: MDP formulation, solver, tyre and safety-car models, race simulator.', es: 'core/: formulación del MDP, solver, modelos de neumáticos y safety car, simulador de carrera.' }, { en: 'data/: the FastF1 pipeline. live/: the live-timing companion.', es: 'data/: el pipeline de FastF1. live/: el seguimiento en directo.' }, { en: 'paper/: a full mathematical write-up.', es: 'paper/: un documento matemático completo.' }, { en: 'results/: backtest CSV and diagnostic plots. tests/: pytest suite.', es: 'results/: CSV del backtest y gráficos de diagnóstico. tests/: batería de pytest.' }, { en: 'A static GitHub Pages site with a Simulator, a Live dashboard, The Math and a Garage of animated pit-stop scenarios.', es: 'Un sitio estático en GitHub Pages con Simulador, panel en directo, The Math y un Garaje con escenarios animados de paradas.' } ] } ] }
+    ] },
+
+  { slug: 'beat-the-dealer', name: 'Beat the Dealer', art: 'blackjack', repo: 'beat-the-dealer', live: 'https://claudialbombin.github.io/beat-the-dealer/', cat: 'quant',
+    short: { en: 'Blackjack solved by simulation, checked against an exact solver, and counted over a billion rounds.', es: 'Blackjack resuelto por simulación, comprobado con un solver exacto y contado en mil millones de rondas.' },
+    lead: { en: 'Blackjack basic strategy derived by Monte Carlo simulation, checked cell by cell against an exact solver, and a Hi-Lo card-counting study over one billion simulated rounds. It comes with an interactive site where you can play, drill and run the simulations yourself.', es: 'Estrategia básica de blackjack derivada por simulación Monte Carlo, comprobada casilla a casilla con un solver exacto, y un estudio del conteo Hi-Lo sobre mil millones de rondas simuladas. Incluye una web interactiva para jugar, practicar y ejecutar las simulaciones.' },
+    type: { en: 'Personal project', es: 'Proyecto personal' }, stack: 'Python · NumPy · C11 · JavaScript', methods: 'Monte Carlo · Exact solver · Hi-Lo',
+    figs: [ { v: '380/380', d: { en: 'chart decisions where Monte Carlo agrees with the exact solver', es: 'decisiones de la tabla en las que Monte Carlo coincide con el solver exacto' } },
+            { v: '10⁹', d: { en: 'simulated rounds in the counting study', es: 'rondas simuladas en el estudio de conteo' } },
+            { v: '0.696%', d: { en: 'house edge with perfect basic strategy, ±0.007% (95% CI)', es: 'de ventaja de la casa con estrategia básica perfecta, ±0,007% (IC 95%)' } },
+            { v: '+0.50%', d: { en: 'player edge gained per +1 of Hi-Lo true count', es: 'de ventaja ganada por cada +1 de cuenta real Hi-Lo' } } ],
+    secs: [
+      { h: { en: 'Thorp, 1962', es: 'Thorp, 1962' }, b: [
+        { p: { en: 'Edward O. Thorp’s Beat the Dealer gave us the first computer-derived basic strategy and card-counting system. This project redoes that work with modern tools, and tests every step.', es: 'Beat the Dealer, de Edward O. Thorp, dio la primera estrategia básica derivada por ordenador y el primer sistema de conteo. Este proyecto rehace ese trabajo con herramientas modernas y comprueba cada paso.' } } ] },
+      { h: { en: 'Basic strategy by simulation', es: 'Estrategia básica por simulación' }, b: [
+        { p: { en: 'For every decision and every legal action, the solver simulates the rest of the hand 2,000,000 times and averages the profit. Two details make it a correct solver and not a heuristic:', es: 'Para cada decisión y cada acción legal, el solver simula el resto de la mano 2.000.000 de veces y promedia el beneficio. Dos detalles hacen que sea un solver correcto y no una heurística:' } },
+        { ul: [ { en: 'Backward induction: after a hit, the rest of the hand must be played optimally too, so states are solved in an order where everything a hit can lead to is already known.', es: 'Inducción hacia atrás: después de pedir, el resto de la mano también debe jugarse de forma óptima, así que los estados se resuelven en un orden en el que ya se conoce todo aquello a lo que puede llevar pedir.' }, { en: 'Common random numbers: the actions are compared against the same simulated dealer hands, so a difference reflects the decision and not sampling luck.', es: 'Números aleatorios comunes: las acciones se comparan contra las mismas manos simuladas del crupier, de modo que la diferencia refleja la decisión y no la suerte del muestreo.' } ] },
+        { p: { en: 'With NumPy vectorisation and one process per dealer upcard, it runs in about two minutes.', es: 'Con vectorización en NumPy y paralelismo por carta del crupier, tarda unos dos minutos.' } } ] },
+      { h: { en: 'The exact reference', es: 'La referencia exacta' }, b: [
+        { p: { en: 'With an infinite deck every draw is independent, so the game can be solved exactly by recursion. All 380 chart cells agree. Three of them (11 vs A, 16 vs 10, soft 15 vs 4) are statistical ties at 2M hands, and the exact solver confirms the Monte Carlo pick. The exact solver itself matches the published 6-deck chart in every cell except soft 13 vs 5, a known card-removal effect.', es: 'Con baraja infinita cada carta es independiente, así que el juego se puede resolver exactamente por recursión. Las 380 casillas coinciden. Tres de ellas (11 contra A, 16 contra 10, 15 blando contra 4) son empates estadísticos con 2M de manos, y el solver exacto confirma la elección de Monte Carlo. El propio solver exacto coincide con la tabla publicada de 6 barajas en todas las casillas salvo 13 blando contra 5, un efecto conocido de retirada de cartas.' } } ] },
+      { h: { en: 'What counting is worth', es: 'Cuánto vale contar' }, b: [
+        { p: { en: 'A C11 port plays the real 6-deck shoe at about 5 million rounds per second per thread. The conclusion is honest: counting works, but in this game the edge is thin. The count predicts the next hand very reliably, but only about a quarter of rounds are dealt at a positive count.', es: 'Una versión en C11 juega el zapato real de 6 barajas a unos 5 millones de rondas por segundo y por hilo. La conclusión es honesta: contar funciona, pero en este juego la ventaja es pequeña. La cuenta predice muy bien la siguiente mano, pero solo una cuarta parte de las rondas se reparte con cuenta positiva.' } },
+        { tbl: { head: [ { en: 'Metric', es: 'Métrica' }, { en: 'Value', es: 'Valor' } ], rows: [
+          [ { en: 'House edge, perfect basic strategy', es: 'Ventaja de la casa, estrategia básica perfecta' }, '0.696% ± 0.007%' ],
+          [ { en: 'Edge per +1 true count', es: 'Ventaja por cada +1 de cuenta real' }, '+0.50%' ],
+          [ { en: 'True count where the player gains the edge', es: 'Cuenta real a partir de la que gana el jugador' }, '≈ +0.9' ],
+          [ { en: 'Counter’s edge, 1–12 spread', es: 'Ventaja del contador, apuesta de 1 a 12' }, '+0.19%' ],
+          [ { en: 'Counter’s edge, 1–8 spread, leaving at negative counts', es: 'Ventaja del contador, apuesta de 1 a 8, dejando la mesa con cuenta negativa' }, '+0.80%' ] ] } },
+        { p: { en: 'Limits: the counter never deviates from the chart, the chart uses the infinite-deck model, and surrender, re-splitting and insurance are not modelled.', es: 'Límites: el contador nunca se desvía de la tabla, la tabla usa el modelo de baraja infinita, y no se modelan la rendición, volver a dividir ni el seguro.' } } ] },
+      { h: { en: 'The site', es: 'La web' }, b: [
+        { ul: [ { en: 'Play: a full table with a coach that grades every decision and shows the expected-value cost of mistakes.', es: 'Jugar: una mesa completa con un entrenador que evalúa cada decisión y muestra el coste en valor esperado de los errores.' }, { en: 'Drill: rapid two-card decisions at their real frequencies, with a mastery map.', es: 'Practicar: decisiones rápidas de dos cartas con sus frecuencias reales y un mapa de dominio.' }, { en: 'Strategy chart: change a rule and the whole game is re-solved in the browser.', es: 'Tabla de estrategia: cambia una regla y el juego entero se vuelve a resolver en el navegador.' }, { en: 'Monte Carlo lab: watch estimates and their 95% bands converge on the exact answer.', es: 'Laboratorio Monte Carlo: mira cómo las estimaciones y sus bandas del 95% convergen a la respuesta exacta.' }, { en: 'Card counting: a betting ramp you can edit, with edge, variance, N0 and risk of ruin.', es: 'Conteo: una rampa de apuestas editable, con ventaja, varianza, N0 y riesgo de ruina.' } ] },
+        { p: { en: 'It uses plain ES modules with no framework and no build step. The exact solver is ported to JavaScript and checked against the Python values to 10⁻⁶. The Python and C implementations are tested against each other, with CI across all three languages.', es: 'Usa módulos ES sin framework ni compilación. El solver exacto está portado a JavaScript y comprobado con los valores de Python hasta 10⁻⁶. Las implementaciones de Python y C se comprueban entre sí, con integración continua en los tres lenguajes.' } } ] }
+    ] },
+
+  { slug: 'monte-carlo-option-pricer', name: 'Option Pricer', art: 'option', repo: 'monte-carlo-option-pricer', cat: 'quant',
+    short: { en: 'European, Asian and barrier options under Black-Scholes and Heston, in Python and C.', es: 'Opciones europeas, asiáticas y con barrera bajo Black-Scholes y Heston, en Python y C.' },
+    lead: { en: 'A pricing engine for European, Asian and barrier options under two models: Black-Scholes, with constant volatility, and Heston, where volatility itself is random. It estimates the Greeks three ways and compares them on variance. Written twice, in Python and in C.', es: 'Un motor de valoración de opciones europeas, asiáticas y con barrera bajo dos modelos: Black-Scholes, con volatilidad constante, y Heston, donde la volatilidad es aleatoria. Estima las griegas de tres formas y las compara por varianza. Escrito dos veces, en Python y en C.' },
+    type: { en: 'Personal project', es: 'Proyecto personal' }, stack: 'Python · C · pytest', methods: 'Monte Carlo · Black-Scholes · Heston',
+    figs: [ { v: '0.006%', d: { en: 'relative error at 500K paths against the closed form', es: 'error relativo con 500K trayectorias frente a la fórmula cerrada' } },
+            { v: '77', d: { en: 'unit tests in Python', es: 'tests unitarios en Python' } },
+            { v: '~6×', d: { en: 'lower variance, pathwise vs likelihood-ratio Greeks', es: 'menos varianza, griegas pathwise frente a likelihood-ratio' } },
+            { v: '2×', d: { en: 'faster in C than in Python for 500K paths', es: 'más rápido en C que en Python con 500K trayectorias' } } ],
+    secs: [
+      { h: { en: 'Why', es: 'Por qué' }, b: [
+        { p: { en: 'The project is built to show quantitative finance through implementation rather than theory alone: apply stochastic calculus, understand how Monte Carlo converges, know the trade-offs between ways of computing Greeks, and write the same engine in two languages. It does all of that, end to end.', es: 'El proyecto está hecho para mostrar finanzas cuantitativas mediante la implementación y no solo la teoría: aplicar cálculo estocástico, entender cómo converge Monte Carlo, conocer las diferencias entre formas de calcular las griegas y escribir el mismo motor en dos lenguajes. Lo hace todo, de principio a fin.' } } ] },
+      { h: { en: 'Two models', es: 'Dos modelos' }, b: [
+        { p: { en: 'Black-Scholes assumes constant volatility. It has an exact solution, which makes it the ground truth everything else is checked against. Heston lets volatility be random and mean-reverting:', es: 'Black-Scholes supone volatilidad constante. Tiene solución exacta, así que es la verdad contra la que se comprueba todo lo demás. Heston deja que la volatilidad sea aleatoria y revierta a la media:' } },
+        { code: 'dS = r·S·dt + √v·S·dW¹\ndv = κ(θ − v)·dt + ξ·√v·dW²\ncorr(dW¹, dW²) = ρ' },
+        { ul: [ { en: 'κ = 2.0, the speed of mean reversion', es: 'κ = 2,0, la velocidad de reversión a la media' }, { en: 'θ = 0.04, the long-run variance', es: 'θ = 0,04, la varianza a largo plazo' }, { en: 'ξ = 0.30, the volatility of volatility', es: 'ξ = 0,30, la volatilidad de la volatilidad' }, { en: 'ρ = −0.70, the leverage correlation', es: 'ρ = −0,70, la correlación de apalancamiento' } ] },
+        { p: { en: 'Heston has no closed form, so it is simulated with an Euler–Maruyama scheme that absorbs the variance at zero, with correlated Brownian increments built through a Cholesky decomposition. The discretisation bias is linear in the time step; at daily steps it is around 0.01 to 0.02, small next to the Monte Carlo error.', es: 'Heston no tiene forma cerrada, así que se simula con un esquema de Euler–Maruyama que absorbe la varianza en cero, con incrementos brownianos correlacionados mediante una descomposición de Cholesky. El sesgo de discretización es lineal en el paso de tiempo; con pasos diarios ronda 0,01–0,02, pequeño frente al error de Monte Carlo.' } } ] },
+      { h: { en: 'Three options', es: 'Tres opciones' }, b: [
+        { tbl: { head: [ { en: 'Option', es: 'Opción' }, { en: 'Payoff', es: 'Pago' }, { en: 'Price', es: 'Precio' }, { en: 'Note', es: 'Nota' } ], rows: [
+          [ { en: 'European call, closed form', es: 'Call europea, forma cerrada' }, 'max(S_T − K, 0)', '10.4506', { en: 'ground truth', es: 'verdad de referencia' } ],
+          [ { en: 'European call, Monte Carlo (500K paths)', es: 'Call europea, Monte Carlo (500K)' }, 'max(S_T − K, 0)', '10.4512', { en: '0.006% error', es: 'error del 0,006%' } ],
+          [ { en: 'Asian call, arithmetic average', es: 'Call asiática, media aritmética' }, 'max(avg S − K, 0)', '5.8234', { en: '44.3% cheaper than European', es: '44,3% más barata que la europea' } ],
+          [ { en: 'Up-and-out barrier call, B = 120', es: 'Call con barrera up-and-out, B = 120' }, 'max(S_T − K, 0) if max S < B', '6.1245', { en: '41.4% cheaper; 23.45% chance of knock-out', es: '41,4% más barata; 23,45% de probabilidad de knock-out' } ] ] } },
+        { p: { en: 'Averaging lowers the effective volatility, which is why the Asian option costs less. The barrier option costs less because it can be knocked out. Under Heston, at-the-money prices sit within ±2% of Black-Scholes; the differences grow in the tails.', es: 'Promediar reduce la volatilidad efectiva, por eso la opción asiática cuesta menos. La opción con barrera cuesta menos porque puede anularse. Bajo Heston, los precios at-the-money quedan dentro de un ±2% de Black-Scholes; las diferencias crecen en las colas.' } } ] },
+      { h: { en: 'Convergence', es: 'Convergencia' }, b: [
+        { p: { en: 'The Monte Carlo error falls as 1/√N: ten times more paths cut it by about 3.16. The measured standard errors follow the theoretical line almost exactly.', es: 'El error de Monte Carlo cae como 1/√N: diez veces más trayectorias lo dividen por unos 3,16. Los errores estándar medidos siguen casi exactamente la línea teórica.' } },
+        { chart: 'conv', alt: { en: 'Log-log chart of standard error against number of paths', es: 'Gráfico log-log del error estándar frente al número de trayectorias' }, cap: { en: 'Standard error against paths, log-log. Dots: 10K, 100K, 500K and 1M paths from the README. Dashed: the 1/√N line through the first point.', es: 'Error estándar frente a trayectorias, log-log. Puntos: 10K, 100K, 500K y 1M del README. Discontinua: la recta 1/√N por el primer punto.' } } ] },
+      { h: { en: 'Greeks, three ways', es: 'Griegas, de tres formas' }, b: [
+        { p: { en: 'Pathwise differentiates the payoff: very low variance, but it needs a smooth payoff. Likelihood ratio differentiates the probability density: it works for any payoff, at the price of noise. Finite differences reprice twice and are the reference. Against the Black-Scholes closed form:', es: 'Pathwise deriva el pago: muy poca varianza, pero necesita un pago suave. Likelihood ratio deriva la densidad de probabilidad: sirve para cualquier pago, a costa de más ruido. Las diferencias finitas revaloran dos veces y son la referencia. Frente a la fórmula cerrada de Black-Scholes:' } },
+        { tbl: { head: [ { en: 'Method', es: 'Método' }, 'Delta', { en: 'Error', es: 'Error' }, 'Vega', { en: 'Error', es: 'Error' } ], rows: [
+          [ 'Black-Scholes', '0.6368', '–', '37.524', '–' ],
+          [ 'Pathwise', '0.6370', '0.025%', '37.530', '0.016%' ],
+          [ 'Likelihood ratio', '0.6372', '0.065%', '37.541', '0.046%' ],
+          [ { en: 'Finite differences', es: 'Diferencias finitas' }, '0.6368', '0.013%', '37.522', '0.005%' ] ] } },
+        { p: { en: 'Pathwise has a standard error of about 0.0002; likelihood ratio about 0.0012, roughly six times more. The barrier option shows why you need both: its payoff is discontinuous, so the pathwise estimate is unreliable, while likelihood ratio gives a delta of 0.3452, in line with finite differences at about 0.34.', es: 'Pathwise tiene un error estándar de unos 0,0002; likelihood ratio, unos 0,0012, aproximadamente seis veces más. La opción con barrera muestra por qué hacen falta ambos: su pago es discontinuo, así que la estimación pathwise no es fiable, mientras que likelihood ratio da una delta de 0,3452, en línea con las diferencias finitas, en torno a 0,34.' } } ] },
+      { h: { en: 'Python and C', es: 'Python y C' }, b: [
+        { tbl: { head: [ '', 'Python', 'C' ], rows: [
+          [ { en: '500K paths', es: '500K trayectorias' }, '~10 s', '~5 s' ],
+          [ { en: 'Style', es: 'Estilo' }, { en: 'object-oriented', es: 'orientado a objetos' }, { en: 'procedural', es: 'procedural' } ],
+          [ { en: 'Dependencies', es: 'Dependencias' }, 'NumPy, SciPy, Matplotlib', { en: 'none, standard library only', es: 'ninguna, solo librería estándar' } ],
+          [ 'RNG', 'PCG-64', 'Mersenne Twister (MT19937)' ],
+          [ { en: 'Normal CDF', es: 'CDF normal' }, 'scipy.stats', 'Abramowitz & Stegun' ],
+          [ { en: 'Memory', es: 'Memoria' }, { en: 'garbage collected', es: 'recolector de basura' }, 'malloc / free' ] ] } },
+        { ul: [ { en: 'MT19937 instead of rand(): a period of 2^19937−1 against 2^31−1, better statistics and reproducible runs.', es: 'MT19937 en lugar de rand(): periodo de 2^19937−1 frente a 2^31−1, mejores propiedades estadísticas y ejecuciones reproducibles.' }, { en: 'Box–Muller for normals, caching the second one so each normal costs one uniform on average.', es: 'Box–Muller para las normales, guardando la segunda para que cada normal cueste un uniforme de media.' }, { en: 'Manual memory, because Heston with many steps needs around 800 MB and stack arrays are not enough.', es: 'Memoria manual, porque Heston con muchos pasos necesita unos 800 MB y los arrays en pila no bastan.' }, { en: 'A normal CDF approximation with a maximum error of 7.5×10⁻⁸, far below the Monte Carlo error, which removes the need for GSL.', es: 'Una aproximación de la CDF normal con error máximo de 7,5×10⁻⁸, muy por debajo del error de Monte Carlo, lo que evita depender de GSL.' } ] } ] },
+      { h: { en: 'Tests', es: 'Tests' }, b: [
+        { p: { en: 'The Python side has 77 tests: 24 for the models, 26 for the options and 27 for the Greeks. The C side has an integrated test mode that checks results against deterministic seeds.', es: 'La parte de Python tiene 77 tests: 24 para los modelos, 26 para las opciones y 27 para las griegas. La parte de C tiene un modo de test integrado que comprueba resultados con semillas deterministas.' } },
+        { code: 'cd python && pip install -r requirements.txt && python main.py\ncd C && make && make run' } ] }
+    ] },
+
+  { slug: 'salchi-helper', name: 'Salchi', art: 'salchi', img: 'assets/salchi.jpg', imgBg: '#FFF7EA', repo: 'salchi-helper', cat: 'software',
+    short: { en: 'A floating dachshund that keeps your to-do list in sight, on Mac, Windows and Linux.', es: 'Un salchicha flotante que mantiene tu lista de tareas a la vista, en Mac, Windows y Linux.' },
+    lead: { en: 'Checking your to-do list shouldn’t be another to-do. Salchi is a tiny dachshund that sits on top of everything on your screen, typing at its laptop. The sticker on the laptop shows how many tasks are left. Hover over it and the whole list opens.', es: 'Mirar tu lista de tareas no debería ser otra tarea. Salchi es un pequeño perro salchicha que se queda encima de todo lo que hay en tu pantalla, tecleando en su portátil. La pegatina del portátil dice cuántas tareas quedan. Pasa el ratón por encima y se abre la lista entera.' },
+    type: { en: 'Personal project · released', es: 'Proyecto personal · publicado' }, stack: 'Swift · Electron · Apps Script', methods: 'Desktop apps · Product design',
+    figs: [ { v: '3', d: { en: 'platforms: macOS, Windows and Linux', es: 'plataformas: macOS, Windows y Linux' } }, { v: '2', d: { en: 'editions: synced with Notion, or entirely local', es: 'ediciones: sincronizada con Notion o totalmente local' } }, { v: '1', d: { en: 'glance to see what is left', es: 'vistazo para saber qué queda' } } ],
+    secs: [
+      { h: { en: 'What it does', es: 'Qué hace' }, b: [
+        { ul: [ { en: 'Floats above every app, on every desktop, even over full-screen windows.', es: 'Flota sobre todas las apps, en todos los escritorios, incluso sobre ventanas a pantalla completa.' }, { en: 'Hover to see the list; move away and it folds back. Drag it anywhere, or pin the list open.', es: 'Pasa el ratón para ver la lista; al apartarlo se recoge. Se puede arrastrar a cualquier sitio o dejar la lista fijada.' }, { en: 'Due dates with an optional time: overdue tasks turn red, today’s turn orange, and the list sorts itself.', es: 'Fechas con hora opcional: las vencidas se ponen en rojo, las de hoy en naranja y la lista se ordena sola.' }, { en: 'Dated tasks can appear in Google Calendar.', es: 'Las tareas con fecha pueden aparecer en Google Calendar.' }, { en: 'In the Notion edition, an assistant connected to your Notion can add tasks for you.', es: 'En la edición con Notion, un asistente conectado a tu Notion puede añadirte tareas.' } ] } ] },
+      { h: { en: 'Two editions', es: 'Dos ediciones' }, b: [
+        { p: { en: 'Every platform comes in two flavours that share all of their code. With Notion, a database is the back end, so the same list reaches every computer and your phone. Without it, tasks live in a small file on your computer: no accounts, no setup and nothing leaves the machine.', es: 'Cada plataforma viene en dos versiones que comparten todo el código. Con Notion, una base de datos hace de back end y la misma lista llega a todos tus ordenadores y al móvil. Sin Notion, las tareas viven en un pequeño archivo en tu ordenador: sin cuentas, sin configuración y sin que nada salga de la máquina.' } } ] },
+      { h: { en: 'How it is built', es: 'Cómo está hecho' }, b: [
+        { tbl: { head: [ { en: 'Part', es: 'Parte' }, { en: 'Built with', es: 'Hecho con' }, { en: 'In short', es: 'En resumen' } ], rows: [
+          [ 'Mac', 'Swift, SwiftUI, AppKit', { en: 'A borderless panel that never steals focus, plus a menu-bar counter', es: 'Un panel sin bordes que nunca roba el foco, más un contador en la barra de menús' } ],
+          [ 'Windows · Linux', 'Electron', { en: 'One code base, packaged as an installer, an AppImage and a .deb', es: 'Un solo código, empaquetado como instalador, AppImage y .deb' } ],
+          [ 'Calendar', 'Google Apps Script', { en: 'Mirrors dated Notion tasks into Google Calendar', es: 'Copia las tareas con fecha de Notion en Google Calendar' } ] ] } },
+        { ul: [ { en: 'The app talks to one task-store interface with two implementations; the edition is chosen at packaging time.', es: 'La app habla con una única interfaz de tareas con dos implementaciones; la edición se elige al empaquetar.' }, { en: 'Optimistic updates: the screen changes instantly, the save runs in the background and rolls back if it fails.', es: 'Actualizaciones optimistas: la pantalla cambia al instante, el guardado va en segundo plano y se revierte si falla.' }, { en: 'A hover that never gets stuck: the window resizes under the cursor, so the apps watch its position themselves.', es: 'Un hover que nunca se queda atascado: la ventana cambia de tamaño bajo el cursor, así que las apps vigilan ellas mismas su posición.' }, { en: 'End-to-end tests drive the real desktop interface against a fake Notion.', es: 'Los tests de extremo a extremo manejan la interfaz real de escritorio contra un Notion falso.' } ] } ] }
+    ] },
+
+  { slug: 'cececat', name: 'CeceCat', art: 'cece', repo: 'cececat', live: 'https://claudialbombin.github.io/cececat/', cat: 'software',
+    short: { en: 'A debate tournament manager that runs entirely from one web page.', es: 'Un gestor de torneos de debate que funciona entero desde una sola página web.' },
+    lead: { en: 'A pairs-based debate tournament manager. Create a tournament with a guided wizard, generate each round’s pairings, distribute judges, collect scores by hand or live from each judge’s phone, and keep the standings. There is no server to run and nothing to install: index.html is one file.', es: 'Un gestor de torneos de debate por parejas. Crea el torneo con un asistente guiado, genera los emparejamientos de cada ronda, reparte a los jueces, recoge las puntuaciones a mano o en directo desde el móvil de cada juez y lleva la clasificación. No hay servidor que mantener ni nada que instalar: index.html es un solo archivo.' },
+    type: { en: 'Personal project', es: 'Proyecto personal' }, stack: 'JavaScript · Firestore · EmailJS', methods: 'Pairing · Assignment',
+    figs: [ { v: '2', d: { en: 'formats: Academic and British Parliamentary', es: 'formatos: académico y British Parliamentary' } }, { v: '6', d: { en: 'steps to create a tournament', es: 'pasos para crear un torneo' } }, { v: '3', d: { en: 'layers of backup', es: 'capas de copia de seguridad' } }, { v: '1', d: { en: 'HTML file holds the whole app', es: 'archivo HTML contiene toda la aplicación' } } ],
+    secs: [
+      { h: { en: 'Why', es: 'Por qué' }, b: [
+        { p: { en: 'I compete in debate, and running a tournament means pairings, rooms, judges and scores under time pressure. CeceCat puts all of it on one page that keeps working offline. The two optional parts, live scores and judge emails, simply stay off if they are not configured.', es: 'Compito en debate, y llevar un torneo significa emparejamientos, salas, jueces y puntuaciones con prisa. CeceCat lo pone todo en una página que sigue funcionando sin conexión. Las dos partes opcionales, puntuaciones en directo y correos a los jueces, simplemente no se activan si no se configuran.' } } ] },
+      { h: { en: 'Judges that really rotate', es: 'Jueces que rotan de verdad' }, b: [
+        { p: { en: 'For each round the algorithm compares every possible combination of room and judge and keeps the one with the fewest repeats. It does not decide room by room in a fixed order, so who shares a panel really changes from round to round.', es: 'En cada ronda, el algoritmo compara todas las combinaciones posibles de sala y juez y se queda con la que menos repite. No decide sala por sala en un orden fijo, así que quién comparte mesa cambia de verdad de una ronda a otra.' } },
+        { ul: [ { en: 'A trainee is never the chair of a room if another judge is available.', es: 'Un juez en prácticas nunca preside una sala si hay otro juez disponible.' }, { en: 'It avoids repeating a judge pairing, and a judge seeing the same team twice.', es: 'Evita repetir parejas de jueces y que un juez vea dos veces al mismo equipo.' }, { en: 'It repairs itself: after a reload or an old backup, it rebuilds each judge’s history from the rounds already played.', es: 'Se repara sola: tras recargar o importar una copia antigua, reconstruye el historial de cada juez a partir de las rondas ya jugadas.' } ] } ] },
+      { h: { en: 'Pairings and scores', es: 'Emparejamientos y puntuaciones' }, b: [
+        { p: { en: 'Rounds are paired by standings, avoid repeat opponents where possible and balance who has held each position. Each judge gets one link for the whole tournament. Only the chair can send a score from it, and the central desk always reviews it before it counts.', es: 'Las rondas se emparejan por clasificación, evitan repetir rivales cuando es posible y equilibran quién ha ocupado cada posición. Cada juez recibe un solo enlace para todo el torneo. Solo quien preside puede enviar la puntuación desde él, y la mesa central siempre la revisa antes de que cuente.' } } ] },
+      { h: { en: 'Nothing gets lost', es: 'No se pierde nada' }, b: [
+        { ul: [ { en: 'Automatic saving in the browser on every change.', es: 'Guardado automático en el navegador con cada cambio.' }, { en: 'A downloadable .json copy to continue on another computer, and a readable .txt report.', es: 'Una copia .json descargable para seguir en otro ordenador y un informe .txt legible.' }, { en: 'Automatic snapshots per round to a folder on disk, using the File System Access API in Chromium browsers.', es: 'Copias automáticas por ronda en una carpeta del disco, con la File System Access API en navegadores Chromium.' } ] } ] }
+    ] },
+
+  { slug: 'scm-heston-filter', name: 'Heston Filter', art: 'heston', repo: 'scm-heston-filter', cat: 'quant',
+    short: { en: 'A particle filter that tracks a volatility nobody can observe.', es: 'Un filtro de partículas que sigue una volatilidad que nadie observa.' },
+    lead: { en: 'A particle filter that tracks volatility, which nobody observes, from prices, which are noisy. It implements Sequential Monte Carlo on the Heston stochastic-volatility model.', es: 'Un filtro de partículas que sigue la volatilidad, que nadie observa, a partir de los precios, que llevan ruido. Implementa Monte Carlo secuencial sobre el modelo de volatilidad estocástica de Heston.' },
+    type: { en: 'Personal project', es: 'Proyecto personal' }, stack: 'Python', methods: 'Sequential Monte Carlo · Heston', figs: [],
+    secs: [
+      { h: { en: 'The problem', es: 'El problema' }, b: [
+        { p: { en: 'In the Heston model volatility is not a number you can look up. It is a hidden state that moves randomly and can only be seen through prices, which carry noise. To price an option or measure risk you still need it. So the question is how to recover a moving, unobserved quantity from noisy observations.', es: 'En el modelo de Heston la volatilidad no es un número que se pueda consultar. Es un estado oculto que se mueve al azar y que solo se ve a través de los precios, que llevan ruido. Para valorar una opción o medir riesgo hace falta igualmente. La pregunta es cómo recuperar una cantidad que se mueve y no se observa a partir de observaciones ruidosas.' } } ] },
+      { h: { en: 'The model', es: 'El modelo' }, b: [
+        { code: 'dS = r·S·dt + √v·S·dW¹\ndv = κ(θ − v)·dt + ξ·√v·dW²\ncorr(dW¹, dW²) = ρ' },
+        { p: { en: 'The price follows one equation and its variance v follows another, correlated with the first. Only the price is observed.', es: 'El precio sigue una ecuación y su varianza v sigue otra, correlacionada con la primera. Solo se observa el precio.' } } ] },
+      { h: { en: 'The method', es: 'El método' }, b: [
+        { p: { en: 'A particle filter keeps a cloud of hypotheses about the hidden variance, called particles. At each step every particle is moved forward with the model’s dynamics and weighted by how well it explains the price that was actually observed. The cloud is then resampled so that good hypotheses multiply and bad ones disappear. The result is a running estimate of the latent volatility, with its uncertainty, that updates as each new price arrives.', es: 'Un filtro de partículas mantiene una nube de hipótesis sobre la varianza oculta, las partículas. En cada paso, cada partícula avanza con la dinámica del modelo y se pondera según lo bien que explica el precio observado. Después se remuestrea la nube para que las buenas hipótesis se multipliquen y las malas desaparezcan. El resultado es una estimación continua de la volatilidad latente, con su incertidumbre, que se actualiza con cada precio nuevo.' } } ] },
+      { h: { en: 'In this repo', es: 'En este repo' }, b: [
+        { p: { en: 'A Python implementation of that filter on the Heston model, under the MIT licence. It is the companion of my option pricer: the pricer simulates Heston forward, the filter works backward from data.', es: 'Una implementación en Python de ese filtro sobre el modelo de Heston, con licencia MIT. Es la compañera de mi pricer de opciones: el pricer simula Heston hacia delante, el filtro trabaja hacia atrás desde los datos.' } } ] }
+    ] },
+
+  { slug: 'tfg', name: 'QUBO Thesis', art: 'qubo', repo: null, cat: 'quant',
+    short: { en: 'Portfolio selection as a problem quantum annealers can read.', es: 'Selección de carteras como un problema que un quantum annealer puede leer.' },
+    lead: { en: 'Research proposal for a bachelor’s thesis on QUBO formulations of cardinality-constrained portfolio optimization: holding only k assets out of many. It connects discrete mathematics, quantum annealing on D-Wave and QAOA in Qiskit to quantum finance.', es: 'Propuesta de TFG sobre formulaciones QUBO de optimización de carteras con restricción de cardinalidad: mantener solo k activos de entre muchos. Une matemática discreta, quantum annealing en D-Wave y QAOA en Qiskit con finanzas cuánticas.' },
+    type: { en: 'Thesis proposal · in progress', es: 'Propuesta de TFG · en curso' }, stack: 'LaTeX · Qiskit · D-Wave', methods: 'QUBO · Quantum annealing · QAOA', figs: [],
+    secs: [
+      { h: { en: 'The problem', es: 'El problema' }, b: [
+        { p: { en: 'Markowitz portfolio theory tells you how to weight assets. Real investors also want to hold only a handful of them: k out of hundreds. That cardinality constraint turns a smooth optimisation into a combinatorial one, which is NP-hard in general.', es: 'La teoría de carteras de Markowitz dice cómo ponderar activos. Los inversores reales también quieren tener solo unos pocos: k de entre cientos. Esa restricción de cardinalidad convierte una optimización suave en una combinatoria, que en general es NP-difícil.' } } ] },
+      { h: { en: 'The idea', es: 'La idea' }, b: [
+        { p: { en: 'A QUBO, quadratic unconstrained binary optimisation, asks for the binary vector x that minimises xᵀQx. Each binary variable says whether an asset is in the portfolio. Risk and expected return become entries of Q, and the cardinality constraint is folded in as a penalty that grows when the number of selected assets is not k. Once a problem is a QUBO, it can be handed to hardware that speaks that language.', es: 'Un QUBO, optimización binaria cuadrática sin restricciones, pide el vector binario x que minimiza xᵀQx. Cada variable binaria dice si un activo está en la cartera. El riesgo y el retorno esperado pasan a ser entradas de Q, y la restricción de cardinalidad se incorpora como una penalización que crece cuando el número de activos elegidos no es k. Cuando un problema es un QUBO, se puede entregar a hardware que habla ese lenguaje.' } },
+        { code: 'min  xᵀQx      x ∈ {0,1}ⁿ\npenalty:  λ · (Σ xᵢ − k)²' } ] },
+      { h: { en: 'Two quantum routes', es: 'Dos rutas cuánticas' }, b: [
+        { ul: [ { en: 'Quantum annealing on D-Wave, hardware built to minimise exactly this kind of energy function.', es: 'Quantum annealing en D-Wave, hardware pensado para minimizar justo este tipo de función de energía.' }, { en: 'QAOA in Qiskit, the variational algorithm for gate-based quantum computers.', es: 'QAOA en Qiskit, el algoritmo variacional para ordenadores cuánticos de puertas.' } ] } ] },
+      { h: { en: 'Status', es: 'Estado' }, b: [
+        { p: { en: 'The research proposal is written up as a full LaTeX document. The thesis is in progress.', es: 'La propuesta de investigación está redactada como un documento completo en LaTeX. El TFG está en curso.' } } ] }
+    ] },
+
+  { slug: 'pause', name: 'Pause', art: 'pause', repo: 'pause', live: 'https://claudialbombin.github.io/pause/', cat: 'software',
+    short: { en: 'A breathing exercise before the apps you cannot put down.', es: 'Un ejercicio de respiración antes de las apps que no puedes soltar.' },
+    lead: { en: 'A mindful friction layer for addictive apps. Before Instagram, TikTok, YouTube or any app you choose, it opens a short breathing exercise. It breaks the autopilot habit loop without hard blocking.', es: 'Una capa de fricción consciente para apps adictivas. Antes de Instagram, TikTok, YouTube o la app que elijas, abre un breve ejercicio de respiración. Rompe el bucle de hábito automático sin bloquear nada.' },
+    type: { en: 'Personal project', es: 'Proyecto personal' }, stack: 'HTML · JavaScript', methods: 'Product design', figs: [],
+    secs: [
+      { h: { en: 'The problem', es: 'El problema' }, b: [
+        { p: { en: 'Most of the time you do not decide to open Instagram; your thumb does. The habit loop runs on autopilot: trigger, open, scroll.', es: 'La mayoría de las veces no decides abrir Instagram; lo hace tu pulgar. El bucle del hábito funciona en piloto automático: disparador, abrir, hacer scroll.' } } ] },
+      { h: { en: 'The idea', es: 'La idea' }, b: [
+        { p: { en: 'Pause adds a small amount of friction at exactly that moment. Before Instagram, TikTok, YouTube or any app you choose, it opens a short breathing exercise. Nothing is blocked; the point is to give you one breath in which to decide.', es: 'Pause añade un poco de fricción justo en ese momento. Antes de Instagram, TikTok, YouTube o la app que elijas, abre un breve ejercicio de respiración. No se bloquea nada; la idea es darte una respiración para decidir.' } },
+        { ul: [ { en: 'Friction instead of blocking, to interrupt the habit without fighting the person using it.', es: 'Fricción en vez de bloqueo, para interrumpir el hábito sin pelearse con quien lo usa.' }, { en: 'You choose which apps trigger it.', es: 'Tú eliges qué apps lo activan.' } ] } ] },
+      { h: { en: 'Under the hood', es: 'Por dentro' }, b: [
+        { p: { en: 'Built with plain HTML and JavaScript. The repository includes a web app manifest, so it can behave like an installable app.', es: 'Hecho con HTML y JavaScript puros. El repositorio incluye un manifiesto de aplicación web, de modo que puede comportarse como una app instalable.' } } ] }
+    ] },
+
+  { slug: 'recetario-familiar', name: 'Recetario', art: 'recipe', repo: 'recetario-familiar', live: 'https://claudialbombin.github.io/recetario-familiar/', cat: 'software',
+    short: { en: 'A cozy family recipe book with a page-turning cover, on the web.', es: 'Un recetario familiar acogedor con tapa que se abre, en la web.' },
+    lead: { en: 'A cozy recipe book for the family, built as a web app with Claude and deployed to GitHub Pages: a book that opens, turns its pages and scales every recipe to the number of people at the table.', es: 'Un recetario acogedor para la familia, hecho como aplicación web con Claude y desplegado en GitHub Pages: un libro que se abre, pasa sus páginas y ajusta cada receta al número de comensales.' },
+    type: { en: 'Personal project', es: 'Proyecto personal' }, stack: 'HTML · CSS · JavaScript', methods: 'Web app · UI design', figs: [],
+    secs: [
+      { h: { en: 'The brief', es: 'La idea' }, b: [
+        { p: { en: 'A place for the family’s recipes to live, that feels handmade rather than like software. The look comes from an embroidered striped tote bag: burgundy and cream ticking stripes, cross-stitch borders, floral embroidery and leather accents, translated into a digital cookbook.', es: 'Un lugar donde vivan las recetas de la familia, que se sienta hecho a mano y no como un software. El aspecto viene de un bolso de tela con rayas bordadas: rayas burdeos y crudo, bordes de punto de cruz, bordados florales y detalles de cuero, traducidos a un recetario digital.' } } ] },
+      { h: { en: 'What it does', es: 'Qué hace' }, b: [
+        { ul: [ { en: 'A 3D book-opening animation with page-flip transitions and a two-page spread, which switches to a single continuous layout on phones.', es: 'Una animación 3D de apertura de libro con cambio de página y doble página, que pasa a una sola página continua en el móvil.' }, { en: 'Add, edit and delete recipes, with photo upload and in-browser image compression.', es: 'Añadir, editar y borrar recetas, con subida de fotos y compresión de imagen en el navegador.' }, { en: 'Chapters and categories you can add, rename and delete.', es: 'Capítulos y categorías que se pueden añadir, renombrar y borrar.' }, { en: 'A spice level from 1 to 5 chillies, vegan and vegetarian flags, and free-form tags.', es: 'Nivel de picante de 1 a 5 guindillas, marcas de vegano y vegetariano y etiquetas libres.' }, { en: 'A servings scaler that recalculates ingredient quantities proportionally.', es: 'Un escalador de raciones que recalcula las cantidades de los ingredientes de forma proporcional.' }, { en: 'Search across title, ingredients, category and tags, and a filter by diet and chapter.', es: 'Búsqueda por título, ingredientes, categoría y etiquetas, y filtro por dieta y capítulo.' } ] } ] },
+      { h: { en: 'How it is built', es: 'Cómo está hecho' }, b: [
+        { p: { en: 'One standalone index.html with no build step, deployed on GitHub Pages, with recipes stored in the browser. The two-page book needed JavaScript viewport detection, because CSS alone could not serve the phone and desktop layouts properly. Native browser dialogs were replaced by custom modals. It went from first concept to a deployed product in one long working session.', es: 'Un único index.html sin paso de compilación, desplegado en GitHub Pages, con las recetas guardadas en el navegador. El libro de doble página necesitó detección de viewport con JavaScript, porque solo con CSS no se podían servir bien los diseños de móvil y de escritorio. Los diálogos nativos del navegador se sustituyeron por modales propios. Pasó de la primera idea a un producto desplegado en una larga sesión de trabajo.' } } ] }
+    ] },
+
+  { slug: 'a-maze-ing', name: 'A-Maze-ing', art: 'maze', repo: '42/tree/main/Cursus/Rank02/A-maze-ing', repoLabel: '42/A-maze-ing', cat: 'software',
+    short: { en: 'A reproducible maze generator with a “42” in the middle, in Python, at 42 Madrid.', es: 'Un generador de laberintos reproducible con un “42” en el centro, en Python, en 42 Madrid.' },
+    lead: { en: 'A maze generator written with a partner for the 42 Madrid curriculum. It reads a configuration file, generates a maze that is always the same for the same seed, writes it to a file with one hexadecimal digit per cell and draws it in the terminal in colour.', es: 'Un generador de laberintos escrito en pareja para el currículo de 42 Madrid. Lee un archivo de configuración, genera un laberinto que siempre es el mismo para la misma semilla, lo escribe en un archivo con un dígito hexadecimal por celda y lo dibuja en la terminal en color.' },
+    type: { en: 'Coursework · 42 Madrid', es: 'Curso · 42 Madrid' }, stack: 'Python · flake8 · mypy', methods: 'Graph algorithms', figs: [],
+    secs: [
+      { h: { en: 'Two kinds of maze', es: 'Dos tipos de laberinto' }, b: [
+        { ul: [ { en: 'Perfect: exactly one path between the entry and the exit, with no loops.', es: 'Perfecto: exactamente un camino entre la entrada y la salida, sin bucles.' }, { en: 'Not perfect: a board for a Pac-Man-like game, with many loops and no dead ends beyond those closed by the “42”.', es: 'No perfecto: un tablero para un juego tipo Pac-Man, con muchos bucles y sin más callejones que los que cierra el “42”.' } ] } ] },
+      { h: { en: 'The algorithm', es: 'El algoritmo' }, b: [
+        { p: { en: 'The default is a recursive backtracker, a random depth-first search that produces a spanning tree of the cells, which is what makes the maze perfect. It uses a list as a stack and not real recursion, because Python reaches its recursion limit on big mazes. Prim’s algorithm is available as an option.', es: 'Por defecto usa un backtracker recursivo, una búsqueda en profundidad aleatoria que produce un árbol generador de las celdas, y eso es lo que hace perfecto al laberinto. Usa una lista como pila y no recursión real, porque Python llega a su límite de recursión con laberintos grandes. El algoritmo de Prim está disponible como opción.' } } ] },
+      { h: { en: 'Details', es: 'Detalles' }, b: [
+        { ul: [ { en: 'The generator is a separate package, mazegen, built as a wheel so a later project can reuse it.', es: 'El generador es un paquete aparte, mazegen, empaquetado como wheel para reutilizarlo en otro proyecto.' }, { en: 'A menu regenerates the maze, shows the shortest path and rotates the colours.', es: 'Un menú regenera el laberinto, muestra el camino más corto y rota los colores.' }, { en: 'Bad configuration always stops with a clear message, never with a traceback.', es: 'Una configuración errónea siempre termina con un mensaje claro, nunca con un traceback.' } ] } ] }
+    ] },
+
+  { slug: 'push-swap', name: 'push_swap', art: 'sort', repo: '42/tree/main/Cursus/Rank01/push_swap', repoLabel: '42/push_swap', cat: 'software',
+    short: { en: 'Sorting with two stacks and a handful of moves, in C, at 42 Madrid.', es: 'Ordenar con dos pilas y un puñado de movimientos, en C, en 42 Madrid.' },
+    lead: { en: 'The push_swap project from the 42 Madrid C curriculum: sort a stack of integers using a second stack and a very small set of operations, in as few moves as possible. Built with a partner, in a variant that picks its strategy by how disordered the input is. Finished, with the bonus checker.', es: 'El proyecto push_swap del currículo de C de 42 Madrid: ordenar una pila de enteros usando una segunda pila y un conjunto muy pequeño de operaciones, con el menor número de movimientos posible. Hecho en pareja, en una variante que elige su estrategia según lo desordenada que esté la entrada. Terminado, con el checker bonus.' },
+    type: { en: 'Coursework · 42 Madrid', es: 'Curso · 42 Madrid' }, stack: 'C', methods: 'Sorting · Complexity', figs: [],
+    secs: [
+      { h: { en: 'The exercise', es: 'El ejercicio' }, b: [
+        { p: { en: 'It is a sorting problem where the cost is not time but the number of operations. You can only push between two stacks, swap, and rotate, so every algorithm has to be judged by how many moves it prints.', es: 'Es un problema de ordenación donde el coste no es el tiempo sino el número de operaciones. Solo se puede pasar de una pila a otra, intercambiar y rotar, así que cada algoritmo se juzga por cuántos movimientos imprime.' } } ] },
+      { h: { en: 'This version', es: 'Esta versión' }, b: [
+        { p: { en: 'A disorder index, computed by counting inversions, measures how far the input is from sorted. An adaptive mode uses it to pick a strategy. Each one can also be forced with a flag, and a benchmark mode reports the index, the strategy and the operations by type.', es: 'Un índice de desorden, calculado contando inversiones, mide lo lejos que está la entrada de estar ordenada. Un modo adaptativo lo usa para elegir la estrategia. Cada una también se puede forzar con una opción, y un modo benchmark informa del índice, la estrategia y las operaciones por tipo.' } },
+        { tbl: { head: [ { en: 'Flag', es: 'Opción' }, { en: 'Strategy', es: 'Estrategia' }, { en: 'Class', es: 'Clase' } ], rows: [ [ '--simple', { en: 'Selection-based', es: 'Por selección' }, 'O(n²)' ], [ '--medium', { en: 'Chunk-based', es: 'Por bloques' }, 'O(n√n)' ], [ '--complex', { en: 'LSD radix', es: 'Radix LSD' }, 'O(n log n)' ], [ '--adaptive', { en: 'Picks one of the above', es: 'Elige una de las anteriores' }, { en: 'depends on input', es: 'según la entrada' } ] ] } },
+        { p: { en: 'Inputs of up to 5 numbers get an exhaustive-search optimal sort. My partner wrote the parsing module.', es: 'Las entradas de hasta 5 números usan una ordenación óptima por búsqueda exhaustiva. Mi compañero escribió el módulo de parseo.' } } ] },
+      { h: { en: 'The rules of the game', es: 'Las reglas del juego' }, b: [
+        { p: { en: 'The 42 Norm limits what the code may look like:', es: 'La Norma de 42 limita cómo puede ser el código:' } },
+        { ul: [ { en: 'At most 25 lines per function, 5 functions per file and 4 parameters per function.', es: 'Máximo 25 líneas por función, 5 funciones por archivo y 4 parámetros por función.' }, { en: 'No for loops, no ternary operators.', es: 'Sin bucles for ni operadores ternarios.' }, { en: 'No global variables: the benchmark structure is passed by pointer through every function.', es: 'Sin variables globales: la estructura del benchmark se pasa por puntero a través de todas las funciones.' } ] } ] }
+    ] },
+
+  { slug: '2imat', name: 'iMAT Year 2', art: 'lorenz', repo: '2imat', cat: 'study',
+    short: { en: 'A year of Mathematical Engineering and AI: 11 courses, 40+ assignments, 8 final projects.', es: 'Un año de Ingeniería Matemática e IA: 11 asignaturas, más de 40 trabajos, 8 proyectos finales.' },
+    lead: { en: 'The coursework hub for my second year of Mathematical Engineering and AI at ICAI: 11 courses, more than 40 assignments and 8 final projects, kept in the open in one repository.', es: 'El repositorio de mi segundo curso de Ingeniería Matemática e IA en ICAI: 11 asignaturas, más de 40 trabajos y 8 proyectos finales, en abierto en un solo repositorio.' },
+    type: { en: 'Coursework · ICAI', es: 'Curso · ICAI' }, stack: 'Python · MATLAB · C · SQL', methods: 'ML · Databases · Numerical methods',
+    figs: [ { v: '11', d: { en: 'courses', es: 'asignaturas' } }, { v: '40+', d: { en: 'assignments', es: 'trabajos' } }, { v: '8', d: { en: 'final projects', es: 'proyectos finales' } }, { v: '474K', d: { en: 'Amazon reviews in the recommender project', es: 'reseñas de Amazon en el proyecto del recomendador' } } ],
+    secs: [
+      { h: { en: 'The courses', es: 'Las asignaturas' }, b: [
+        { p: { en: 'Data Acquisition, Machine Learning, Databases, Human Cognition and AI, Differential Equations, Foundations of AI, Operating Systems, Discrete Mathematics, Numerical Methods, Electronic Systems and Data Visualization.', es: 'Adquisición de datos, Machine Learning, Bases de datos, Cognición humana e IA, Ecuaciones diferenciales, Fundamentos de IA, Sistemas operativos, Matemática discreta, Métodos numéricos, Sistemas electrónicos y Visualización de datos.' } } ] },
+      { h: { en: 'Projects worth opening', es: 'Proyectos que merece la pena abrir' }, b: [
+        { ul: [ { en: 'A hybrid recommender system over 474K Amazon reviews, spread across three kinds of database, with an interactive dashboard.', es: 'Un sistema de recomendación híbrido sobre 474K reseñas de Amazon, repartidas en tres tipos de base de datos, con un panel interactivo.' }, { en: 'A reproduction of the Ariane 5 failure, showing how a floating-point overflow brings down a rocket.', es: 'Una reproducción del fallo del Ariane 5, que muestra cómo un desbordamiento en coma flotante derriba un cohete.' }, { en: 'The Lorenz system and the Van der Pol oscillator: chaos and limit cycles, visualised.', es: 'El sistema de Lorenz y el oscilador de Van der Pol: caos y ciclos límite, visualizados.' }, { en: 'Student success prediction with several classification algorithms.', es: 'Predicción del éxito de estudiantes con varios algoritmos de clasificación.' }, { en: 'GPS shortest-path routing over Madrid’s real street network.', es: 'Rutas de camino más corto tipo GPS sobre la red real de calles de Madrid.' }, { en: 'A Bluetooth-controlled Raspberry Pi sensor dashboard.', es: 'Un panel de sensores con Raspberry Pi controlado por Bluetooth.' } ] } ] },
+      { h: { en: 'Tools', es: 'Herramientas' }, b: [
+        { p: { en: 'Python, MATLAB, C and Bash; scikit-learn, NumPy and pandas; MySQL, MongoDB and Neo4j; Plotly and Flask; and a Raspberry Pi.', es: 'Python, MATLAB, C y Bash; scikit-learn, NumPy y pandas; MySQL, MongoDB y Neo4j; Plotly y Flask; y una Raspberry Pi.' } } ] }
+    ] },
+
+  { slug: 'mus-stochastic-suite', name: 'Mus Suite', art: 'mus', repo: 'mus-stochastic-suite', cat: 'quant',
+    short: { en: 'Early stage: the Spanish card game Mus, with bots and stochastic analysis.', es: 'En fase inicial: el juego de cartas Mus, con bots y análisis estocástico.' },
+    lead: { en: 'A planned suite for the Spanish card game Mus: playable against bots, with a tutorial and two stochastic analysis engines, in Python and C, to model strategy. It is at an early stage, and the repository holds only the initial plan so far.', es: 'Una suite planificada para el juego de cartas Mus: jugable contra bots, con tutorial y dos motores de análisis estocástico, en Python y C, para modelar la estrategia. Está en fase inicial y, por ahora, el repositorio solo recoge el plan.' },
+    type: { en: 'Personal project · early stage', es: 'Proyecto personal · fase inicial' }, stack: 'Python · C (planned)', methods: 'Simulation · Game analysis', figs: [],
+    secs: [
+      { h: { en: 'The game', es: 'El juego' }, b: [
+        { p: { en: 'Mus is a Spanish card game played in pairs with the 40-card Spanish deck. Each hand is bid over four phases: grande, chica, pares and juego. It mixes probability with bluffing and with communication between partners, which makes it a good subject for simulation.', es: 'El mus es un juego de cartas español que se juega por parejas con la baraja española de 40 cartas. Cada mano se apuesta en cuatro lances: grande, chica, pares y juego. Mezcla probabilidad con farol y con comunicación entre compañeros, lo que lo hace un buen tema para simular.' } } ] },
+      { h: { en: 'The plan', es: 'El plan' }, b: [
+        { ul: [ { en: 'Local multiplayer, and solo play against bots of adjustable difficulty.', es: 'Multijugador local y partida en solitario contra bots de dificultad ajustable.' }, { en: 'A guided tutorial for beginners.', es: 'Un tutorial guiado para principiantes.' }, { en: 'A cloud extension for online play.', es: 'Una extensión en la nube para jugar online.' }, { en: 'Two engines, in Python and C, that simulate thousands of games to model optimal strategies.', es: 'Dos motores, en Python y C, que simulan miles de partidas para modelar estrategias óptimas.' } ] } ] }
+    ] }
+];
+
+(function () {
+  /* ---------------- i18n ---------------- */
+  var lang = 'en', nav = (navigator.language || '').toLowerCase();
+  try { var sv = localStorage.getItem('cl-lang'); if (sv === 'es' || sv === 'en') lang = sv; else if (nav.indexOf('es') === 0) lang = 'es'; }
+  catch (e) { if (nav.indexOf('es') === 0) lang = 'es'; }
+  var UI = {
+    role: { en: 'Math engineer & AI', es: 'Ingeniera matemática e IA' },
+    menu: { en: 'Menu', es: 'Menú' }, close: { en: 'Close', es: 'Cerrar' },
+    nav_home: { en: 'Home', es: 'Inicio' }, nav_works: { en: 'Works', es: 'Trabajos' },
+    nav_about: { en: 'About', es: 'Sobre mí' }, nav_contact: { en: 'Contact', es: 'Contacto' },
+    open: { en: 'Open to summer 2027 internships', es: 'Disponible para prácticas de verano 2027' },
+    cta_title: { en: "Can't wait to work together", es: 'Con ganas de trabajar juntos' },
+    mail: { en: 'Mail', es: 'Correo' }, peek: { en: 'Peek', es: 'Mira' }, link: { en: 'Link', es: 'Enlace' }
+  };
+  function L(o) { return typeof o === 'string' ? o : (o[lang] || o.en); }
+  function applyUI() {
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n'); if (k === 'menu' && menuOpen) k = 'close';
+      if (UI[k]) el.textContent = UI[k][lang];
+    });
+    document.querySelectorAll('.lang button').forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-set') === lang); });
+    document.documentElement.lang = lang;
+  }
+
+  var ALSO = [
+    { n: '3imat', r: '3imat', d: { en: 'Third-year iMAT coursework, just started', es: 'Trabajos de tercero de iMAT, recién empezado' } },
+    { n: '42', r: '42', d: { en: 'Piscine and cursus: Libft, ft_printf, get_next_line, Born2beRoot', es: 'Piscina y cursus: Libft, ft_printf, get_next_line, Born2beRoot' } }
+  ];
+  var GH = 'https://github.com/claudialbombin/';
+  var RECENT = [
+    { n: 'pitwall', r: 'pitwall', d: '2026-11', t: { en: 'Results corrected across site, notebooks and paper', es: 'Resultados corregidos en la web, los notebooks y el paper' }, s: 'pitwall' },
+    { n: '42', r: '42', d: '2026-10', t: { en: 'A-Maze-ing, in Python, and Born2beRoot', es: 'A-Maze-ing, en Python, y Born2beRoot' }, s: 'a-maze-ing' },
+    { n: 'salchi-helper', r: 'salchi-helper', d: '2026-10', t: { en: 'A floating dachshund for your to-do list', es: 'Un salchicha flotante para tu lista de tareas' }, s: 'salchi-helper' },
+    { n: 'beat-the-dealer', r: 'beat-the-dealer', d: '2026-09', t: { en: 'Rebuilt: exact solver, a billion rounds, a live site', es: 'Rehecho: solver exacto, mil millones de rondas, web interactiva' }, s: 'beat-the-dealer' },
+    { n: '3imat', r: '3imat', d: '2026-09', t: { en: 'Third-year iMAT coursework', es: 'Trabajos de tercero de iMAT' } },
+    { n: 'cececat', r: 'cececat', d: '2026-09', t: { en: 'A debate tournament manager', es: 'Un gestor de torneos de debate' }, s: 'cececat' }
+  ];
+
+  /* ---------------- procedural cover art ---------------- */
+  function hash(s) { var h = 2166136261; for (var i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return h >>> 0; }
+  function rng(s) { return function () { s |= 0; s = s + 0x6D2B79F5 | 0; var t = Math.imul(s ^ s >>> 15, 1 | s); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+  function gauss(r) { var u = r() || 1e-9, v = r(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); }
+  function rrect(c, x, y, w, h, rad) { c.beginPath(); c.moveTo(x + rad, y); c.arcTo(x + w, y, x + w, y + h, rad); c.arcTo(x + w, y + h, x, y + h, rad); c.arcTo(x, y + h, x, y, rad); c.arcTo(x, y, x + w, y, rad); c.closePath(); }
+  var CREAM = '#F7F2ED', INK = '#101010', ART = {};
+
+  ART.pitwall = function (c, W, H, r) {
+    c.fillStyle = '#1B1F1C'; c.fillRect(0, 0, W, H);
+    var cx = W * .5, cy = H * .38, s = H * .26, ph = r() * 6;
+    function pt(a) { var k = 1 + .26 * Math.cos(3 * a + ph) + .13 * Math.sin(2 * a + ph); return [cx + s * 1.6 * k * Math.cos(a), cy + s * k * Math.sin(a)]; }
+    c.beginPath(); for (var i = 0; i <= 240; i++) { var p = pt(i / 240 * Math.PI * 2); i ? c.lineTo(p[0], p[1]) : c.moveTo(p[0], p[1]); } c.closePath();
+    c.lineJoin = 'round'; c.strokeStyle = '#3A403C'; c.lineWidth = H * .06; c.stroke();
+    c.strokeStyle = CREAM; c.lineWidth = 1.4; c.setLineDash([H * .018, H * .018]); c.stroke(); c.setLineDash([]);
+    var comp = ['#E5484D', '#F4C542', '#EDEDED'];
+    [.1, .43, .76].forEach(function (a, i) { var q = pt(a * Math.PI * 2); c.fillStyle = comp[i]; c.beginPath(); c.arc(q[0], q[1], H * .024, 0, 7); c.fill(); });
+    var x0 = W * .08, x1 = W * .92, y0 = H * .74, bh = H * .045, gap = H * .03;
+    c.font = Math.round(H * .028) + 'px "Roboto Mono", monospace'; c.fillStyle = 'rgba(247,242,237,.6)'; c.textBaseline = 'alphabetic';
+    c.textAlign = 'left'; c.fillText('LAP 1', x0, y0 - 8); c.textAlign = 'right'; c.fillText('LAP N', x1, y0 - 8);
+    for (var row = 0; row < 3; row++) {
+      var a = .18 + r() * .2, b = a + .22 + r() * .25, cuts = [0, a, b, 1], order = [0, 1, 2].sort(function () { return r() - .5; }), y = y0 + row * (bh + gap);
+      for (var k = 0; k < 3; k++) { c.fillStyle = comp[order[k]]; rrect(c, x0 + (x1 - x0) * cuts[k] + (k ? 2 : 0), y, (x1 - x0) * (cuts[k + 1] - cuts[k]) - (k < 2 ? 2 : 0) - (k ? 2 : 0), bh, bh / 2); c.fill(); }
+    }
+  };
+  ART.option = function (c, W, H, r) {
+    c.fillStyle = '#0F2A43'; c.fillRect(0, 0, W, H);
+    var pad = W * .06, x0 = pad, x1 = W * .94, lo = 45, hi = 190, Y = function (v) { return H * .9 - (H * .8) * (v - lo) / (hi - lo); };
+    c.strokeStyle = 'rgba(150,205,255,.24)'; c.lineWidth = 1;
+    for (var p = 0; p < 80; p++) { var s = 100; c.beginPath(); c.moveTo(x0, Y(s)); for (var k = 1; k <= 90; k++) { s *= Math.exp(-.0002 + .022 * gauss(r)); c.lineTo(x0 + (x1 - x0) * k / 90, Y(Math.min(hi, Math.max(lo, s)))); } c.stroke(); }
+    c.setLineDash([4, 5]); c.strokeStyle = 'rgba(247,242,237,.55)'; c.beginPath(); c.moveTo(x0, Y(100)); c.lineTo(x1, Y(100)); c.stroke(); c.setLineDash([]);
+    var bx0 = W * .6, bx1 = W * .92, base = H * .86, kx = bx0 + (bx1 - bx0) * .45;
+    c.fillStyle = 'rgba(15,42,67,.72)'; rrect(c, bx0 - 14, H * .42, bx1 - bx0 + 28, base - H * .42 + 22, 12); c.fill();
+    c.strokeStyle = '#FF7A59'; c.lineWidth = Math.max(2.5, W * .006); c.lineJoin = 'round'; c.beginPath(); c.moveTo(bx0, base); c.lineTo(kx, base); c.lineTo(bx1, base - (bx1 - kx) * 1.05); c.stroke();
+    c.font = Math.round(H * .03) + 'px "Roboto Mono", monospace'; c.fillStyle = 'rgba(247,242,237,.75)'; c.textAlign = 'left'; c.fillText('max(S − K, 0)', bx0, H * .5);
+  };
+  ART.heston = function (c, W, H, r) {
+    c.fillStyle = '#E7DCC6'; c.fillRect(0, 0, W, H);
+    var n = 84, x0 = W * .07, x1 = W * .93, v = .5, tv = [], ob = [], es = [], e = .5;
+    for (var i = 0; i < n; i++) { v += .22 * (.5 - v) + .07 * gauss(r); v = Math.min(.9, Math.max(.12, v)); tv.push(v); var o = v + .1 * gauss(r); ob.push(o); e += .3 * (o - e); es.push(e); }
+    var X = function (i) { return x0 + (x1 - x0) * i / (n - 1); }, Y = function (q) { return H * .86 - H * .7 * q; };
+    c.fillStyle = 'rgba(16,16,16,.45)'; for (i = 0; i < n; i++) { c.beginPath(); c.arc(X(i), Y(ob[i]), 2.2, 0, 7); c.fill(); }
+    c.fillStyle = 'rgba(31,111,92,.28)'; for (i = 0; i < n; i += 2) for (var j = 0; j < 10; j++) { c.beginPath(); c.arc(X(i) + gauss(r) * 2, Y(es[i] + gauss(r) * .05), 1.7, 0, 7); c.fill(); }
+    c.setLineDash([6, 5]); c.strokeStyle = INK; c.lineWidth = 1.4; c.beginPath(); tv.forEach(function (q, i) { i ? c.lineTo(X(i), Y(q)) : c.moveTo(X(i), Y(q)); }); c.stroke(); c.setLineDash([]);
+    c.strokeStyle = '#1F6F5C'; c.lineWidth = Math.max(2.5, W * .006); c.lineJoin = 'round'; c.beginPath(); es.forEach(function (q, i) { i ? c.lineTo(X(i), Y(q)) : c.moveTo(X(i), Y(q)); }); c.stroke();
+    c.font = Math.round(H * .03) + 'px "Roboto Mono", monospace'; c.fillStyle = INK; c.textAlign = 'left'; c.fillText('√v  filtered vs true', x0, H * .1);
+  };
+  ART.qubo = function (c, W, H, r) {
+    c.fillStyle = '#B79CF0'; c.fillRect(0, 0, W, H);
+    var n = 10, size = Math.min(W * .5, H * .74), gx = W * .07, gy = (H - size) / 2, cs = size / n, sel = [1, 3, 4, 8];
+    for (var i = 0; i < n; i++) for (var j = i; j < n; j++) { var q = r() * 2 - 1, a = Math.abs(q) * .85 + .05; c.fillStyle = q > 0 ? 'rgba(16,16,16,' + a + ')' : 'rgba(247,242,237,' + a + ')'; c.fillRect(gx + j * cs + 1, gy + i * cs + 1, cs - 2, cs - 2); if (i !== j) c.fillRect(gx + i * cs + 1, gy + j * cs + 1, cs - 2, cs - 2); }
+    c.strokeStyle = CREAM; c.lineWidth = 2.5; sel.forEach(function (d) { c.strokeRect(gx + d * cs + 1, gy + d * cs + 1, cs - 2, cs - 2); });
+    var tx = gx + size + W * .06; c.fillStyle = INK; c.textAlign = 'left'; c.textBaseline = 'alphabetic';
+    c.font = Math.round(H * .105) + 'px "Instrument Serif", serif'; c.fillText('min xᵀQx', tx, H * .36);
+    c.font = Math.round(H * .036) + 'px "Roboto Mono", monospace'; c.fillText('s.t. Σ xᵢ = k', tx, H * .46);
+    var bits = ''; for (i = 0; i < n; i++) bits += (sel.indexOf(i) >= 0 ? '1' : '0');
+    c.font = Math.round(H * .034) + 'px "Roboto Mono", monospace'; c.fillText('x = ' + bits, tx, H * .62);
+  };
+  function card(c, x, y, w, h, ang, fn) { c.save(); c.translate(x, y); c.rotate(ang); c.shadowColor = 'rgba(0,0,0,.28)'; c.shadowBlur = w * .12; c.shadowOffsetY = w * .04; c.fillStyle = '#FBF8F2'; rrect(c, -w / 2, -h / 2, w, h, w * .07); c.fill(); c.shadowColor = 'transparent'; fn(w, h); c.restore(); }
+  ART.blackjack = function (c, W, H, r) {
+    var g = c.createRadialGradient(W * .5, H * .45, H * .1, W * .5, H * .5, W * .7); g.addColorStop(0, '#2C7B5C'); g.addColorStop(1, '#123F30'); c.fillStyle = g; c.fillRect(0, 0, W, H);
+    var w = Math.min(W * .21, H * .3), h = w * 1.42, cards = [['A', '♠', INK, -.3, -.17], ['K', '♥', '#C7372F', 0, 0], ['5', '♣', INK, .3, .17]];
+    cards.forEach(function (d) {
+      card(c, W * .5 + d[4] * W * 1.2, H * .48 + Math.abs(d[3]) * H * .18, w, h, d[3], function (cw, ch) {
+        c.fillStyle = d[2]; c.textAlign = 'left'; c.textBaseline = 'top'; c.font = Math.round(cw * .3) + 'px "Instrument Serif", serif'; c.fillText(d[0], -cw / 2 + cw * .09, -ch / 2 + cw * .05);
+        c.textAlign = 'center'; c.textBaseline = 'middle'; c.font = Math.round(cw * .55) + 'px serif'; c.fillText(d[1], 0, ch * .06);
+      });
+    });
+    c.textBaseline = 'alphabetic'; c.textAlign = 'left'; c.fillStyle = '#E6C15A'; c.font = Math.round(H * .045) + 'px "Roboto Mono", monospace'; c.fillText('HI-LO  +0.50% / TC', W * .06, H * .92);
+  };
+  ART.mus = function (c, W, H, r) {
+    c.fillStyle = '#C4553E'; c.fillRect(0, 0, W, H);
+    var w = Math.min(W * .19, H * .26), h = w * 1.5, nums = ['1', '4', '7', '12'];
+    nums.forEach(function (n, i) {
+      var a = (i - 1.5) * .26;
+      card(c, W * .5 + (i - 1.5) * w * 1.05, H * .5 + Math.abs(i - 1.5) * H * .05, w, h, a, function (cw, ch) {
+        c.strokeStyle = 'rgba(16,16,16,.25)'; c.lineWidth = 1; rrect(c, -cw / 2 + 6, -ch / 2 + 6, cw - 12, ch - 12, cw * .05); c.stroke();
+        c.fillStyle = '#E0A72D'; c.beginPath(); c.arc(0, 0, cw * .3, 0, 7); c.fill();
+        c.strokeStyle = '#B7801A'; c.lineWidth = 2; c.beginPath(); c.arc(0, 0, cw * .22, 0, 7); c.stroke();
+        c.fillStyle = INK; c.textAlign = 'center'; c.textBaseline = 'middle'; c.font = Math.round(cw * .3) + 'px "Instrument Serif", serif'; c.fillText(n, 0, cw * .015);
+      });
+    });
+  };
+  ART.pause = function (c, W, H, r) {
+    var g = c.createLinearGradient(0, 0, W, H); g.addColorStop(0, '#D7E4F2'); g.addColorStop(1, '#F6DCCB'); c.fillStyle = g; c.fillRect(0, 0, W, H);
+    var cx = W * .5, cy = H * .5;
+    for (var i = 6; i >= 1; i--) { c.strokeStyle = 'rgba(16,16,16,' + (.08 + (6 - i) * .03) + ')'; c.lineWidth = 1.2; c.beginPath(); c.arc(cx, cy, i * H * .075, 0, 7); c.stroke(); }
+    var rg = c.createRadialGradient(cx, cy, 0, cx, cy, H * .2); rg.addColorStop(0, 'rgba(255,255,255,.95)'); rg.addColorStop(1, 'rgba(255,255,255,.35)'); c.fillStyle = rg; c.beginPath(); c.arc(cx, cy, H * .2, 0, 7); c.fill();
+    c.fillStyle = INK; c.textAlign = 'center'; c.textBaseline = 'middle'; c.font = 'italic ' + Math.round(H * .09) + 'px "Instrument Serif", serif'; c.fillText('inhale', cx, cy);
+  };
+  ART.recipe = function (c, W, H, r) {
+    c.fillStyle = '#EBC98E'; c.fillRect(0, 0, W, H);
+    var px = W * .34, py = H * .52, pr = H * .32;
+    c.shadowColor = 'rgba(0,0,0,.2)'; c.shadowBlur = 24; c.shadowOffsetY = 8; c.fillStyle = '#FBF6EE'; c.beginPath(); c.arc(px, py, pr, 0, 7); c.fill(); c.shadowColor = 'transparent';
+    c.strokeStyle = 'rgba(16,16,16,.18)'; c.lineWidth = 1.5; c.beginPath(); c.arc(px, py, pr * .72, 0, 7); c.stroke();
+    [[-.18, -.1], [.12, -.16], [.2, .1], [-.1, .16], [0, 0]].forEach(function (d, i) { c.fillStyle = i % 2 ? '#5E8C4A' : '#D4432E'; c.beginPath(); c.arc(px + d[0] * pr * 1.3, py + d[1] * pr * 1.3, pr * (i % 2 ? .1 : .14), 0, 7); c.fill(); });
+    card(c, W * .74, H * .5, W * .3, H * .62, .07, function (cw, ch) {
+      c.fillStyle = INK; c.textAlign = 'left'; c.textBaseline = 'top'; c.font = Math.round(ch * .11) + 'px "Instrument Serif", serif'; c.fillText('Recetario', -cw / 2 + cw * .1, -ch / 2 + ch * .07);
+      c.strokeStyle = 'rgba(16,16,16,.25)'; c.lineWidth = 1.5; for (var i = 0; i < 7; i++) { var y = -ch / 2 + ch * (.28 + i * .09); c.beginPath(); c.moveTo(-cw / 2 + cw * .1, y); c.lineTo(cw / 2 - cw * (.1 + (i % 3) * .08), y); c.stroke(); }
+    });
+  };
+  ART.sort = function (c, W, H, r) {
+    c.fillStyle = '#1D4E5A'; c.fillRect(0, 0, W, H);
+    var n = 34, x0 = W * .07, x1 = W * .93, bw = (x1 - x0) / n, base = H * .82, vals = [];
+    for (var i = 0; i < n; i++) vals.push(i + 1);
+    for (i = n - 1; i > 12; i--) { var j = Math.floor(r() * (i - 6)) + 6; var t = vals[i]; vals[i] = vals[j]; vals[j] = t; }
+    for (i = 0; i < n; i++) {
+      var h = (vals[i] / n) * H * .6 + H * .04, sorted = i < 12;
+      c.fillStyle = sorted ? '#F7F2ED' : 'rgba(247,242,237,.32)'; if (i === 20 || i === 27) c.fillStyle = '#FF7A59';
+      rrect(c, x0 + i * bw + 2, base - h, bw - 4, h, 3); c.fill();
+    }
+    c.font = Math.round(H * .03) + 'px "Roboto Mono", monospace'; c.fillStyle = 'rgba(247,242,237,.75)'; c.textAlign = 'left'; c.textBaseline = 'alphabetic';
+    c.fillText('sa  pb  ra  rra  …', x0, H * .93); c.textAlign = 'right'; c.fillText('disorder → O(n log n)', x1, H * .12);
+  };
+  ART.lorenz = function (c, W, H, r) {
+    c.fillStyle = '#241B33'; c.fillRect(0, 0, W, H);
+    var x = 1, y = 1, z = 1.05, dt = .006, pts = [];
+    for (var i = 0; i < 9000; i++) { var dx = 10 * (y - x), dy = x * (28 - z) - y, dz = x * y - 8 / 3 * z; x += dx * dt; y += dy * dt; z += dz * dt; if (i > 200) pts.push([x, z]); }
+    var sx = Math.min(W / 52, H / 52 * 1.35), cx = W * .5, cy = H * .93;
+    for (i = 1; i < pts.length; i++) {
+      var f = i / pts.length; c.strokeStyle = 'hsla(' + (270 + f * 110) + ',85%,' + (68 + f * 6) + '%,.65)'; c.lineWidth = 1.2;
+      c.beginPath(); c.moveTo(cx + pts[i - 1][0] * sx, cy - pts[i - 1][1] * sx * .95); c.lineTo(cx + pts[i][0] * sx, cy - pts[i][1] * sx * .95); c.stroke();
+    }
+    c.font = Math.round(H * .03) + 'px "Roboto Mono", monospace'; c.fillStyle = 'rgba(247,242,237,.7)'; c.textAlign = 'left'; c.fillText('σ = 10  ρ = 28  β = 8/3', W * .06, H * .1);
+  };
+
+  ART.cece = function (c, W, H, r) {
+    c.fillStyle = '#E8DDF5'; c.fillRect(0, 0, W, H);
+    var x0 = W * .08, y0 = H * .14, tw = W * .84, rowH = H * .145, cols = [.22, .37, .37], rooms = ['A', 'B', 'C', 'D'], t = ['OG', 'OO', 'CG', 'CO', 'R1', 'R2', 'R3', 'R4'];
+    c.fillStyle = INK; c.font = Math.round(H * .04) + 'px "Roboto Mono", monospace'; c.textBaseline = 'middle'; c.textAlign = 'left';
+    c.fillText('ROOM', x0, y0); c.fillText('GOV', x0 + tw * .22, y0); c.fillText('OPP', x0 + tw * .59, y0);
+    for (var i = 0; i < 4; i++) {
+      var y = y0 + H * .07 + i * rowH; c.fillStyle = '#FBF8F2'; rrect(c, x0, y, tw, rowH - H * .025, 10); c.fill();
+      c.fillStyle = INK; c.font = Math.round(H * .075) + 'px "Instrument Serif", serif'; c.fillText(rooms[i], x0 + tw * .05, y + rowH * .42);
+      [.22, .59].forEach(function (f, k) { c.fillStyle = k ? '#7A5BC7' : '#E2593A'; rrect(c, x0 + tw * f, y + rowH * .2, tw * (.14 + r() * .15), rowH * .36, rowH * .18); c.fill(); });
+    }
+    c.fillStyle = INK; c.font = Math.round(H * .036) + 'px "Roboto Mono", monospace'; c.fillText('ROUND 3 · DRAW', x0, H * .93);
+  };
+  ART.maze = function (c, W, H, r) {
+    c.fillStyle = '#10211C'; c.fillRect(0, 0, W, H);
+    var cs = Math.max(10, H / 15), nx = Math.floor(W * .88 / cs), ny = Math.floor(H * .82 / cs), ox = (W - nx * cs) / 2, oy = (H - ny * cs) / 2, seen = [], i, x, y;
+    for (i = 0; i < nx * ny; i++) seen.push(0);
+    var st = [[0, 0]], E = {}; seen[0] = 1;
+    while (st.length) { var q = st[st.length - 1], o = []; [[1, 0], [-1, 0], [0, 1], [0, -1]].forEach(function (d) { x = q[0] + d[0]; y = q[1] + d[1]; if (x >= 0 && y >= 0 && x < nx && y < ny && !seen[y * nx + x]) o.push([x, y]); }); if (o.length) { var n = o[Math.floor(r() * o.length)]; seen[n[1] * nx + n[0]] = 1; E[q + '|' + n] = E[n + '|' + q] = 1; st.push(n); } else st.pop(); }
+    c.strokeStyle = '#7FE0B5'; c.lineWidth = 2; c.lineCap = 'round'; c.beginPath();
+    for (y = 0; y < ny; y++) for (x = 0; x < nx; x++) { var px = ox + x * cs, py = oy + y * cs; if (!E[[x, y] + '|' + [x + 1, y]]) { c.moveTo(px + cs, py); c.lineTo(px + cs, py + cs); } if (!E[[x, y] + '|' + [x, y + 1]]) { c.moveTo(px, py + cs); c.lineTo(px + cs, py + cs); } }
+    c.rect(ox, oy, nx * cs, ny * cs); c.stroke();
+    c.fillStyle = '#10211C'; rrect(c, W / 2 - H * .17, H / 2 - H * .13, H * .34, H * .26, 10); c.fill();
+    c.fillStyle = '#F2C94C'; c.textAlign = 'center'; c.textBaseline = 'middle'; c.font = Math.round(H * .24) + 'px "Instrument Serif", serif'; c.fillText('42', W / 2, H / 2 + H * .01);
+  };
+
+  function drawArt(cv) {
+    var name = cv.getAttribute('data-art'), W = cv.clientWidth, H = cv.clientHeight; if (!W || !H || !ART[name]) return;
+    var dpr = Math.min(window.devicePixelRatio || 1, 2); cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+    var c = cv.getContext('2d'); c.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ART[name](c, W, H, rng(hash(name) + (+cv.getAttribute('data-seed') || 0)));
+  }
+
+  /* ---------------- charts ---------------- */
+  var CHARTS = {
+    bj: { pts: [[-5, -2.847], [-3, -1.523], [-1, -.612], [0, -.483], [1, -.112], [3, 1.247], [5, 2.513]], fit: [[-5.4, -3.2], [5.4, 2.2]], xt: [-5, -3, -1, 0, 1, 3, 5], yt: [-3, -2, -1, 0, 1, 2, 3], xr: [-5.6, 5.6], yr: [-3.4, 3.2], fx: function (v) { return (v > 0 ? '+' : '') + v; }, fy: function (v) { return (v > 0 ? '+' : v < 0 ? '−' : '') + Math.abs(v) + '%'; }, xl: 'true count', yl: 'player EV' },
+    conv: { pts: [[1e4, .15], [1e5, .05], [5e5, .02], [1e6, .015]], fit: [[8e3, .15 * Math.sqrt(1e4 / 8e3)], [1.2e6, .15 * Math.sqrt(1e4 / 1.2e6)]], xt: [1e4, 1e5, 1e6], yt: [.01, .02, .05, .1, .2], xr: [8e3, 1.3e6], yr: [.011, .22], xlog: 1, ylog: 1, fx: function (v) { return v >= 1e6 ? '1M' : (v / 1e3) + 'K'; }, fy: function (v) { return v; }, xl: 'paths N', yl: 'standard error' }
+  };
+  function drawChart(cv) {
+    var cfg = CHARTS[cv.getAttribute('data-chart')], W = cv.clientWidth, H = cv.clientHeight; if (!cfg || !W || !H) return;
+    var dpr = Math.min(window.devicePixelRatio || 1, 2); cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+    var c = cv.getContext('2d'); c.setTransform(dpr, 0, 0, dpr, 0, 0);
+    var ml = 58, mr = 18, mt = 16, mb = 42, x0 = ml, x1 = W - mr, y0 = mt, y1 = H - mb;
+    function sc(v, r, lg) { if (lg) { v = Math.log(v); r = [Math.log(r[0]), Math.log(r[1])]; } return (v - r[0]) / (r[1] - r[0]); }
+    var X = function (v) { return x0 + (x1 - x0) * sc(v, cfg.xr, cfg.xlog); }, Y = function (v) { return y1 - (y1 - y0) * sc(v, cfg.yr, cfg.ylog); };
+    c.font = '11px "Roboto Mono", monospace'; c.lineWidth = 1;
+    cfg.yt.forEach(function (v) { var y = Math.round(Y(v)) + .5; c.strokeStyle = v === 0 ? 'rgba(16,16,16,.5)' : 'rgba(16,16,16,.12)'; c.beginPath(); c.moveTo(x0, y); c.lineTo(x1, y); c.stroke(); c.fillStyle = '#6F6963'; c.textAlign = 'right'; c.textBaseline = 'middle'; c.fillText(cfg.fy(v), x0 - 8, y); });
+    cfg.xt.forEach(function (v) { var x = Math.round(X(v)) + .5; c.strokeStyle = 'rgba(16,16,16,.08)'; c.beginPath(); c.moveTo(x, y0); c.lineTo(x, y1); c.stroke(); c.fillStyle = '#6F6963'; c.textAlign = 'center'; c.textBaseline = 'top'; c.fillText(cfg.fx(v), x, y1 + 8); });
+    c.fillStyle = '#6F6963'; c.textAlign = 'right'; c.textBaseline = 'bottom'; c.fillText(cfg.xl, x1, H - 4); c.textAlign = 'left'; c.textBaseline = 'top'; c.fillText(cfg.yl, x0 + 6, y0 + 2);
+    c.setLineDash([6, 5]); c.strokeStyle = '#E2593A'; c.lineWidth = 1.6; c.beginPath(); cfg.fit.forEach(function (p, i) { i ? c.lineTo(X(p[0]), Y(p[1])) : c.moveTo(X(p[0]), Y(p[1])); }); c.stroke(); c.setLineDash([]);
+    c.fillStyle = INK; cfg.pts.forEach(function (p) { c.beginPath(); c.arc(X(p[0]), Y(p[1]), 5, 0, 7); c.fill(); });
+  }
+  function drawAll() { document.querySelectorAll('canvas[data-art]').forEach(drawArt); document.querySelectorAll('canvas[data-chart]').forEach(drawChart); }
+
+  /* ---------------- views ---------------- */
+  var SL = '<svg aria-hidden="true" preserveAspectRatio="none"><defs><pattern id="P__" width="24" height="16" patternUnits="userSpaceOnUse"><line x1="8" y1="15" x2="14" y2="1" stroke="#101010" stroke-width="1.5"/></pattern></defs><rect width="100%" height="16" fill="url(#P__)"/></svg>', slashN = 0;
+  function slashes(label) { slashN++; var s = SL.replace(/P__/g, 'P' + slashN + 'a'), s2 = SL.replace(/P__/g, 'P' + slashN + 'b'); return '<div class="slashes">' + s + (label ? '<span class="mono">' + label + '</span>' + s2 : '') + '</div>'; }
+  function idx(i) { return '/' + (i < 9 ? '0' : '') + (i + 1); }
+  function cover(p) { return p.img ? '<img src="' + p.img + '" alt="' + p.name + '" decoding="async">' : '<canvas data-art="' + p.art + '" data-seed="0" role="img" aria-label="' + p.name + '"></canvas>'; }
+  function coverStyle(p) { return p.imgBg ? ' style="background:' + p.imgBg + '"' : ''; }
+  function cardHTML(p) {
+    var i = P.indexOf(p);
+    return '<a class="card" href="#/works/' + p.slug + '"><div class="ph"' + coverStyle(p) + '>' + cover(p) + '<span class="cta mono">' + (lang === 'es' ? 'Ver proyecto' : 'See project') + ' ↗</span></div>' +
+      '<div class="cap"><span class="mono idx">' + idx(i) + '</span><span class="mono">' + p.name + '</span></div><p class="sub">' + L(p.short) + '</p></a>';
+  }
+  function fmtDate(d) { var m = +d.slice(5, 7) - 1; return (lang === 'es' ? ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'] : ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'])[m] + ' ' + d.slice(0, 4); }
+  function img(src, alt, cls) { return '<img ' + (cls ? 'class="' + cls + '" ' : '') + 'src="' + src + '" alt="' + alt + '" decoding="async" onerror="var t=this.closest(\'[data-photo]\');if(t)t.remove()">'; }
+
+  var T = {
+    intro: { en: 'Claudia Lopez is a Spanish engineer and speaker based in Madrid, studying Mathematical Engineering and AI and building stochastic models for finance.', es: 'Claudia Lopez es una ingeniera y oradora española afincada en Madrid, estudia Ingeniería Matemática e IA y construye modelos estocásticos para finanzas.' },
+    tag: { en: 'Madrid based<br>curiously driven', es: 'Desde Madrid<br>movida por la curiosidad' },
+    works: { en: 'My works', es: 'Mis trabajos' }, all: { en: 'All works', es: 'Todos los trabajos' },
+    doTitle: { en: 'What I do', es: 'Qué hago' },
+    pillars: [
+      { h: { en: 'Model', es: 'Modelar' }, p: { en: 'Stochastic models for finance and decision-making: Monte Carlo, Markov decision processes, particle filters and QUBO. I care about the number, and about how far to trust it.', es: 'Modelos estocásticos para finanzas y toma de decisiones: Monte Carlo, procesos de decisión de Markov, filtros de partículas y QUBO. Me importa el número y cuánto fiarse de él.' } },
+      { h: { en: 'Build', es: 'Construir' }, p: { en: 'Working software. Python to explore, C when speed and discipline matter, web and desktop apps for things people actually use. The engines here are checked against a known answer.', es: 'Software que funciona. Python para explorar, C cuando importan la velocidad y la disciplina, aplicaciones web y de escritorio para cosas que la gente usa de verdad. Los motores de aquí se comprueban contra una respuesta conocida.' } },
+      { h: { en: 'Speak', es: 'Hablar' }, p: { en: 'Debate, public speaking and mentoring: British Parliamentary, international tournaments, U.S. Embassy programs. Explaining a hard idea clearly is part of the job.', es: 'Debate, oratoria y mentoría: British Parliamentary, torneos internacionales, programas de la Embajada de EE. UU. Explicar bien una idea difícil forma parte del trabajo.' } }
+    ],
+    numbers: { en: 'In numbers', es: 'En cifras' },
+    nums: [
+      { v: '380/380', d: { en: 'blackjack chart decisions where my Monte Carlo solver agrees with an exact solver', es: 'decisiones de la tabla de blackjack en las que mi solver Monte Carlo coincide con un solver exacto' } },
+      { v: '0.006%', d: { en: 'error of my Monte Carlo option pricer against the closed form', es: 'de error de mi pricer Monte Carlo frente a la fórmula cerrada' } },
+      { v: '10⁹', d: { en: 'simulated rounds in my Hi-Lo card-counting study', es: 'rondas simuladas en mi estudio de conteo Hi-Lo' } },
+      { v: '77', d: { en: 'unit tests behind the option pricer', es: 'tests unitarios detrás del pricer de opciones' } }
+    ],
+    lab: { en: 'Play with the numbers', es: 'Juega con los números' },
+    speakH: { en: 'On stage', es: 'En el estrado' },
+    speakP: { en: 'Debate taught me to structure an argument, defend it under pressure and change my mind when the evidence says so. I compete in academic and parliamentary formats, including British Parliamentary, take part in international tournaments and mentor through U.S. Embassy programs. At 42 Madrid I am co-founding a debate league, and I built CeceCat, a tournament manager, to run this kind of event.', es: 'El debate me enseñó a estructurar un argumento, defenderlo bajo presión y cambiar de opinión cuando la evidencia lo pide. Compito en formatos académicos y parlamentarios, incluido British Parliamentary, participo en torneos internacionales y hago mentoría en programas de la Embajada de EE. UU. En 42 Madrid estoy cofundando una liga de debate, y he creado CeceCat, un gestor de torneos, para llevar este tipo de eventos.' },
+    speakCap: { en: 'Public speaking at Universidad Pontificia Comillas', es: 'Oratoria en la Universidad Pontificia Comillas' },
+    nowH: { en: 'Right now', es: 'Ahora mismo' },
+    now: [
+      { n: { en: 'Thesis proposal on QUBO portfolio optimization', es: 'Propuesta de TFG sobre optimización de carteras con QUBO' }, r: { en: 'Quantum annealing and QAOA', es: 'Quantum annealing y QAOA' } },
+      { n: { en: 'Social Media & Content Creator', es: 'Social Media & Content Creator' }, r: { en: 'ICAI · Universidad Pontificia Comillas', es: 'ICAI · Universidad Pontificia Comillas' } },
+      { n: { en: '42 Madrid cursus', es: 'Cursus de 42 Madrid' }, r: { en: 'Rank 02, and a debate league in the making', es: 'Rank 02, y una liga de debate en marcha' } },
+      { n: { en: 'Looking for summer 2027 internships', es: 'Buscando prácticas para el verano de 2027' }, r: { en: 'Madrid or London', es: 'Madrid o Londres' } }
+    ],
+    recentH: { en: 'Recently on GitHub', es: 'Últimas novedades en GitHub' }, updated: { en: 'last updated', es: 'última actualización' },
+    tease: { en: 'Over 5 years exploring the intersection of technology, data, and meaningful experiences.', es: 'Más de 5 años explorando la intersección entre tecnología, datos y experiencias con sentido.' },
+    tease2: { en: 'After engaging in diverse engineering, mentoring, and debate experiences, I chose to follow my passion: exploring new ways to merge technology, creativity, and human impact. Now, I’m shaping my own vision of purposeful projects.', es: 'Tras vivir experiencias muy distintas de ingeniería, mentoría y debate, decidí seguir mi pasión: explorar nuevas formas de unir tecnología, creatividad e impacto humano. Ahora estoy dando forma a mi propia visión de proyectos con propósito.' },
+    prog: { en: 'Programs & initiatives', es: 'Programas e iniciativas' },
+    progv: { en: 'U.S. Embassy mentoring, ISC Racing Team, international debate tournaments.', es: 'Mentoría de la Embajada de EE. UU., ISC Racing Team, torneos internacionales de debate.' },
+    more: { en: 'More about me', es: 'Más sobre mí' },
+    portfolio: { en: 'Portfolio', es: 'Portfolio' }, selected: { en: 'Selected work', es: 'Trabajo seleccionado' },
+    worksIntro: { en: 'Simulation, stochastic modelling and software, from coursework to things I built because I wanted them to exist. Every project has its own page with the question, the method and the numbers.', es: 'Simulación, modelado estocástico y software, desde trabajos de clase hasta cosas que hice porque quería que existieran. Cada proyecto tiene su propia página con la pregunta, el método y las cifras.' },
+    f_all: { en: 'All', es: 'Todos' }, f_quant: { en: 'Quant & simulation', es: 'Cuantitativo y simulación' }, f_software: { en: 'Software', es: 'Software' }, f_study: { en: 'Coursework', es: 'Estudios' },
+    also: { en: 'Also on GitHub', es: 'También en GitHub' },
+    bio1: { en: 'I’m Claudia Lopez, Spanish born engineer, specialised in Mathematics and Artificial Intelligence.', es: 'Soy Claudia Lopez, ingeniera nacida en España, especializada en Matemáticas e Inteligencia Artificial.' },
+    bio2: { en: 'After contributing to numerous engineering projects, mentoring programs, and debate competitions, I decided to focus on what drives me the most: creating meaningful, integrative experiences.', es: 'Tras participar en numerosos proyectos de ingeniería, programas de mentoría y competiciones de debate, decidí centrarme en lo que más me mueve: crear experiencias con sentido e integradoras.' },
+    bio3: { en: 'Lately that means stochastic models for finance: Monte Carlo, Markov processes, filtering. Now I’m crafting my own approach to multidisciplinary challenges.', es: 'Últimamente eso significa modelos estocásticos para finanzas: Monte Carlo, procesos de Markov, filtrado. Ahora estoy construyendo mi propio enfoque para retos multidisciplinares.' },
+    howH: { en: 'How I work', es: 'Cómo trabajo' },
+    how: [
+      { h: { en: 'Check it against something known', es: 'Comprobarlo contra algo conocido' }, p: { en: 'My Monte Carlo pricer is validated against the Black-Scholes closed form. My blackjack chart is checked cell by cell against an exact solver. If a model cannot be checked against something, I do not trust it yet.', es: 'Mi pricer Monte Carlo se valida contra la fórmula cerrada de Black-Scholes. Mi tabla de blackjack se comprueba casilla a casilla con un solver exacto. Si un modelo no se puede comprobar contra algo, aún no me fío de él.' } },
+      { h: { en: 'Write it twice', es: 'Escribirlo dos veces' }, p: { en: 'Python to explore and see, C when speed and discipline matter. The option pricer and the blackjack solver each exist in both, and the two versions have to agree.', es: 'Python para explorar y ver, C cuando importan la velocidad y la disciplina. El pricer de opciones y el solver de blackjack existen en los dos, y las dos versiones tienen que coincidir.' } },
+      { h: { en: 'Show the uncertainty', es: 'Enseñar la incertidumbre' }, p: { en: 'Standard errors, convergence rates, a Gaussian Process that returns its own confidence. A number without its error bar is only half an answer. And when a result does not hold up, I say so: Pitwall’s page reports where the policy loses.', es: 'Errores estándar, tasas de convergencia, un proceso gaussiano que devuelve su propia confianza. Un número sin su barra de error es solo media respuesta. Y cuando un resultado no se sostiene, lo digo: la página de Pitwall cuenta dónde pierde la política.' } }
+    ],
+    exp: { en: 'Experience', es: 'Experiencia' }, edu: { en: 'Education', es: 'Formación' }, skills: { en: 'Skills', es: 'Habilidades' },
+    ongoing: { en: 'ongoing', es: 'actualidad' },
+    outside: { en: 'Outside the screen', es: 'Fuera de la pantalla' },
+    outsideP: { en: 'I like board games and card games, and it shows: two of my projects are about them. I also care about the small design details that make software feel cared for.', es: 'Me gustan los juegos de mesa y de cartas, y se nota: dos de mis proyectos van de eso. También me importan los pequeños detalles de diseño que hacen que el software se sienta cuidado.' },
+    words: ['Technology', 'Public Speaking', 'Innovation'], wordsEs: ['Tecnología', 'Oratoria', 'Innovación'],
+    next: { en: 'Next', es: 'Siguiente' },
+    type: { en: 'Type', es: 'Tipo' }, stack: { en: 'Stack', es: 'Stack' }, methods: { en: 'Methods', es: 'Métodos' }, repo: { en: 'Repo', es: 'Repo' },
+    repoBtn: { en: 'See on GitHub', es: 'Ver en GitHub' }, liveBtn: { en: 'Open the live site', es: 'Abrir la web' }, noRepo: { en: 'In progress', es: 'En curso' },
+    artNote: { en: 'The cover image is generated for this site to illustrate the idea. It is not output from the project.', es: 'La imagen de portada está generada para esta web para ilustrar la idea. No es un resultado del proyecto.' },
+    back: { en: 'All works', es: 'Todos los trabajos' },
+    play: { en: 'Live, not a picture. Every run uses the same random numbers, so moving σ or μ shows only what the parameters change. The line through the middle is the exact mean, the dashed lines are the exact 5% and 95% quantiles, and the histogram on the right is the Monte Carlo estimate of S_T. The same idea, in miniature, as my option pricer and my Heston filter.', es: 'Simulación en vivo. Cada ejecución usa los mismos números aleatorios, así que al mover σ o μ solo cambia lo que cambian los parámetros. La línea central es la media exacta, las discontinuas son los cuantiles exactos del 5% y el 95%, y el histograma de la derecha es la estimación Monte Carlo de S_T. La misma idea, en pequeño, que mi pricer de opciones y mi filtro de Heston.' }
+  };
+  var EXP = [
+    { n: 'ICAI · Comillas', r: { en: 'Social Media & Content Creator (intern)', es: 'Social Media & Content Creator (prácticas)' }, d: '2026 –' },
+    { n: 'ISC Racing Team', r: { en: 'Cost Report Engineer', es: 'Cost Report Engineer' }, d: '2024 –' },
+    { n: 'CMU Santa María del Pino', r: { en: 'Resident · Dean of Culture', es: 'Residente · Decana de Cultura' }, d: '2021 –' },
+    { n: 'Inspire Girls', r: '', d: '2020 –' },
+    { n: 'Empower Peace', r: '', d: '2022' }
+  ];
+
+  function homeView() {
+    var pillars = T.pillars.map(function (p) { return '<div><h4 class="pl-h">' + L(p.h) + '</h4><p>' + L(p.p) + '</p></div>'; }).join('');
+    var nums = T.nums.map(function (n) { return '<div><b>' + n.v + '</b><span>' + L(n.d) + '</span></div>'; }).join('');
+    var now = T.now.map(function (n) { return '<li><span class="nm">' + L(n.n) + '</span><span class="mono rl">' + L(n.r) + '</span></li>'; }).join('');
+    var recent = RECENT.map(function (r) { return '<li><a class="nm" href="' + (r.s ? '#/works/' + r.s : GH + r.r) + '"' + (r.s ? '' : ' target="_blank" rel="noopener"') + '>' + r.n + '</a><span class="mono dt">' + fmtDate(r.d) + '</span><span class="mono rl">' + L(r.t) + '</span></li>'; }).join('');
+    return '<div class="wrap">' +
+      '<section class="hero"><h1 class="h-name">Claudia<br>Lopez</h1><h2 class="h-tag">' + L(T.tag) + '</h2><p class="mono intro">' + L(T.intro) + '</p>' +
+      '<div class="hero-photo"><div class="arch" data-photo><div class="ph-fallback" aria-hidden="true">CL</div>' + img('assets/portrait.jpg', 'Claudia Lopez') + '</div><div class="side mono"><span>Madrid <span id="clock"></span></span><span class="muted">40.4168° N, 3.7038° W</span></div></div></section>' +
+      slashes() +
+      '<section class="sec" id="works" style="padding-top:0"><div class="sec-h"><h3 class="h3">' + L(T.works) + '</h3></div><div class="grid">' + P.slice(0, 6).map(cardHTML).join('') + '</div>' +
+      '<a class="pill-link" href="#/works"><span class="pill">' + L(T.all) + ' →</span></a></section>' +
+      slashes() +
+      '<section class="sec" style="padding-top:0"><div class="sec-h"><h3 class="h3">' + L(T.doTitle) + '</h3></div><div class="pillars">' + pillars + '</div></section>' +
+      '<section class="sec"><div class="sec-h"><h3 class="h3">' + L(T.numbers) + '</h3></div><div class="figs">' + nums + '</div></section>' +
+      slashes() +
+      '<section class="sec" style="padding-top:0"><div class="sec-h"><h3 class="h3">' + L(T.lab) + '</h3></div>' + simHTML() + '<p class="note">' + L(T.play) + '</p></section>' +
+      slashes() +
+      '<section class="two"><div class="photo" data-photo>' + img('assets/speaking.jpg', 'Claudia Lopez speaking at a lectern') + '<span class="mono photo-cap">' + L(T.speakCap) + '</span></div><div><h3 class="h3">' + L(T.speakH) + '</h3><p class="big-p">' + L(T.speakP) + '</p></div></section>' +
+      slashes() +
+      '<section class="cols"><div><h3 class="h3" style="margin-bottom:26px">' + L(T.nowH) + '</h3><ul class="rows">' + now + '</ul></div><div><h3 class="h3" style="margin-bottom:26px">' + L(T.recentH) + '</h3><ul class="rows">' + recent + '</ul><p class="mono muted" style="margin:12px 0 0">' + L(T.updated) + '</p></div></section>' +
+      slashes() +
+      '<section class="tease"><h3 class="big">' + L(T.tease) + '</h3><div class="body"><p>' + L(T.tease2) + '</p><div class="programs"><div class="mono muted">' + L(T.prog) + '</div><p class="mono" style="margin:6px 0 0">' + L(T.progv) + '</p></div><a class="pill-link" href="#/about"><span class="pill">' + L(T.more) + ' →</span></a></div></section>' +
+      '</div>';
+  }
+
+  var filter = 'all';
+  function worksView() {
+    var chips = ['all', 'quant', 'software', 'study'].map(function (k) { return '<button type="button" class="chip mono" data-f="' + k + '" aria-pressed="' + (filter === k) + '">' + L(T['f_' + k]) + '</button>'; }).join('');
+    var list = P.filter(function (p) { return filter === 'all' || p.cat === filter; });
+    return '<div class="wrap"><div class="pill-title">' + L(T.portfolio) + '</div>' + slashes(L(T.selected)) +
+      '<p class="big works-intro">' + L(T.worksIntro) + '</p><div class="chips" role="group" aria-label="Filter">' + chips + '</div>' +
+      '<div class="grid">' + list.map(cardHTML).join('') + '</div>' +
+      '<div class="more"><div class="mono muted" style="margin-bottom:14px">' + L(T.also) + '</div>' +
+      ALSO.map(function (a) { return '<a href="' + GH + a.r + '" target="_blank" rel="noopener"><span class="ttl">' + a.n + '</span><span class="mono muted" style="text-align:right">' + L(a.d) + ' ↗</span></a>'; }).join('') + '</div></div>';
+  }
+
+  function aboutView() {
+    var words = (lang === 'es' ? T.wordsEs : T.words).join('<br>');
+    var tiles = '<div class="tile t1" data-photo>' + img('assets/portrait.jpg', '', 'tile-img') + '</div><div class="tile t3" data-photo>' + img('assets/speaking.jpg', '', 'tile-img') + '</div>' +
+      ['option', 'qubo', 'pause', 'lorenz'].map(function (a, i) { return '<div class="tile t' + [2, 4, 5, 6][i] + '"><canvas data-art="' + a + '" data-seed="' + (i + 3) + '" aria-hidden="true"></canvas></div>'; }).join('');
+    var exp = EXP.map(function (e) { return '<li><span class="nm">' + e.n + '</span><span class="mono dt">' + e.d + (e.d.slice(-1) === '–' ? ' ' + L(T.ongoing) : '') + '</span>' + (e.r ? '<span class="mono rl">' + L(e.r) + '</span>' : '') + '</li>'; }).join('');
+    var skills = ['Python', 'C', 'SQL', 'JavaScript', 'LaTeX', 'MATLAB', 'NumPy', 'Pandas', 'scikit-learn', 'Jupyter', 'Streamlit', 'Plotly', 'Tableau', 'Flask', 'Swift', 'Electron', 'Firestore', 'MySQL', 'MongoDB', 'Neo4j', 'pytest', 'GitHub Actions', 'Qiskit', 'Monte Carlo', 'MDP', 'Gaussian Processes', 'Particle filters', 'QUBO'].map(function (s) { return '<span class="mono">' + s + '</span>'; }).join('');
+    var how = T.how.map(function (h) { return '<div class="how"><h4 class="pl-h">' + L(h.h) + '</h4><p>' + L(h.p) + '</p></div>'; }).join('');
+    return '<div class="wrap"><section class="collage"><h1 class="words">' + words + '</h1>' + tiles + '</section>' +
+      '<section class="sec bio" style="padding-top:0"><p class="big">' + L(T.bio1) + '</p><p class="big">' + L(T.bio2) + '</p><p class="big">' + L(T.bio3) + '</p></section>' +
+      slashes() +
+      '<section class="two rev"><div><h3 class="h3" style="margin-bottom:22px">' + L(T.howH) + '</h3>' + how + '</div><div class="photo" data-photo>' + img('assets/portrait.jpg', 'Claudia Lopez') + '</div></section>' +
+      slashes() +
+      '<section class="cols"><div><h3 class="h3" style="margin-bottom:26px">' + L(T.exp) + '</h3><ul class="rows">' + exp + '</ul></div>' +
+      '<div><h3 class="h3" style="margin-bottom:26px">' + L(T.edu) + '</h3><ul class="rows"><li><span class="nm">ICAI · Comillas</span><span class="mono dt">iMAT</span><span class="mono rl">' + (lang === 'es' ? 'Ingeniería Matemática e IA, 3.º curso' : 'Mathematical Engineering & AI, year 3') + '</span></li>' +
+      '<li><span class="nm">42 Madrid</span><span class="mono dt">Cursus</span><span class="mono rl">Fundación Telefónica</span></li></ul>' +
+      '<h3 class="h3" style="margin:44px 0 22px">' + L(T.skills) + '</h3><p class="tags">' + skills + '</p></div></section>' +
+      slashes() +
+      '<section class="tease"><h3 class="big">' + L(T.outside) + '</h3><div class="body"><p>' + L(T.outsideP) + '</p></div></section></div>';
+  }
+
+  function tdCell(x) { return '<td>' + L(x) + '</td>'; }
+  function blk(x) {
+    if (x.p) return '<p>' + L(x.p) + '</p>';
+    if (x.ul) return '<ul>' + x.ul.map(function (t) { return '<li>' + L(t) + '</li>'; }).join('') + '</ul>';
+    if (x.code) return '<pre class="code">' + x.code.replace(/&/g, '&amp;').replace(/</g, '&lt;') + '</pre>';
+    if (x.tbl) return '<div class="tw"><table class="t"><thead><tr>' + x.tbl.head.map(function (h) { return '<th>' + L(h) + '</th>'; }).join('') + '</tr></thead><tbody>' + x.tbl.rows.map(function (r) { return '<tr>' + r.map(tdCell).join('') + '</tr>'; }).join('') + '</tbody></table></div>';
+    if (x.chart) return '<canvas class="chart" data-chart="' + x.chart + '" role="img" aria-label="' + L(x.alt) + '"></canvas><p class="mono cap-note">' + L(x.cap) + '</p>';
+    return '';
+  }
+  function detailView(slug) {
+    var i = P.findIndex(function (p) { return p.slug === slug; }); if (i < 0) return worksView();
+    var p = P[i], nx = P[(i + 1) % P.length];
+    var meta = '<dl class="meta"><div><dt class="mono">' + L(T.type) + '</dt><dd>' + L(p.type) + '</dd></div><div><dt class="mono">' + L(T.stack) + '</dt><dd>' + p.stack + '</dd></div><div><dt class="mono">' + L(T.methods) + '</dt><dd>' + p.methods + '</dd></div><div><dt class="mono">' + L(T.repo) + '</dt><dd>' + (p.repo ? '<a href="' + GH + p.repo + '" target="_blank" rel="noopener" style="border-bottom:1px solid currentColor">github/' + (p.repoLabel || p.repo) + '</a>' : L(T.noRepo)) + '</dd></div></dl>';
+    var figs = p.figs.length ? '<div class="figs">' + p.figs.map(function (f) { return '<div><b>' + f.v + '</b><span>' + L(f.d) + '</span></div>'; }).join('') + '</div>' : '';
+    var secs = p.secs.map(function (s) { return '<section class="cs"><h2 class="cs-l">' + L(s.h) + '</h2><div class="cs-r">' + s.b.map(blk).join('') + '</div></section>'; }).join('');
+    return '<div class="wrap detail"><div class="ph wide' + (p.img ? ' banner' : '') + '"' + coverStyle(p) + '>' + cover(p) + '</div>' + (p.img ? '' : '<p class="mono cap-note">' + L(T.artNote) + '</p>') +
+      '<h1 class="dt-title">' + p.name + '</h1><p class="lead">' + L(p.lead) + '</p>' + meta + figs +
+      '<div class="cs-wrap">' + secs + '</div>' +
+      (p.repo ? '<a class="pill-link" href="' + GH + p.repo + '" target="_blank" rel="noopener"><span class="pill">' + L(T.repoBtn) + ' ↗</span></a>' : '') + (p.live ? ' <a class="pill-link" href="' + p.live + '" target="_blank" rel="noopener"><span class="pill">' + L(T.liveBtn) + ' ↗</span></a>' : '') +
+      '<a class="next" href="#/works/' + nx.slug + '"><div class="pill-title">' + L(T.next) + '</div><span class="mono">' + idx((i + 1) % P.length) + ' ' + nx.name + '</span></a></div>';
+  }
+
+  /* ---------------- simulator ---------------- */
+  function simHTML() {
+    var es = lang === 'es';
+    return '<div class="sim"><div class="sim-h mono"><span>GBM · S₀ = 100 · K = 100 · T = 1y · 252 ' + (es ? 'pasos' : 'steps') + '</span><span class="muted"><span id="np">140</span> ' + (es ? 'trayectorias' : 'paths') + ' · 20,000 ' + (es ? 'simulaciones terminales' : 'terminal draws') + '</span></div>' +
+      '<canvas id="sim" role="img" aria-label="Monte Carlo simulation of geometric Brownian motion"></canvas>' +
+      '<div class="ctl-row"><div class="ctl"><label for="mu" class="mono"><span>' + (es ? 'Deriva μ' : 'Drift μ') + '</span><output id="mu-o">8%</output></label><input id="mu" type="range" min="-20" max="30" step="1" value="' + Math.round(sim.mu * 100) + '"></div>' +
+      '<div class="ctl"><label for="sig" class="mono"><span>' + (es ? 'Volatilidad σ' : 'Volatility σ') + '</span><output id="sig-o">22%</output></label><input id="sig" type="range" min="5" max="60" step="1" value="' + Math.round(sim.sig * 100) + '"></div>' +
+      '<button class="btn" type="button" id="rerun">' + (es ? 'Repetir' : 'Re-run') + '</button></div>' +
+      '<dl class="readout"><div><dt class="mono">E[S<sub>T</sub>]</dt><dd id="r1">–</dd><small id="r1x"></small></div><div><dt class="mono">P(S<sub>T</sub> &gt; K)</dt><dd id="r2">–</dd><small id="r2x"></small></div><div><dt class="mono">' + (es ? 'Banda 5 – 95%' : '5 – 95% band') + '</dt><dd id="r3">–</dd><small id="r3x"></small></div></dl></div>';
+  }
+  var sim = { mu: .08, sig: .22, seed: 7, prog: 1, anim: 0 };
+  var S0 = 100, K = 100, TT = 1, STEPS = 252, NP = 140, NT = 20000, Z, ZT, PP, TV, hist, dom, st = {};
+  function normals(n, r) { var o = new Float32Array(n); for (var i = 0; i < n; i += 2) { var u = r() || 1e-9, v = r(), m = Math.sqrt(-2 * Math.log(u)); o[i] = m * Math.cos(2 * Math.PI * v); if (i + 1 < n) o[i + 1] = m * Math.sin(2 * Math.PI * v); } return o; }
+  function erf(x) { var s = x < 0 ? -1 : 1; x = Math.abs(x); var t = 1 / (1 + .3275911 * x); return s * (1 - (((((1.061405429 * t - 1.453152027) * t) + 1.421413741) * t - .284496736) * t + .254829592) * t * Math.exp(-x * x)); }
+  function cdf(x) { return .5 * (1 + erf(x / Math.SQRT2)); }
+  function niceStep(rg, tg) { var raw = rg / tg, p = Math.pow(10, Math.floor(Math.log10(raw))), f = raw / p; return (f < 1.5 ? 1 : f < 3 ? 2 : f < 7 ? 5 : 10) * p; }
+  function fmt(n, d) { return n.toLocaleString(lang === 'es' ? 'es-ES' : 'en-US', { minimumFractionDigits: d, maximumFractionDigits: d }); }
+  function newDraws() { var r = rng(sim.seed); Z = normals(NP * STEPS, r); ZT = normals(NT, r); ZT.sort(); PP = new Float32Array(NP * (STEPS + 1)); TV = new Float64Array(NT); }
+  function recompute() {
+    var mu = sim.mu, sig = sim.sig, dt = TT / STEPS, dr = (mu - .5 * sig * sig) * dt, vo = sig * Math.sqrt(dt), mn = Infinity, mx = -Infinity, p, k, s, ix;
+    for (p = 0; p < NP; p++) { s = S0; ix = p * (STEPS + 1); PP[ix] = s; for (k = 1; k <= STEPS; k++) { s *= Math.exp(dr + vo * Z[p * STEPS + k - 1]); PP[ix + k] = s; if (s < mn) mn = s; if (s > mx) mx = s; } }
+    var m = (mu - .5 * sig * sig) * TT, v = sig * Math.sqrt(TT), sum = 0, ab = 0, i;
+    for (i = 0; i < NT; i++) { var x = S0 * Math.exp(m + v * ZT[i]); TV[i] = x; sum += x; if (x > K) ab++; }
+    st.mm = sum / NT; st.mp = ab / NT; st.ml = TV[Math.floor(.05 * NT)]; st.mh = TV[Math.floor(.95 * NT)];
+    st.em = S0 * Math.exp(mu * TT); st.ep = cdf((Math.log(S0 / K) + m) / v); st.el = S0 * Math.exp(m - 1.645 * v); st.eh = S0 * Math.exp(m + 1.645 * v);
+    var lo = Math.min(mn, K, st.el) * .97, hi = Math.max(mx, K, st.eh) * 1.03, stp = niceStep(hi - lo, 5);
+    lo = Math.max(0, Math.floor(lo / stp) * stp); hi = Math.ceil(hi / stp) * stp; dom = { lo: lo, hi: hi, step: stp };
+    var B = 36, bw = (hi - lo) / B; hist = []; for (i = 0; i < B; i++) hist.push(0);
+    for (i = 0; i < NT; i++) { var b = Math.floor((TV[i] - lo) / bw); if (b >= 0 && b < B) hist[b]++; }
+    updateReadout();
+  }
+  function updateReadout() {
+    var e = document.getElementById('r1'); if (!e || !st.mm) return; var ex = lang === 'es' ? 'exacto ' : 'exact ';
+    e.textContent = fmt(st.mm, 2); document.getElementById('r1x').textContent = ex + fmt(st.em, 2);
+    document.getElementById('r2').textContent = fmt(st.mp, 3); document.getElementById('r2x').textContent = ex + fmt(st.ep, 3);
+    document.getElementById('r3').textContent = fmt(st.ml, 1) + ' – ' + fmt(st.mh, 1); document.getElementById('r3x').textContent = ex + fmt(st.el, 1) + ' – ' + fmt(st.eh, 1);
+  }
+  function drawSim(prog) {
+    sim.prog = prog; var cv = document.getElementById('sim'); if (!cv || !dom) return; var ctx = cv.getContext('2d'), W = cv.clientWidth, H = cv.clientHeight; if (!W || !H) return;
+    var dpr = window.devicePixelRatio || 1; if (cv.width !== Math.round(W * dpr) || cv.height !== Math.round(H * dpr)) { cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr); }
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, W, H);
+    var mu = sim.mu, sig = sim.sig, ml = 44, mb = 26, mt = 12, hw = Math.max(44, Math.min(110, W * .13)), mr = hw + 18, x0 = ml, x1 = W - mr, y0 = mt, y1 = H - mb;
+    var X = function (k) { return x0 + (x1 - x0) * k / STEPS; }, Y = function (v) { return y1 - (y1 - y0) * (v - dom.lo) / (dom.hi - dom.lo); };
+    ctx.font = '11px "Roboto Mono", monospace'; ctx.lineWidth = 1; ctx.textBaseline = 'middle'; ctx.textAlign = 'right';
+    for (var v = Math.ceil(dom.lo / dom.step) * dom.step; v <= dom.hi + 1e-9; v += dom.step) { var yy = Math.round(Y(v)) + .5; ctx.strokeStyle = 'rgba(16,16,16,.12)'; ctx.beginPath(); ctx.moveTo(x0, yy); ctx.lineTo(x1, yy); ctx.stroke(); ctx.fillStyle = '#6F6963'; ctx.fillText(String(Math.round(v)), x0 - 8, yy); }
+    ctx.textAlign = 'center'; ctx.textBaseline = 'top'; ['0', '3m', '6m', '9m', '1y'].forEach(function (l, q) { var xx = x0 + (x1 - x0) * q / 4; ctx.fillStyle = '#6F6963'; ctx.fillText(l, Math.min(Math.max(xx, x0 + 6), x1 - 8), y1 + 8); });
+    ctx.setLineDash([2, 4]); ctx.strokeStyle = '#6F6963'; ctx.beginPath(); ctx.moveTo(x0, Math.round(Y(K)) + .5); ctx.lineTo(x1, Math.round(Y(K)) + .5); ctx.stroke(); ctx.setLineDash([]);
+    ctx.textAlign = 'left'; ctx.textBaseline = 'bottom'; ctx.fillStyle = '#6F6963'; ctx.fillText('K', x0 + 6, Y(K) - 4);
+    var km = Math.max(1, Math.floor(prog * STEPS)), p, k; ctx.strokeStyle = INK; ctx.lineWidth = 1; ctx.globalAlpha = .13; ctx.lineJoin = 'round';
+    for (p = 1; p < NP; p++) { ctx.beginPath(); ctx.moveTo(X(0), Y(PP[p * (STEPS + 1)])); for (k = 1; k <= km; k++) ctx.lineTo(X(k), Y(PP[p * (STEPS + 1) + k])); ctx.stroke(); }
+    ctx.globalAlpha = 1; ctx.lineWidth = 1.6; ctx.beginPath(); ctx.moveTo(X(0), Y(PP[0])); for (k = 1; k <= km; k++) ctx.lineTo(X(k), Y(PP[k])); ctx.stroke();
+    var dt = TT / STEPS; ctx.strokeStyle = '#E2593A'; ctx.lineWidth = 1.3; ctx.setLineDash([5, 4]);
+    [-1.645, 1.645].forEach(function (z) { ctx.beginPath(); for (k = 0; k <= km; k++) { var t = k * dt, val = S0 * Math.exp((mu - .5 * sig * sig) * t + z * sig * Math.sqrt(t)); k ? ctx.lineTo(X(k), Y(val)) : ctx.moveTo(X(k), Y(val)); } ctx.stroke(); });
+    ctx.setLineDash([]); ctx.lineWidth = 2.4; ctx.beginPath(); for (k = 0; k <= km; k++) { var mv = S0 * Math.exp(mu * k * dt); k ? ctx.lineTo(X(k), Y(mv)) : ctx.moveTo(X(k), Y(mv)); } ctx.stroke();
+    var mxc = Math.max.apply(null, hist), bh = (y1 - y0) / hist.length; ctx.fillStyle = INK; ctx.globalAlpha = .5 * prog * prog;
+    for (var b = 0; b < hist.length; b++) { var tp = Y(dom.lo + (b + 1) * (dom.hi - dom.lo) / hist.length); ctx.fillRect(x1 + 10, tp + .5, (hist[b] / mxc) * hw, Math.max(1, bh - 1)); }
+    ctx.globalAlpha = 1; ctx.fillStyle = '#6F6963'; ctx.textAlign = 'left'; ctx.textBaseline = 'top'; ctx.fillText('S_T', x1 + 10, y1 + 8);
+  }
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function animateSim() { cancelAnimationFrame(sim.anim); if (reduce) { drawSim(1); return; } var t0 = performance.now(); (function f(now) { var u = Math.min(1, (now - t0) / 1500); drawSim(1 - Math.pow(1 - u, 3)); if (u < 1) sim.anim = requestAnimationFrame(f); })(t0); }
+  function initSim() {
+    var mu = document.getElementById('mu'); if (!mu) return; var sg = document.getElementById('sig');
+    function sync() { sim.mu = +mu.value / 100; sim.sig = +sg.value / 100; document.getElementById('mu-o').textContent = mu.value + '%'; document.getElementById('sig-o').textContent = sg.value + '%'; }
+    mu.oninput = sg.oninput = function () { cancelAnimationFrame(sim.anim); sync(); recompute(); drawSim(1); };
+    document.getElementById('rerun').onclick = function () { sim.seed = Math.floor(Math.random() * 1e9); newDraws(); recompute(); animateSim(); };
+    sync(); if (!Z) newDraws(); recompute(); drawSim(1);
+  }
+
+  /* ---------------- router ---------------- */
+  var app = document.getElementById('app'), menu = document.getElementById('menu'), menuBtn = document.getElementById('menuBtn'), menuOpen = false;
+  function route() {
+    var h = location.hash.replace(/^#\/?/, '').split('/'), html;
+    if (h[0] === 'works' && h[1]) html = detailView(h[1]); else if (h[0] === 'works') html = worksView(); else if (h[0] === 'about') html = aboutView(); else html = homeView();
+    app.innerHTML = html; applyUI(); drawAll(); initSim(); tick();
+    document.querySelectorAll('.chip').forEach(function (b) { b.addEventListener('click', function () { filter = b.getAttribute('data-f'); var y = window.scrollY; route(); window.scrollTo(0, y); }); });
+  }
+  var lastHash = null;
+  function onHash() { setMenu(false); var changed = location.hash !== lastHash; lastHash = location.hash; route(); if (changed) window.scrollTo(0, 0); }
+  function setMenu(o) { menuOpen = o; menu.hidden = !o; menuBtn.setAttribute('aria-expanded', o); document.body.style.overflow = o ? 'hidden' : ''; applyUI(); }
+  menuBtn.addEventListener('click', function () { setMenu(!menuOpen); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && menuOpen) setMenu(false); });
+  menu.addEventListener('click', function (e) { var a = e.target.closest('a'); if (!a) return; if (a.hasAttribute('data-goto')) { e.preventDefault(); setMenu(false); document.getElementById('contact').scrollIntoView(); } else if (a.getAttribute('href') === location.hash || (a.getAttribute('href') === '#/' && !location.hash)) setMenu(false); });
+  document.querySelectorAll('.lang button').forEach(function (b) { b.addEventListener('click', function () { lang = b.getAttribute('data-set'); try { localStorage.setItem('cl-lang', lang); } catch (e) {} var y = window.scrollY; route(); window.scrollTo(0, y); }); });
+  function tick() { var c = document.getElementById('clock'); if (!c) return; try { c.textContent = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Madrid', hour: '2-digit', minute: '2-digit' }).format(new Date()); } catch (e) {} }
+  setInterval(tick, 30000);
+  var rt; window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(function () { drawAll(); drawSim(sim.prog); }, 120); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { drawAll(); drawSim(sim.prog); });
+  window.addEventListener('hashchange', onHash);
+  onHash();
+})();
+
+</script>
+
+</body>
+</html>
