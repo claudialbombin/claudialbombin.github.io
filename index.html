@@ -185,6 +185,7 @@ main{padding-top:calc(96px + env(safe-area-inset-top,0px))}
 .photo-cap{position:absolute; left:12px; bottom:12px; right:12px; background:var(--bg); border-radius:999px; padding:8px 14px; width:fit-content; max-width:calc(100% - 24px)}
 .how{margin-bottom:26px}
 .rows .rl{display:block}
+.rows .ds{grid-column:1/-1; color:var(--mute); font-size:.95rem; max-width:62ch}
 .tile-img{display:block; width:100%; aspect-ratio:4/5; object-fit:cover}
 .tile[data-photo]{background:var(--paper)}
 .t1{width:clamp(120px,15vw,220px)} .t3{width:clamp(120px,15vw,220px)}
@@ -398,7 +399,8 @@ var P = [
       { h: { en: 'Pairings and scores', es: 'Emparejamientos y puntuaciones' }, b: [
         { p: { en: 'Rounds are paired by standings, avoid repeat opponents where possible and balance who has held each position. Each judge gets one link for the whole tournament. Only the chair can send a score from it, and the central desk always reviews it before it counts.', es: 'Las rondas se emparejan por clasificación, evitan repetir rivales cuando es posible y equilibran quién ha ocupado cada posición. Cada juez recibe un solo enlace para todo el torneo. Solo quien preside puede enviar la puntuación desde él, y la mesa central siempre la revisa antes de que cuente.' } } ] },
       { h: { en: 'Nothing gets lost', es: 'No se pierde nada' }, b: [
-        { ul: [ { en: 'Automatic saving in the browser on every change.', es: 'Guardado automático en el navegador con cada cambio.' }, { en: 'A downloadable .json copy to continue on another computer, and a readable .txt report.', es: 'Una copia .json descargable para seguir en otro ordenador y un informe .txt legible.' }, { en: 'Automatic snapshots per round to a folder on disk, using the File System Access API in Chromium browsers.', es: 'Copias automáticas por ronda en una carpeta del disco, con la File System Access API en navegadores Chromium.' } ] } ] }
+        { ul: [ { en: 'Automatic saving in the browser on every change.', es: 'Guardado automático en el navegador con cada cambio.' }, { en: 'A downloadable .json copy to continue on another computer, and a readable .txt report.', es: 'Una copia .json descargable para seguir en otro ordenador y un informe .txt legible.' }, { en: 'Automatic snapshots per round to a folder on disk, using the File System Access API in Chromium browsers.', es: 'Copias automáticas por ronda en una carpeta del disco, con la File System Access API en navegadores Chromium.' } ] },
+        { p: { en: 'It also imports PDFs offline, with an embedded library.', es: 'También importa PDF sin conexión, con una librería integrada.' } } ] }
     ] },
 
   { slug: 'scm-heston-filter', name: 'Heston Filter', art: 'heston', repo: 'scm-heston-filter', cat: 'quant',
@@ -430,7 +432,7 @@ var P = [
       { h: { en: 'Two quantum routes', es: 'Dos rutas cuánticas' }, b: [
         { ul: [ { en: 'Quantum annealing on D-Wave, hardware built to minimise exactly this kind of energy function.', es: 'Quantum annealing en D-Wave, hardware pensado para minimizar justo este tipo de función de energía.' }, { en: 'QAOA in Qiskit, the variational algorithm for gate-based quantum computers.', es: 'QAOA en Qiskit, el algoritmo variacional para ordenadores cuánticos de puertas.' } ] } ] },
       { h: { en: 'Status', es: 'Estado' }, b: [
-        { p: { en: 'The research proposal is written up as a full LaTeX document. The thesis is in progress.', es: 'La propuesta de investigación está redactada como un documento completo en LaTeX. El TFG está en curso.' } } ] }
+        { p: { en: 'The research proposal is finalised and written up as a full LaTeX document. The thesis runs from 2026 to 2028.', es: 'La propuesta de investigación está cerrada y redactada como un documento completo en LaTeX. El TFG va de 2026 a 2028.' } } ] }
     ] },
 
   { slug: 'pause', name: 'Pause', art: 'pause', repo: 'pause', live: 'https://claudialbombin.github.io/pause/', cat: 'software',
@@ -449,7 +451,7 @@ var P = [
 
   { slug: 'recetario-familiar', name: 'Recetario', art: 'recipe', repo: 'recetario-familiar', live: 'https://claudialbombin.github.io/recetario-familiar/', cat: 'software',
     short: { en: 'A cozy family recipe book with a page-turning cover, on the web.', es: 'Un recetario familiar acogedor con tapa que se abre, en la web.' },
-    lead: { en: 'A cozy recipe book for the family, built as a web app with Claude and deployed to GitHub Pages: a book that opens, turns its pages and scales every recipe to the number of people at the table.', es: 'Un recetario acogedor para la familia, hecho como aplicación web con Claude y desplegado en GitHub Pages: un libro que se abre, pasa sus páginas y ajusta cada receta al número de comensales.' },
+    lead: { en: 'A cozy recipe book for the family, built as a web app and deployed to GitHub Pages: a book that opens, turns its pages and scales every recipe to the number of people at the table.', es: 'Un recetario acogedor para la familia, hecho como aplicación web y desplegado en GitHub Pages: un libro que se abre, pasa sus páginas y ajusta cada receta al número de comensales.' },
     type: { en: 'Personal project', es: 'Proyecto personal' }, stack: 'HTML · CSS · JavaScript', methods: 'Web app · UI design', figs: [],
     secs: [
       { h: { en: 'The brief', es: 'La idea' }, b: [
@@ -541,7 +543,7 @@ var P = [
 
   var ALSO = [
     { n: '3imat', r: '3imat', d: { en: 'Third-year iMAT coursework, just started', es: 'Trabajos de tercero de iMAT, recién empezado' } },
-    { n: '42', r: '42', d: { en: 'Piscine and cursus: Libft, ft_printf, get_next_line, Born2beRoot', es: 'Piscina y cursus: Libft, ft_printf, get_next_line, Born2beRoot' } }
+    { n: '42', r: '42', d: { en: 'Piscine and cursus: Libft, ft_printf, get_next_line, Born2beRoot (100/100)', es: 'Piscina y cursus: Libft, ft_printf, get_next_line, Born2beRoot (100/100)' } }
   ];
   var GH = 'https://github.com/claudialbombin/';
   var RECENT = [
@@ -753,31 +755,33 @@ var P = [
     pillars: [
       { h: { en: 'Model', es: 'Modelar' }, p: { en: 'Stochastic models for finance and decision-making: Monte Carlo, Markov decision processes, particle filters and QUBO. I care about the number, and about how far to trust it.', es: 'Modelos estocásticos para finanzas y toma de decisiones: Monte Carlo, procesos de decisión de Markov, filtros de partículas y QUBO. Me importa el número y cuánto fiarse de él.' } },
       { h: { en: 'Build', es: 'Construir' }, p: { en: 'Working software. Python to explore, C when speed and discipline matter, web and desktop apps for things people actually use. The engines here are checked against a known answer.', es: 'Software que funciona. Python para explorar, C cuando importan la velocidad y la disciplina, aplicaciones web y de escritorio para cosas que la gente usa de verdad. Los motores de aquí se comprueban contra una respuesta conocida.' } },
-      { h: { en: 'Speak', es: 'Hablar' }, p: { en: 'Debate, public speaking and mentoring: British Parliamentary, international tournaments, U.S. Embassy programs. Explaining a hard idea clearly is part of the job.', es: 'Debate, oratoria y mentoría: British Parliamentary, torneos internacionales, programas de la Embajada de EE. UU. Explicar bien una idea difícil forma parte del trabajo.' } }
+      { h: { en: 'Speak', es: 'Hablar' }, p: { en: 'Debate, public speaking and mentoring: British Parliamentary, WUDC Panama 2025, U.S. Embassy programs. Explaining a hard idea clearly is part of the job.', es: 'Debate, oratoria y mentoría: British Parliamentary, WUDC Panamá 2025, programas de la Embajada de EE. UU. Explicar bien una idea difícil forma parte del trabajo.' } }
     ],
     numbers: { en: 'In numbers', es: 'En cifras' },
     nums: [
       { v: '380/380', d: { en: 'blackjack chart decisions where my Monte Carlo solver agrees with an exact solver', es: 'decisiones de la tabla de blackjack en las que mi solver Monte Carlo coincide con un solver exacto' } },
       { v: '0.006%', d: { en: 'error of my Monte Carlo option pricer against the closed form', es: 'de error de mi pricer Monte Carlo frente a la fórmula cerrada' } },
       { v: '10⁹', d: { en: 'simulated rounds in my Hi-Lo card-counting study', es: 'rondas simuladas en mi estudio de conteo Hi-Lo' } },
-      { v: '77', d: { en: 'unit tests behind the option pricer', es: 'tests unitarios detrás del pricer de opciones' } }
+      { v: '3rd', d: { en: 'among all Spanish-speaking teams at the World Universities Debating Championship, Panama 2025', es: 'entre todos los equipos hispanohablantes en el Campeonato Mundial Universitario de Debate, Panamá 2025' } }
     ],
     lab: { en: 'Play with the numbers', es: 'Juega con los números' },
     speakH: { en: 'On stage', es: 'En el estrado' },
-    speakP: { en: 'Debate taught me to structure an argument, defend it under pressure and change my mind when the evidence says so. I compete in academic and parliamentary formats, including British Parliamentary, take part in international tournaments and mentor through U.S. Embassy programs. At 42 Madrid I am co-founding a debate league, and I built CeceCat, a tournament manager, to run this kind of event.', es: 'El debate me enseñó a estructurar un argumento, defenderlo bajo presión y cambiar de opinión cuando la evidencia lo pide. Compito en formatos académicos y parlamentarios, incluido British Parliamentary, participo en torneos internacionales y hago mentoría en programas de la Embajada de EE. UU. En 42 Madrid estoy cofundando una liga de debate, y he creado CeceCat, un gestor de torneos, para llevar este tipo de eventos.' },
+    speakP: { en: 'Debate taught me to structure an argument, defend it under pressure and change my mind when the evidence says so. I compete and adjudicate in academic and British Parliamentary formats, and finished 3rd among all Spanish-speaking teams at WUDC Panama 2025. I have mentored through a U.S. Embassy program and Technovation Girls. At 42 Madrid I co-founded a debate league, and I built CeceCat, a tournament manager, to run this kind of event.', es: 'El debate me enseñó a estructurar un argumento, defenderlo bajo presión y cambiar de opinión cuando la evidencia lo pide. Compito y juzgo en formatos académico y British Parliamentary, y quedé 3.ª entre todos los equipos hispanohablantes en WUDC Panamá 2025. He hecho mentoría en un programa de la Embajada de EE. UU. y en Technovation Girls. En 42 Madrid cofundé una liga de debate, y he creado CeceCat, un gestor de torneos, para llevar este tipo de eventos.' },
     speakCap: { en: 'Public speaking at Universidad Pontificia Comillas', es: 'Oratoria en la Universidad Pontificia Comillas' },
     nowH: { en: 'Right now', es: 'Ahora mismo' },
     now: [
       { n: { en: 'Thesis proposal on QUBO portfolio optimization', es: 'Propuesta de TFG sobre optimización de carteras con QUBO' }, r: { en: 'Quantum annealing and QAOA', es: 'Quantum annealing y QAOA' } },
       { n: { en: 'Social Media & Content Creator', es: 'Social Media & Content Creator' }, r: { en: 'ICAI · Universidad Pontificia Comillas', es: 'ICAI · Universidad Pontificia Comillas' } },
-      { n: { en: '42 Madrid cursus', es: 'Cursus de 42 Madrid' }, r: { en: 'Rank 02, and a debate league in the making', es: 'Rank 02, y una liga de debate en marcha' } },
-      { n: { en: 'Looking for summer 2027 internships', es: 'Buscando prácticas para el verano de 2027' }, r: { en: 'Madrid or London', es: 'Madrid o Londres' } }
+      { n: { en: '42 Madrid cursus', es: 'Cursus de 42 Madrid' }, r: { en: 'Common Core completed through Rank 02', es: 'Common Core completado hasta el Rank 02' } },
+      { n: { en: 'Liga de Debate', es: 'Liga de Debate' }, r: { en: 'Founding partner and trainer, 42 Madrid', es: 'Socia fundadora y formadora, 42 Madrid' } },
+      { n: { en: 'Preparing for the CFA', es: 'Preparando el CFA' }, r: { en: 'Alongside the degree', es: 'A la vez que el grado' } },
+      { n: { en: 'Looking for summer 2027 internships', es: 'Buscando prácticas para el verano de 2027' }, r: { en: 'Quant, data and software · London or Madrid', es: 'Quant, datos y software · Londres o Madrid' } }
     ],
     recentH: { en: 'Recently on GitHub', es: 'Últimas novedades en GitHub' }, updated: { en: 'last updated', es: 'última actualización' },
     tease: { en: 'Over 5 years exploring the intersection of technology, data, and meaningful experiences.', es: 'Más de 5 años explorando la intersección entre tecnología, datos y experiencias con sentido.' },
     tease2: { en: 'After engaging in diverse engineering, mentoring, and debate experiences, I chose to follow my passion: exploring new ways to merge technology, creativity, and human impact. Now, I’m shaping my own vision of purposeful projects.', es: 'Tras vivir experiencias muy distintas de ingeniería, mentoría y debate, decidí seguir mi pasión: explorar nuevas formas de unir tecnología, creatividad e impacto humano. Ahora estoy dando forma a mi propia visión de proyectos con propósito.' },
     prog: { en: 'Programs & initiatives', es: 'Programas e iniciativas' },
-    progv: { en: 'U.S. Embassy mentoring, ISC Racing Team, international debate tournaments.', es: 'Mentoría de la Embajada de EE. UU., ISC Racing Team, torneos internacionales de debate.' },
+    progv: { en: 'Technovation Girls, U.S. Embassy mentoring, ISC Racing Team, WUDC.', es: 'Technovation Girls, mentoría de la Embajada de EE. UU., ISC Racing Team, WUDC.' },
     more: { en: 'More about me', es: 'Más sobre mí' },
     portfolio: { en: 'Portfolio', es: 'Portfolio' }, selected: { en: 'Selected work', es: 'Trabajo seleccionado' },
     worksIntro: { en: 'Simulation, stochastic modelling and software, from coursework to things I built because I wanted them to exist. Every project has its own page with the question, the method and the numbers.', es: 'Simulación, modelado estocástico y software, desde trabajos de clase hasta cosas que hice porque quería que existieran. Cada proyecto tiene su propia página con la pregunta, el método y las cifras.' },
@@ -792,7 +796,7 @@ var P = [
       { h: { en: 'Write it twice', es: 'Escribirlo dos veces' }, p: { en: 'Python to explore and see, C when speed and discipline matter. The option pricer and the blackjack solver each exist in both, and the two versions have to agree.', es: 'Python para explorar y ver, C cuando importan la velocidad y la disciplina. El pricer de opciones y el solver de blackjack existen en los dos, y las dos versiones tienen que coincidir.' } },
       { h: { en: 'Show the uncertainty', es: 'Enseñar la incertidumbre' }, p: { en: 'Standard errors, convergence rates, a Gaussian Process that returns its own confidence. A number without its error bar is only half an answer. And when a result does not hold up, I say so: Pitwall’s page reports where the policy loses.', es: 'Errores estándar, tasas de convergencia, un proceso gaussiano que devuelve su propia confianza. Un número sin su barra de error es solo media respuesta. Y cuando un resultado no se sostiene, lo digo: la página de Pitwall cuenta dónde pierde la política.' } }
     ],
-    exp: { en: 'Experience', es: 'Experiencia' }, edu: { en: 'Education', es: 'Formación' }, skills: { en: 'Skills', es: 'Habilidades' },
+    exp: { en: 'Experience', es: 'Experiencia' }, langs: { en: 'Languages', es: 'Idiomas' }, debate: { en: 'Debate & leadership', es: 'Debate y liderazgo' }, edu: { en: 'Education', es: 'Formación' }, skills: { en: 'Skills', es: 'Habilidades' },
     ongoing: { en: 'ongoing', es: 'actualidad' },
     outside: { en: 'Outside the screen', es: 'Fuera de la pantalla' },
     outsideP: { en: 'I like board games and card games, and it shows: two of my projects are about them. I also care about the small design details that make software feel cared for.', es: 'Me gustan los juegos de mesa y de cartas, y se nota: dos de mis proyectos van de eso. También me importan los pequeños detalles de diseño que hacen que el software se sienta cuidado.' },
@@ -805,11 +809,30 @@ var P = [
     play: { en: 'Live, not a picture. Every run uses the same random numbers, so moving σ or μ shows only what the parameters change. The line through the middle is the exact mean, the dashed lines are the exact 5% and 95% quantiles, and the histogram on the right is the Monte Carlo estimate of S_T. The same idea, in miniature, as my option pricer and my Heston filter.', es: 'Simulación en vivo. Cada ejecución usa los mismos números aleatorios, así que al mover σ o μ solo cambia lo que cambian los parámetros. La línea central es la media exacta, las discontinuas son los cuantiles exactos del 5% y el 95%, y el histograma de la derecha es la estimación Monte Carlo de S_T. La misma idea, en pequeño, que mi pricer de opciones y mi filtro de Heston.' }
   };
   var EXP = [
-    { n: 'ICAI · Comillas', r: { en: 'Social Media & Content Creator (intern)', es: 'Social Media & Content Creator (prácticas)' }, d: '2026 –' },
-    { n: 'ISC Racing Team', r: { en: 'Cost Report Engineer', es: 'Cost Report Engineer' }, d: '2024 –' },
-    { n: 'CMU Santa María del Pino', r: { en: 'Resident · Dean of Culture', es: 'Residente · Decana de Cultura' }, d: '2021 –' },
+    { n: 'ISC Racing Team', r: { en: 'Cost Report Engineer · Formula Student', es: 'Cost Report Engineer · Formula Student' }, d: '2024 –', x: { en: 'Manage the Bill of Materials of a racing car with 500+ components, in full compliance with the cost regulations. Coordinated 4 technical subteams to align cost modelling with engineering constraints, cutting reporting discrepancies by 30%. Contributed to the Engineering Design Report and the Cost Explanation File, with a top-quartile score in static events.', es: 'Gestiono la lista de materiales de un coche de carreras con más de 500 componentes, cumpliendo por completo la normativa de costes. Coordiné 4 subequipos técnicos para alinear el modelado de costes con las restricciones de ingeniería y reduje un 30% las discrepancias en los informes. Contribuí al Engineering Design Report y al Cost Explanation File, con una puntuación en el cuartil superior en las pruebas estáticas.' } },
+    { n: 'Liga de Debate · 42 Madrid', r: { en: 'Founding Partner & Trainer', es: 'Socia fundadora y formadora' }, d: '2026 –', x: { en: 'Co-founded the league and designed its governance and point system on the Cambridge Union model. I lead argumentation and public speaking training.', es: 'Cofundé la liga y diseñé su gobernanza y su sistema de puntos según el modelo de la Cambridge Union. Dirijo la formación en argumentación y oratoria.' } },
+    { n: 'ICAI · Comillas', r: { en: 'Social Media & Content Creator (intern)', es: 'Social Media & Content Creator (prácticas)' }, d: '2026 –', x: { en: 'Plan, script and produce audiovisual content for ICAI’s channels, coordinating recordings with students.', es: 'Planifico, escribo y produzco contenido audiovisual para los canales de ICAI, coordinando las grabaciones con estudiantes.' } },
+    { n: 'CMU Santa María del Pino', r: { en: 'Dean of Culture', es: 'Decana de Cultura' }, d: '2024 –', x: { en: 'Member of the governing council representing 150+ residents. Ran 10+ cultural and professional events, with 200+ attendees.', es: 'Miembro del consejo de gobierno en representación de más de 150 residentes. He organizado más de 10 actividades culturales y profesionales, con más de 200 asistentes.' } },
     { n: 'Inspire Girls', r: '', d: '2020 –' },
     { n: 'Empower Peace', r: '', d: '2022' }
+  ];
+  var DEB = [
+    { n: 'WUDC Panama 2025', r: { en: '3rd among all Spanish-speaking teams · 200+ teams, 50+ countries', es: '3.ª entre todos los equipos hispanohablantes · más de 200 equipos, más de 50 países' } },
+    { n: 'BP Asun Almajano 2025', r: { en: 'Winner', es: 'Ganadora' } },
+    { n: { en: 'National Tournament of Madrid 2024', es: 'Torneo Nacional de Madrid 2024' }, r: { en: 'Finalist. Also finalist at BP Comillas 2024 and BP Carlos III 2025', es: 'Finalista. También finalista en BP Comillas 2024 y BP Carlos III 2025' } },
+    { n: 'BP Regenta 2025', r: { en: 'Break & Final Adjudicator · 100+ teams. Break Adjudicator at BP Mendel and BP Elías Ahuja 2025', es: 'Jueza de break y de final · más de 100 equipos. Jueza de break en BP Mendel y BP Elías Ahuja 2025' } },
+    { n: 'Technovation Girls', r: { en: 'National Ambassador, Spain, 2020–2024 · 100+ teams a year, 15+ teams mentored', es: 'Embajadora nacional, España, 2020–2024 · más de 100 equipos al año, más de 15 equipos mentorizados' } },
+    { n: 'Girl Global Get Ready', r: { en: 'U.S. Embassy, 2022–2024 · 20+ students mentored', es: 'Embajada de EE. UU., 2022–2024 · más de 20 estudiantes mentorizados' } }
+  ];
+  var EDU = [
+    { n: 'ICAI · Comillas', d: { en: 'Expected May 2028', es: 'Previsto mayo 2028' }, r: { en: 'BSc in Mathematical Engineering & AI (iMAT) · GPA 7.8/10', es: 'Grado en Ingeniería Matemática e IA (iMAT) · nota media 7,8/10' } },
+    { n: '42 Madrid', d: { en: 'Cursus', es: 'Cursus' }, r: { en: 'Fundación Telefónica · Common Core completed through Rank 02 · Born2beRoot 100/100', es: 'Fundación Telefónica · Common Core completado hasta el Rank 02 · Born2beRoot 100/100' } },
+    { n: { en: 'Bachillerato & IB', es: 'Bachillerato e IB' }, d: '2023', r: { en: 'Spanish Bachillerato (average 10/10) and International Baccalaureate', es: 'Bachillerato español (media 10/10) y Bachillerato Internacional' } }
+  ];
+  var LANGS = [
+    { n: { en: 'Spanish', es: 'Español' }, r: { en: 'Native', es: 'Nativo' } },
+    { n: { en: 'English', es: 'Inglés' }, r: { en: 'C2 Cambridge · TOEFL 110 · IELTS 8.0', es: 'C2 Cambridge · TOEFL 110 · IELTS 8.0' } },
+    { n: { en: 'French', es: 'Francés' }, r: { en: 'DELF A2', es: 'DELF A2' } }
   ];
 
   function homeView() {
@@ -852,8 +875,9 @@ var P = [
     var words = (lang === 'es' ? T.wordsEs : T.words).join('<br>');
     var tiles = '<div class="tile t1" data-photo>' + img('assets/portrait.jpg', '', 'tile-img') + '</div><div class="tile t3" data-photo>' + img('assets/speaking.jpg', '', 'tile-img') + '</div>' +
       ['option', 'qubo', 'pause', 'lorenz'].map(function (a, i) { return '<div class="tile t' + [2, 4, 5, 6][i] + '"><canvas data-art="' + a + '" data-seed="' + (i + 3) + '" aria-hidden="true"></canvas></div>'; }).join('');
-    var exp = EXP.map(function (e) { return '<li><span class="nm">' + e.n + '</span><span class="mono dt">' + e.d + (e.d.slice(-1) === '–' ? ' ' + L(T.ongoing) : '') + '</span>' + (e.r ? '<span class="mono rl">' + L(e.r) + '</span>' : '') + '</li>'; }).join('');
-    var skills = ['Python', 'C', 'SQL', 'JavaScript', 'LaTeX', 'MATLAB', 'NumPy', 'Pandas', 'scikit-learn', 'Jupyter', 'Streamlit', 'Plotly', 'Tableau', 'Flask', 'Swift', 'Electron', 'Firestore', 'MySQL', 'MongoDB', 'Neo4j', 'pytest', 'GitHub Actions', 'Qiskit', 'Monte Carlo', 'MDP', 'Gaussian Processes', 'Particle filters', 'QUBO'].map(function (s) { return '<span class="mono">' + s + '</span>'; }).join('');
+    var exp = EXP.map(function (e) { return '<li><span class="nm">' + e.n + '</span><span class="mono dt">' + e.d + (e.d.slice(-1) === '–' ? ' ' + L(T.ongoing) : '') + '</span>' + (e.r ? '<span class="mono rl">' + L(e.r) + '</span>' : '') + (e.x ? '<span class="ds">' + L(e.x) + '</span>' : '') + '</li>'; }).join('');
+    var row = function (x) { return '<li><span class="nm">' + L(x.n) + '</span>' + (x.d ? '<span class="mono dt">' + L(x.d) + '</span>' : '') + '<span class="mono rl">' + L(x.r) + '</span></li>'; };
+    var skills = ['Python', 'C', 'SQL', 'JavaScript', 'LaTeX', 'MATLAB', 'NumPy', 'Pandas', 'scikit-learn', 'Jupyter', 'Streamlit', 'Plotly', 'Tableau', 'Flask', 'Swift', 'Electron', 'Firestore', 'MySQL', 'MongoDB', 'Neo4j', 'SciPy', 'matplotlib', 'pytest', 'GitHub Actions', 'Qiskit', 'Monte Carlo', 'MDP', 'Gaussian Processes', 'Particle filters', 'QUBO'].map(function (s) { return '<span class="mono">' + s + '</span>'; }).join('');
     var how = T.how.map(function (h) { return '<div class="how"><h4 class="pl-h">' + L(h.h) + '</h4><p>' + L(h.p) + '</p></div>'; }).join('');
     return '<div class="wrap"><section class="collage"><h1 class="words">' + words + '</h1>' + tiles + '</section>' +
       '<section class="sec bio" style="padding-top:0"><p class="big">' + L(T.bio1) + '</p><p class="big">' + L(T.bio2) + '</p><p class="big">' + L(T.bio3) + '</p></section>' +
@@ -861,9 +885,11 @@ var P = [
       '<section class="two rev"><div><h3 class="h3" style="margin-bottom:22px">' + L(T.howH) + '</h3>' + how + '</div><div class="photo" data-photo>' + img('assets/portrait.jpg', 'Claudia Lopez') + '</div></section>' +
       slashes() +
       '<section class="cols"><div><h3 class="h3" style="margin-bottom:26px">' + L(T.exp) + '</h3><ul class="rows">' + exp + '</ul></div>' +
-      '<div><h3 class="h3" style="margin-bottom:26px">' + L(T.edu) + '</h3><ul class="rows"><li><span class="nm">ICAI · Comillas</span><span class="mono dt">iMAT</span><span class="mono rl">' + (lang === 'es' ? 'Ingeniería Matemática e IA, 3.º curso' : 'Mathematical Engineering & AI, year 3') + '</span></li>' +
-      '<li><span class="nm">42 Madrid</span><span class="mono dt">Cursus</span><span class="mono rl">Fundación Telefónica</span></li></ul>' +
+      '<div><h3 class="h3" style="margin-bottom:26px">' + L(T.edu) + '</h3><ul class="rows">' + EDU.map(row).join('') + '</ul>' +
+      '<h3 class="h3" style="margin:44px 0 22px">' + L(T.langs) + '</h3><ul class="rows">' + LANGS.map(row).join('') + '</ul>' +
       '<h3 class="h3" style="margin:44px 0 22px">' + L(T.skills) + '</h3><p class="tags">' + skills + '</p></div></section>' +
+      slashes() +
+      '<section><h3 class="h3" style="margin-bottom:26px">' + L(T.debate) + '</h3><ul class="rows">' + DEB.map(row).join('') + '</ul></section>' +
       slashes() +
       '<section class="tease"><h3 class="big">' + L(T.outside) + '</h3><div class="body"><p>' + L(T.outsideP) + '</p></div></section></div>';
   }
